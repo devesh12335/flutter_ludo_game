@@ -134,68 +134,79 @@ class _LudoPainter extends CustomPainter {
 
 @override
 void paint(Canvas canvas, Size size) {
-  final double cellSize = size.width / n;
+  final double cell = size.width / n;
   final rect = Offset.zero & size;
 
-  // === 🎨 Board background ===
+  // === 1. Background ===
   final bgPaint = Paint()..color = Colors.white;
   canvas.drawRect(rect, bgPaint);
 
-  // === 🎨 Quadrants (Red, Green, Yellow, Blue) ===
+  // === 2. Quadrants ===
   final redPaint = Paint()..color = Colors.red.shade300;
   final greenPaint = Paint()..color = Colors.green.shade300;
   final yellowPaint = Paint()..color = Colors.yellow.shade300;
   final bluePaint = Paint()..color = Colors.blue.shade300;
 
-  canvas.drawRect(Rect.fromLTWH(0, 0, 6 * cellSize, 6 * cellSize), redPaint); // top-left
-  canvas.drawRect(Rect.fromLTWH(9 * cellSize, 0, 6 * cellSize, 6 * cellSize), greenPaint); // top-right
-  canvas.drawRect(Rect.fromLTWH(0, 9 * cellSize, 6 * cellSize, 6 * cellSize), yellowPaint); // bottom-left
-  canvas.drawRect(Rect.fromLTWH(9 * cellSize, 9 * cellSize, 6 * cellSize, 6 * cellSize), bluePaint); // bottom-right
+  canvas.drawRect(Rect.fromLTWH(0, 0, 6 * cell, 6 * cell), redPaint); // top-left
+  canvas.drawRect(Rect.fromLTWH(9 * cell, 0, 6 * cell, 6 * cell), greenPaint); // top-right
+  canvas.drawRect(Rect.fromLTWH(0, 9 * cell, 6 * cell, 6 * cell), yellowPaint); // bottom-left
+  canvas.drawRect(Rect.fromLTWH(9 * cell, 9 * cell, 6 * cell, 6 * cell), bluePaint); // bottom-right
 
-  // === 🎨 Middle cross (white center + colored home paths) ===
+  // === 3. Cross paths ===
   final whitePaint = Paint()..color = Colors.white;
-  canvas.drawRect(Rect.fromLTWH(6 * cellSize, 0, 3 * cellSize, 15 * cellSize), whitePaint); // vertical bar
-  canvas.drawRect(Rect.fromLTWH(0, 6 * cellSize, 15 * cellSize, 3 * cellSize), whitePaint); // horizontal bar
+  canvas.drawRect(Rect.fromLTWH(6 * cell, 0, 3 * cell, 15 * cell), whitePaint); // vertical bar
+  canvas.drawRect(Rect.fromLTWH(0, 6 * cell, 15 * cell, 3 * cell), whitePaint); // horizontal bar
 
-  // Home path colors
-  canvas.drawRect(Rect.fromLTWH(6 * cellSize, 1 * cellSize, 3 * cellSize, 5 * cellSize), greenPaint); // green path
-  canvas.drawRect(Rect.fromLTWH(1 * cellSize, 6 * cellSize, 5 * cellSize, 3 * cellSize), redPaint);   // red path
-  canvas.drawRect(Rect.fromLTWH(9 * cellSize, 6 * cellSize, 5 * cellSize, 3 * cellSize), bluePaint);  // blue path
-  canvas.drawRect(Rect.fromLTWH(6 * cellSize, 9 * cellSize, 3 * cellSize, 5 * cellSize), yellowPaint);// yellow path
+  // colored paths
+  canvas.drawRect(Rect.fromLTWH(7 * cell, 1 * cell, 1 * cell, 5 * cell), greenPaint);
+  canvas.drawRect(Rect.fromLTWH(1 * cell, 7 * cell, 5 * cell, 1 * cell), redPaint);
+  canvas.drawRect(Rect.fromLTWH(9 * cell, 7 * cell, 5 * cell, 1 * cell), bluePaint);
+  canvas.drawRect(Rect.fromLTWH(7 * cell, 9 * cell, 1 * cell, 5 * cell), yellowPaint);
+  //Entry point places
+  canvas.drawRect(Rect.fromLTWH(8 * cell, 1 * cell, 1 * cell, 1 * cell), greenPaint);
+  canvas.drawRect(Rect.fromLTWH(1 * cell, 6 * cell, 1 * cell, 1 * cell), redPaint);
+  canvas.drawRect(Rect.fromLTWH(13 * cell, 8 * cell, 1 * cell, 1 * cell), bluePaint);
+  canvas.drawRect(Rect.fromLTWH(6 * cell, 13 * cell, 1 * cell, 1 * cell), yellowPaint);
 
-  // === 🎯 Safe center triangle ===
-  final path = Path()
-    ..moveTo(6 * cellSize, 6 * cellSize)
-    ..lineTo(9 * cellSize, 6 * cellSize)
-    ..lineTo(7.5 * cellSize, 7.5 * cellSize)
-    ..close();
+  
+
+  // === 4. Center triangles ===
+  final path = Path();
+
+  // red
+  path.moveTo(6 * cell, 6 * cell);
+  path.lineTo(9 * cell, 6 * cell);
+  path.lineTo(7.5 * cell, 7.5 * cell);
+  path.close();
   canvas.drawPath(path, redPaint);
 
-path.reset();
-  path
-    ..moveTo(9 * cellSize, 6 * cellSize)
-    ..lineTo(9 * cellSize, 9 * cellSize)
-    ..lineTo(7.5 * cellSize, 7.5 * cellSize)
-    ..close();
+  // green
+  path.reset();
+  path.moveTo(9 * cell, 6 * cell);
+  path.lineTo(9 * cell, 9 * cell);
+  path.lineTo(7.5 * cell, 7.5 * cell);
+  path.close();
   canvas.drawPath(path, greenPaint);
 
-path.reset();
-  path
-    ..moveTo(9 * cellSize, 9 * cellSize)
-    ..lineTo(6 * cellSize, 9 * cellSize)
-    ..lineTo(7.5 * cellSize, 7.5 * cellSize)
-    ..close();
+  // blue
+  path.reset();
+  path.moveTo(9 * cell, 9 * cell);
+  path.lineTo(6 * cell, 9 * cell);
+  path.lineTo(7.5 * cell, 7.5 * cell);
+  path.close();
   canvas.drawPath(path, bluePaint);
 
-path.reset();
-  path
-    ..moveTo(6 * cellSize, 9 * cellSize)
-    ..lineTo(6 * cellSize, 6 * cellSize)
-    ..lineTo(7.5 * cellSize, 7.5 * cellSize)
-    ..close();
+  // yellow
+  path.reset();
+  path.moveTo(6 * cell, 9 * cell);
+  path.lineTo(6 * cell, 6 * cell);
+  path.lineTo(7.5 * cell, 7.5 * cell);
+  path.close();
   canvas.drawPath(path, yellowPaint);
 
-  // === 🟢 Safe dots (4 per quadrant) ===
+  
+
+  // === 5. Safe dots ===
   final dotPaint = Paint()..color = Colors.black;
   const offsets = [
     Offset(2, 2), Offset(4, 2), Offset(2, 4), Offset(4, 4), // Red
@@ -204,38 +215,33 @@ path.reset();
     Offset(10, 10), Offset(12, 10), Offset(10, 12), Offset(12, 12), // Blue
   ];
   for (var o in offsets) {
-    canvas.drawCircle(Offset(o.dx * cellSize, o.dy * cellSize), cellSize / 5, dotPaint);
+    canvas.drawCircle(Offset(o.dx * cell, o.dy * cell), cell / 5, dotPaint);
   }
 
-  // === 📏 Grid lines ===
+  // === 6. Grid lines ===
   if (showGrid) {
     final gridPaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
       ..strokeWidth = 0.5;
     for (int i = 0; i <= n; i++) {
-      // vertical
-      canvas.drawLine(Offset(i * cellSize, 0), Offset(i * cellSize, size.height), gridPaint);
-      // horizontal
-      canvas.drawLine(Offset(0, i * cellSize), Offset(size.width, i * cellSize), gridPaint);
+      canvas.drawLine(Offset(i * cell, 0), Offset(i * cell, size.height), gridPaint);
+      canvas.drawLine(Offset(0, i * cell), Offset(size.width, i * cell), gridPaint);
     }
   }
 
-  // === 🧩 Highlight cells ===
+  // === 7. Highlight cells ===
   final highlightPaint = Paint()
     ..color = Colors.purple.withOpacity(0.3)
     ..style = PaintingStyle.fill;
-  for (var cell in highlightCells) {
-  final row = cell.r;
-  final col = cell.c;
-  canvas.drawRect(
-    Rect.fromLTWH(col * cellSize, row * cellSize, cellSize, cellSize),
-    highlightPaint,
-  );
-}
+  for (var c in highlightCells) {
+    canvas.drawRect(
+      Rect.fromLTWH(c.c * cell, c.r * cell, cell, cell),
+      highlightPaint,
+    );
+  }
 
-
-  // === 🔢 Cell coordinates (on top for debugging) ===
+  // === 8. Debug cell labels ===
   if (showCellLabels) {
     final textPainter = TextPainter(
       textAlign: TextAlign.center,
@@ -243,23 +249,24 @@ path.reset();
     );
     for (int r = 0; r < n; r++) {
       for (int c = 0; c < n; c++) {
-        final Rect cellRect = Rect.fromLTWH(c * cellSize, r * cellSize, cellSize, cellSize);
+        final Rect cellRect = Rect.fromLTWH(c * cell, r * cell, cell, cell);
         textPainter.text = TextSpan(
           text: "$r,$c",
           style: const TextStyle(fontSize: 7, color: Colors.black),
         );
-        textPainter.layout(minWidth: 0, maxWidth: cellSize);
+        textPainter.layout(minWidth: 0, maxWidth: cell);
         textPainter.paint(
           canvas,
           Offset(
-            cellRect.left + (cellSize - textPainter.width) / 2,
-            cellRect.top + (cellSize - textPainter.height) / 2,
+            cellRect.left + (cell - textPainter.width) / 2,
+            cellRect.top + (cell - textPainter.height) / 2,
           ),
         );
       }
     }
   }
 }
+
 
 
 
