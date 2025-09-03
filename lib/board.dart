@@ -178,7 +178,7 @@ void paint(Canvas canvas, Size size) {
   path.lineTo(9 * cell, 6 * cell);
   path.lineTo(7.5 * cell, 7.5 * cell);
   path.close();
-  canvas.drawPath(path, redPaint);
+  canvas.drawPath(path, greenPaint);
 
   // green
   path.reset();
@@ -186,7 +186,7 @@ void paint(Canvas canvas, Size size) {
   path.lineTo(9 * cell, 9 * cell);
   path.lineTo(7.5 * cell, 7.5 * cell);
   path.close();
-  canvas.drawPath(path, greenPaint);
+  canvas.drawPath(path, bluePaint);
 
   // blue
   path.reset();
@@ -194,7 +194,7 @@ void paint(Canvas canvas, Size size) {
   path.lineTo(6 * cell, 9 * cell);
   path.lineTo(7.5 * cell, 7.5 * cell);
   path.close();
-  canvas.drawPath(path, bluePaint);
+  canvas.drawPath(path, yellowPaint);
 
   // yellow
   path.reset();
@@ -202,21 +202,11 @@ void paint(Canvas canvas, Size size) {
   path.lineTo(6 * cell, 6 * cell);
   path.lineTo(7.5 * cell, 7.5 * cell);
   path.close();
-  canvas.drawPath(path, yellowPaint);
+  canvas.drawPath(path, redPaint);
 
   
 
-  // === 5. Safe dots ===
-  final dotPaint = Paint()..color = Colors.black;
-  const offsets = [
-    Offset(2, 2), Offset(4, 2), Offset(2, 4), Offset(4, 4), // Red
-    Offset(10, 2), Offset(12, 2), Offset(10, 4), Offset(12, 4), // Green
-    Offset(2, 10), Offset(4, 10), Offset(2, 12), Offset(4, 12), // Yellow
-    Offset(10, 10), Offset(12, 10), Offset(10, 12), Offset(12, 12), // Blue
-  ];
-  for (var o in offsets) {
-    canvas.drawCircle(Offset(o.dx * cell, o.dy * cell), cell / 5, dotPaint);
-  }
+  
 
   // === 6. Grid lines ===
   if (showGrid) {
