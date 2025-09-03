@@ -218,6 +218,31 @@ void paint(Canvas canvas, Size size) {
       canvas.drawLine(Offset(i * cell, 0), Offset(i * cell, size.height), gridPaint);
       canvas.drawLine(Offset(0, i * cell), Offset(size.width, i * cell), gridPaint);
     }
+
+    //darker outlines
+final darkline = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+      //verticle lines
+    canvas.drawLine(Offset(6 * cell, 0), Offset(6 * cell, size.height), darkline);
+    canvas.drawLine(Offset(9 * cell, 0), Offset(9 * cell, size.height), darkline);
+    canvas.drawLine(Offset(0, 0), Offset(0, size.height), darkline);
+    canvas.drawLine(Offset(15*cell, 0), Offset(15*cell, size.height), darkline);
+    //horizontal lines
+    canvas.drawLine(Offset(0, 6 * cell), Offset(size.width, 6 * cell), darkline);
+    canvas.drawLine(Offset(0, 9 * cell), Offset(size.width, 9 * cell), darkline);
+    canvas.drawLine(Offset(0, 0), Offset(size.width, 0), darkline);
+    canvas.drawLine(Offset(0, 15 * cell), Offset(size.width, 15 * cell), darkline);
+
+    //Player Home Lines
+    //Red Player
+    canvas.drawLine(Offset(2*cell, 7*cell), Offset(6*cell, 7*cell), darkline);
+    canvas.drawLine(Offset(1*cell, 8*cell), Offset(6*cell, 8*cell), darkline);
+    canvas.drawLine(Offset(1*cell, 8*cell), Offset(1*cell, 6*cell), darkline);
+    canvas.drawLine(Offset(2*cell, 7*cell), Offset(2*cell, 6*cell), darkline);
+
+    
   }
 
   // === 7. Highlight cells ===
