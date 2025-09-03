@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ludo_game/models/cell.dart';
 
-/// Simple, scalable Ludo board with optional tokens.
-/// Grid is 15x15 cells. Provide token positions in (row, col) [0..14].
+/// Simple Ludo board that paints the board and places tappable token widgets
+/// on top. Call [onTokenTap] to notify parent which player/color and which
+/// token index was tapped.
 class LudoBoard extends StatelessWidget {
   const LudoBoard({
     super.key,
@@ -9,170 +11,261 @@ class LudoBoard extends StatelessWidget {
     this.showGrid = true,
     this.tokens = const {},
     this.highlightCells = const <Cell>[],
+    this.onTokenTap,
   });
 
-  /// The board is square; size is width/height in logical pixels.
   final double size;
-
-  /// Show 15x15 grid overlay.
   final bool showGrid;
-
-  /// Map of player color to a list of token cell positions.
-  /// Example: {LudoColor.red: [Cell(1,1), Cell(2,2)]}
   final Map<LudoColor, List<Cell>> tokens;
-
-  /// Optional highlighted cells (e.g., valid moves).
   final List<Cell> highlightCells;
+
+  /// Called when a token is tapped: color + tokenIndex (0..3)
+  final void Function(LudoColor color, int tokenIndex)? onTokenTap;
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: CustomPaint(
-        size: Size.square(size),
-        painter: _LudoPainter(
-          showGrid: showGrid,
-          tokens: tokens,
-          highlightCells: highlightCells,
-        ),
+    // cell size in logical pixels
+    final double cell = size / _LudoPainter.n;
+    final double tokenSize = cell * 0.72;
+
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Stack(
+        children: [
+          // Board background painted (we pass empty tokens to painter to avoid duplicates)
+        CustomPaint(
+  size: Size.square(size),
+  painter: _LudoPainter(
+    showGrid: showGrid,
+    tokens: const {},
+    highlightCells: highlightCells,
+    showCellLabels: true, // ✅ toggle here
+  ),
+),
+
+
+          // Tappable token widgets
+          // We use the tokens map that parent/controller supplies as Cell positions.
+          ...tokens.entries.expand((entry) {
+            final LudoColor color = entry.key;
+            final List<Cell> cellList = entry.value;
+
+            return List.generate(cellList.length, (i) {
+              final Cell pos = cellList[i];
+
+              // position token centered in the grid cell
+              final double left = pos.c * cell + (cell - tokenSize) / 2;
+              final double top = pos.r * cell + (cell - tokenSize) / 2;
+
+              return Positioned(
+                left: left,
+                top: top,
+                width: tokenSize,
+                height: tokenSize,
+                child: GestureDetector(
+                  onTap: () {
+                    onTokenTap?.call(color, i);
+                  },
+                  child: _buildToken(color),
+                ),
+              );
+            });
+          }),
+        ],
       ),
     );
+  }
+
+  Widget _buildToken(LudoColor color) {
+    return LayoutBuilder(builder: (context, constraints) {
+      return Container(
+        width: constraints.maxWidth,
+        height: constraints.maxHeight,
+        decoration: BoxDecoration(
+          color: _colorOf(color),
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.white, width: 2),
+          boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1,1))],
+        ),
+      );
+    });
+  }
+
+  // Local color helper (was previously inside painter)
+  Color _colorOf(LudoColor c) {
+    switch (c) {
+      case LudoColor.red:
+        return const Color(0xFFE74C3C);
+      case LudoColor.green:
+        return const Color(0xFF27AE60);
+      case LudoColor.yellow:
+        return const Color(0xFFF1C40F);
+      case LudoColor.blue:
+        return const Color(0xFF2980B9);
+    }
   }
 }
 
 /// Player colors used on board and tokens.
 enum LudoColor { red, green, yellow, blue }
 
-/// Integer cell position (row, col) on a 15x15 board.
-class Cell {
-  final int r;
-  final int c;
-  const Cell(this.r, this.c);
-}
-
+/// The painter draws the board background (no tokens)
 class _LudoPainter extends CustomPainter {
   static const int n = 15; // 15x15 grid
 
   final bool showGrid;
-  final Map<LudoColor, List<Cell>> tokens;
+  final Map<LudoColor, List<Cell>> tokens; // unused here when passed {}
   final List<Cell> highlightCells;
+  final bool showCellLabels;
 
   _LudoPainter({
     required this.showGrid,
     required this.tokens,
     required this.highlightCells,
+    required this.showCellLabels
   });
 
-  // Theme colors (feel free to tweak shades)
   final Color red = const Color(0xFFE74C3C);
   final Color green = const Color(0xFF27AE60);
   final Color yellow = const Color(0xFFF1C40F);
   final Color blue = const Color(0xFF2980B9);
   final Color line = const Color(0xFF222222).withOpacity(0.7);
 
-  @override
-  void paint(Canvas canvas, Size size) {
-    final double cell = size.width / n;
-    final rect = Offset.zero & size;
+@override
+void paint(Canvas canvas, Size size) {
+  final double cellSize = size.width / n;
+  final rect = Offset.zero & size;
 
-    // Background
-    final bg = Paint()..color = Colors.white;
-    canvas.drawRect(rect, bg);
+  // === 🎨 Board background ===
+  final bgPaint = Paint()..color = Colors.white;
+  canvas.drawRect(rect, bgPaint);
 
-    // Quadrant squares (6x6 each)
-    _fillCells(canvas, cell, _cellsRect(0, 0, 6, 6), red.withAlpha(80));
-    _fillCells(canvas, cell, _cellsRect(0, 9, 6, 6), green.withAlpha(80));
-    _fillCells(canvas, cell, _cellsRect(9, 0, 6, 6), yellow.withAlpha(80));
-    _fillCells(canvas, cell, _cellsRect(9, 9, 6, 6), blue.withAlpha(80));
+  // === 🎨 Quadrants (Red, Green, Yellow, Blue) ===
+  final redPaint = Paint()..color = Colors.red.shade300;
+  final greenPaint = Paint()..color = Colors.green.shade300;
+  final yellowPaint = Paint()..color = Colors.yellow.shade300;
+  final bluePaint = Paint()..color = Colors.blue.shade300;
 
-    // Cross arms (3 cells thick)
-    _fillCells(canvas, cell, _cellsRect(6, 0, 3, 15), Colors.white); // horizontal
-    _fillCells(canvas, cell, _cellsRect(0, 6, 15, 3), Colors.white); // vertical
+  canvas.drawRect(Rect.fromLTWH(0, 0, 6 * cellSize, 6 * cellSize), redPaint); // top-left
+  canvas.drawRect(Rect.fromLTWH(9 * cellSize, 0, 6 * cellSize, 6 * cellSize), greenPaint); // top-right
+  canvas.drawRect(Rect.fromLTWH(0, 9 * cellSize, 6 * cellSize, 6 * cellSize), yellowPaint); // bottom-left
+  canvas.drawRect(Rect.fromLTWH(9 * cellSize, 9 * cellSize, 6 * cellSize, 6 * cellSize), bluePaint); // bottom-right
 
-    // Home rows coloring (5 cells from each side towards center)
-    // Using conventional layout:
-    // Red: left -> center along row 7
-   // Correct home rows
-// Red: (row 7, col 1..5)
-_fillCells(canvas, cell, _cellsRow(7, 1, 5), red.withAlpha(80));
-_fillCells(canvas, cell, _cellsRow(6, 1, 1), red.withAlpha(80));
-// Green: (row 7, col 9..13)
-_fillCells(canvas, cell, _cellsRow(7, 9, 5), blue.withAlpha(80));
-_fillCells(canvas, cell, _cellsRow(8, 13, 1), blue.withAlpha(80));
-// Yellow: (row 9..13, col 7)
-_fillCells(canvas, cell, _cellsCol(9, 7, 5), yellow.withAlpha(80));
-_fillCells(canvas, cell, _cellsCol(13, 6, 1), yellow.withAlpha(80));
-// Blue: (row 1..5, col 7)
-_fillCells(canvas, cell, _cellsCol(1, 7, 5), green.withAlpha(80));
-_fillCells(canvas, cell, _cellsCol(1, 8, 1), green.withAlpha(80));
+  // === 🎨 Middle cross (white center + colored home paths) ===
+  final whitePaint = Paint()..color = Colors.white;
+  canvas.drawRect(Rect.fromLTWH(6 * cellSize, 0, 3 * cellSize, 15 * cellSize), whitePaint); // vertical bar
+  canvas.drawRect(Rect.fromLTWH(0, 6 * cellSize, 15 * cellSize, 3 * cellSize), whitePaint); // horizontal bar
 
+  // Home path colors
+  canvas.drawRect(Rect.fromLTWH(6 * cellSize, 1 * cellSize, 3 * cellSize, 5 * cellSize), greenPaint); // green path
+  canvas.drawRect(Rect.fromLTWH(1 * cellSize, 6 * cellSize, 5 * cellSize, 3 * cellSize), redPaint);   // red path
+  canvas.drawRect(Rect.fromLTWH(9 * cellSize, 6 * cellSize, 5 * cellSize, 3 * cellSize), bluePaint);  // blue path
+  canvas.drawRect(Rect.fromLTWH(6 * cellSize, 9 * cellSize, 3 * cellSize, 5 * cellSize), yellowPaint);// yellow path
 
-    // Center 3x3 with four triangles pointing in
-    _drawCenterTriangles(canvas, cell);
+  // === 🎯 Safe center triangle ===
+  final path = Path()
+    ..moveTo(6 * cellSize, 6 * cellSize)
+    ..lineTo(9 * cellSize, 6 * cellSize)
+    ..lineTo(7.5 * cellSize, 7.5 * cellSize)
+    ..close();
+  canvas.drawPath(path, redPaint);
 
-    // Optional safe cells (entry to each color path) – draw small dots
-    final safeCells = <Cell>[
-      const Cell(7, 6), // left entry to center lane
-      const Cell(7, 8), // right entry
-      const Cell(6, 7), // top entry
-      const Cell(8, 7), // bottom entry
-      // Additional classic safe spots at each arm (adjust as you like):
-      const Cell(1, 7), const Cell(7, 13),
-      const Cell(13, 7), const Cell(7, 1),
-    ];
-    for (final s in safeCells) {
-      _drawSafeDot(canvas, cell, s);
-    }
+path.reset();
+  path
+    ..moveTo(9 * cellSize, 6 * cellSize)
+    ..lineTo(9 * cellSize, 9 * cellSize)
+    ..lineTo(7.5 * cellSize, 7.5 * cellSize)
+    ..close();
+  canvas.drawPath(path, greenPaint);
 
-    // Starting "yard" circles (4 per corner)
-    _drawYardTokens(canvas, cell, LudoColor.red, baseRow: 0, baseCol: 0);
-    _drawYardTokens(canvas, cell, LudoColor.green, baseRow: 0, baseCol: 9);
-    _drawYardTokens(canvas, cell, LudoColor.yellow, baseRow: 9, baseCol: 0);
-    _drawYardTokens(canvas, cell, LudoColor.blue, baseRow: 9, baseCol: 9);
+path.reset();
+  path
+    ..moveTo(9 * cellSize, 9 * cellSize)
+    ..lineTo(6 * cellSize, 9 * cellSize)
+    ..lineTo(7.5 * cellSize, 7.5 * cellSize)
+    ..close();
+  canvas.drawPath(path, bluePaint);
 
-    // Highlight cells (e.g., valid moves)
-    for (final h in highlightCells) {
-      final r = Rect.fromLTWH(h.c * cell, h.r * cell, cell, cell);
-      final p = Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2
-        ..color = Colors.black.withOpacity(.5);
-      canvas.drawRRect(RRect.fromRectAndRadius(r, Radius.circular(cell * .15)), p);
-    }
+path.reset();
+  path
+    ..moveTo(6 * cellSize, 9 * cellSize)
+    ..lineTo(6 * cellSize, 6 * cellSize)
+    ..lineTo(7.5 * cellSize, 7.5 * cellSize)
+    ..close();
+  canvas.drawPath(path, yellowPaint);
 
-    // Player tokens
-    tokens.forEach((color, cells) {
-      for (final pos in cells) {
-        _drawToken(canvas, cell, pos, _colorOf(color));
-      }
-    });
-
-    // Grid lines
-    if (showGrid) {
-      final grid = Paint()
-        ..color = line.withOpacity(.3)
-        ..strokeWidth = 1;
-      for (int i = 0; i <= n; i++) {
-        final d = i * cell;
-        canvas.drawLine(Offset(0, d), Offset(size.width, d), grid);
-        canvas.drawLine(Offset(d, 0), Offset(d, size.width), grid);
-      }
-    }
-
-    // Outer border
-    final border = Paint()
-      ..color = line
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
-    canvas.drawRect(rect, border);
+  // === 🟢 Safe dots (4 per quadrant) ===
+  final dotPaint = Paint()..color = Colors.black;
+  const offsets = [
+    Offset(2, 2), Offset(4, 2), Offset(2, 4), Offset(4, 4), // Red
+    Offset(10, 2), Offset(12, 2), Offset(10, 4), Offset(12, 4), // Green
+    Offset(2, 10), Offset(4, 10), Offset(2, 12), Offset(4, 12), // Yellow
+    Offset(10, 10), Offset(12, 10), Offset(10, 12), Offset(12, 12), // Blue
+  ];
+  for (var o in offsets) {
+    canvas.drawCircle(Offset(o.dx * cellSize, o.dy * cellSize), cellSize / 5, dotPaint);
   }
 
+  // === 📏 Grid lines ===
+  if (showGrid) {
+    final gridPaint = Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 0.5;
+    for (int i = 0; i <= n; i++) {
+      // vertical
+      canvas.drawLine(Offset(i * cellSize, 0), Offset(i * cellSize, size.height), gridPaint);
+      // horizontal
+      canvas.drawLine(Offset(0, i * cellSize), Offset(size.width, i * cellSize), gridPaint);
+    }
+  }
+
+  // === 🧩 Highlight cells ===
+  final highlightPaint = Paint()
+    ..color = Colors.purple.withOpacity(0.3)
+    ..style = PaintingStyle.fill;
+  for (var cell in highlightCells) {
+  final row = cell.r;
+  final col = cell.c;
+  canvas.drawRect(
+    Rect.fromLTWH(col * cellSize, row * cellSize, cellSize, cellSize),
+    highlightPaint,
+  );
+}
+
+
+  // === 🔢 Cell coordinates (on top for debugging) ===
+  if (showCellLabels) {
+    final textPainter = TextPainter(
+      textAlign: TextAlign.center,
+      textDirection: TextDirection.ltr,
+    );
+    for (int r = 0; r < n; r++) {
+      for (int c = 0; c < n; c++) {
+        final Rect cellRect = Rect.fromLTWH(c * cellSize, r * cellSize, cellSize, cellSize);
+        textPainter.text = TextSpan(
+          text: "$r,$c",
+          style: const TextStyle(fontSize: 7, color: Colors.black),
+        );
+        textPainter.layout(minWidth: 0, maxWidth: cellSize);
+        textPainter.paint(
+          canvas,
+          Offset(
+            cellRect.left + (cellSize - textPainter.width) / 2,
+            cellRect.top + (cellSize - textPainter.height) / 2,
+          ),
+        );
+      }
+    }
+  }
+}
+
+
+
   void _drawCenterTriangles(Canvas canvas, double cell) {
-    // Center area rows/cols 6..8
     final double s = cell;
     final Rect center = Rect.fromLTWH(6 * s, 6 * s, 3 * s, 3 * s);
-
-    // Draw white base
     canvas.drawRect(center, Paint()..color = Colors.white);
 
     final Path redTri = Path()
@@ -201,7 +294,6 @@ _fillCells(canvas, cell, _cellsCol(1, 8, 1), green.withAlpha(80));
     canvas.drawPath(yellowTri, Paint()..color = yellow.withOpacity(.55));
     canvas.drawPath(blueTri, Paint()..color = blue.withOpacity(.55));
 
-    // Center diamond outline
     canvas.drawRect(
       center,
       Paint()
@@ -211,65 +303,23 @@ _fillCells(canvas, cell, _cellsCol(1, 8, 1), green.withAlpha(80));
     );
   }
 
-  // Draw 4 faint token spots in a 2x2 layout inside a 6x6 yard
-  void _drawYardTokens(Canvas canvas, double cell, LudoColor who,
-      {required int baseRow, required int baseCol}) {
-    final Color col = _colorOf(who).withOpacity(.35);
-    final Paint p = Paint()..color = col;
-    final double r = cell * 0.35;
+  void _drawSafeDot(Canvas canvas, double cell, Cell pos) {
+    final Offset center = Offset((pos.c + .5) * cell, (pos.r + .5) * cell);
+    canvas.drawCircle(center, cell * .12, Paint()..color = Colors.black.withOpacity(.35));
+  }
 
-    final List<Cell> pads = [
-      Cell(baseRow + 1, baseCol + 1),
-      Cell(baseRow + 1, baseCol + 4),
-      Cell(baseRow + 4, baseCol + 1),
-      Cell(baseRow + 4, baseCol + 4),
-    ];
-    for (final pad in pads) {
-      final Offset center = Offset((pad.c + .5) * cell, (pad.r + .5) * cell);
-      canvas.drawCircle(center, r, p);
-      canvas.drawCircle(
-        center,
-        r,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.5
-          ..color = Colors.black.withOpacity(.25),
-      );
-    }
-
-    // Yard border
+  void _drawYardBorder(Canvas canvas, double cell, {required int baseRow, required int baseCol, required Color color}) {
     final Rect yardRect = Rect.fromLTWH(baseCol * cell, baseRow * cell, 6 * cell, 6 * cell);
     canvas.drawRRect(
       RRect.fromRectAndRadius(yardRect, Radius.circular(cell * .2)),
       Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2
-        ..color = _colorOf(who).withOpacity(.6),
+        ..color = color.withOpacity(.6),
     );
   }
 
-  void _drawToken(Canvas canvas, double cell, Cell pos, Color color) {
-    final Offset center = Offset((pos.c + .5) * cell, (pos.r + .5) * cell);
-    final double R = cell * .42;
-    final Paint fill = Paint()..color = color;
-    final Paint ring = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 3
-      ..color = Colors.white;
-
-    canvas.drawCircle(center, R, fill);
-    canvas.drawCircle(center, R, ring);
-
-    // Small shine
-    canvas.drawCircle(center.translate(-R * .3, -R * .3), R * .25, Paint()..color = Colors.white.withOpacity(.5));
-  }
-
-  void _drawSafeDot(Canvas canvas, double cell, Cell pos) {
-    final Offset center = Offset((pos.c + .5) * cell, (pos.r + .5) * cell);
-    canvas.drawCircle(center, cell * .12, Paint()..color = Colors.black.withOpacity(.35));
-  }
-
-  // Helpers to create cell rectangles
+  // Helpers
   Iterable<Rect> _cellsRect(int startRow, int startCol, int rows, int cols) sync* {
     for (int r = startRow; r < startRow + rows; r++) {
       for (int c = startCol; c < startCol + cols; c++) {
@@ -298,23 +348,11 @@ _fillCells(canvas, cell, _cellsCol(1, 8, 1), green.withAlpha(80));
     }
   }
 
-  Color _colorOf(LudoColor c) {
-    switch (c) {
-      case LudoColor.red:
-        return red;
-      case LudoColor.green:
-        return green;
-      case LudoColor.yellow:
-        return yellow;
-      case LudoColor.blue:
-        return blue;
-    }
-  }
+@override
+bool shouldRepaint(covariant _LudoPainter oldDelegate) {
+  return showGrid != oldDelegate.showGrid ||
+         highlightCells != oldDelegate.highlightCells ||
+         showCellLabels != oldDelegate.showCellLabels; // ✅ add this
+}
 
-  @override
-  bool shouldRepaint(covariant _LudoPainter oldDelegate) {
-    return showGrid != oldDelegate.showGrid ||
-        tokens != oldDelegate.tokens ||
-        highlightCells != oldDelegate.highlightCells;
-  }
 }

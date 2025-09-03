@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ludo_game/board.dart';
+import 'package:ludo_game/dice.dart';
+import 'package:ludo_game/game.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,21 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Scaffold(
-        body: Center(
-          child: LudoBoard(
-            size: 360,
-            showGrid: true,
-            tokens: {
-        // LudoColor.red:   [const Cell(7, 2), const Cell(1, 1)],
-        // LudoColor.green: [const Cell(7, 12)],
-        // LudoColor.yellow:[const Cell(12, 7)],
-        // LudoColor.blue:  [const Cell(2, 7)],
-            },
-            highlightCells: const [Cell(7, 6), Cell(7, 8)],
-          ),
-        ),
-      ),
+      home: Game()
     );
   }
 }
