@@ -50,7 +50,7 @@ final List<Cell> blueHome  = const [ Cell(13,7), Cell(12,7), Cell(11,7), Cell(10
 final Map<LudoPlayer, int> entryIndex = {
   LudoPlayer.red: 0,    // mainLoop[0] == Cell(6,0)
   LudoPlayer.green: 13, // mainLoop[13] == Cell(0,8)
-  LudoPlayer.yellow: 26,// mainLoop[26] == Cell(8,14)
+  LudoPlayer.yellow: 41,// mainLoop[26] == Cell(8,14)
   LudoPlayer.blue: 39,  // mainLoop[39] == Cell(14,6)
 };
 
