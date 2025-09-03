@@ -41,6 +41,7 @@ int? lastDiceRoll;
 
 
 final playerPaths = PlayerPath().buildPlayerPaths();
+
   /// Simple home-yard pads for each player's 4 tokens (visible when index == -1).
   /// Tune these coordinates to match your LudoBoard's yard drawing.
   final Map<LudoPlayer, List<Cell>> homePads = {

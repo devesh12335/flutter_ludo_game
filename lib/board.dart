@@ -221,15 +221,15 @@ void paint(Canvas canvas, Size size) {
   }
 
   // === 7. Highlight cells ===
-  final highlightPaint = Paint()
-    ..color = Colors.purple.withOpacity(0.3)
-    ..style = PaintingStyle.fill;
-  for (var c in highlightCells) {
-    canvas.drawRect(
-      Rect.fromLTWH(c.c * cell, c.r * cell, cell, cell),
-      highlightPaint,
-    );
-  }
+  // final highlightPaint = Paint()
+  //   ..color = Colors.purple.withOpacity(0.3)
+  //   ..style = PaintingStyle.fill;
+  // for (var c in highlightCells) {
+  //   canvas.drawRect(
+  //     Rect.fromLTWH(c.c * cell, c.r * cell, cell, cell),
+  //     highlightPaint,
+  //   );
+  // }
 
   // === 8. Debug cell labels ===
   if (showCellLabels) {

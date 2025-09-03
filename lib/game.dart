@@ -73,7 +73,7 @@ class _GameState extends State<Game> {
                   //ludo board
               Center(
                 child: board.LudoBoard(
-                  size: 360,
+                  size: 380,
                   showGrid: true,
                   tokens: _gameController.getTokenCells(),
                   highlightCells:  [Cell(7, 6), Cell(7, 8)],
