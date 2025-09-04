@@ -85,6 +85,8 @@ void handleDiceRoll(LudoPlayer player, int diceNumber) {
   // store valid tokens for this player & dice
   pendingMoves = getMovableTokens(player, diceNumber);
   lastDiceRoll = diceNumber;
+  currentPlayer = player;
+  
 
   if (pendingMoves.isEmpty) {
     // No valid moves → skip turn
@@ -189,22 +191,32 @@ return '?';
   }
 
 void moveToken(LudoPlayer player, int tokenIndex, int diceNumber) {
-  final token = tokens[player]![tokenIndex];
+  if(currentPlayer.name == player.name){
+final token = tokens[player]![tokenIndex];
   print("Token Index ${token.index} and $diceNumber");
-  if (token.index == -1 && diceNumber == 6) {
+  if (token.index == -1 && diceNumber == 6 && lastDiceRoll ==6) {
     token.index = 0; // bring out
     _applyCollision(player, 0);
+    lastDiceRoll=0;
   } else {
-    final newIndex = token.index + diceNumber;
+    //Procced only if token is out of home
+    if(token.index != -1){
+final newIndex = token.index + diceNumber;
     if (newIndex < playerPaths[player]!.length) {
       token.index = newIndex;
       _applyCollision(player, newIndex);
+      lastDiceRoll=0;
     }
+    }
+    
   }
+  }
+  
 
   // clear highlights after move
   highlightCells = [];
   pendingMoves = [];
+  
 }
 
 

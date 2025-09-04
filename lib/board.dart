@@ -78,6 +78,21 @@ class _LudoBoardState extends State<LudoBoard> {
               final double left = pos.c * cell + (cell - tokenSize) / 2;
               final double top = pos.r * cell + (cell - tokenSize) / 2;
 
+              // Inside build method, replace Positioned with AnimatedPositioned
+return AnimatedPositioned(
+  duration: const Duration(milliseconds: 500), // adjust speed
+  curve: Curves.easeInOut,                     // smooth motion
+  left: left,
+  top: top,
+  width: tokenSize,
+  height: tokenSize,
+  child: GestureDetector(
+    onTap: () => widget.onTokenTap?.call(color, i),
+    child: _buildToken(color),
+  ),
+);
+
+
               return Positioned(
                 left: left,
                 top: top,
@@ -100,7 +115,7 @@ class _LudoBoardState extends State<LudoBoard> {
       decoration: BoxDecoration(
         color: _colorOf(color),
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.white, width: 2),
+        border: Border.all(color: Colors.teal, width: 2),
         boxShadow: const [
           BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1, 1))
         ],

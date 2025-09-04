@@ -24,8 +24,6 @@ class _GameState extends State<Game> {
   }
 }
 
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -69,6 +67,7 @@ class _GameState extends State<Game> {
             player: dice.LudoPlayer.blue,
             onRolled: (value, player) {
  setState(() {
+                
                 _gameController.handleDiceRoll(player, value);
               });                  }),),
           
