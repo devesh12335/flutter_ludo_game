@@ -24,6 +24,8 @@ class _GameState extends State<Game> {
   }
 }
 
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -79,8 +81,12 @@ class _GameState extends State<Game> {
                   highlightCells:  [Cell(7, 6), Cell(7, 8)],
                    onTokenTap: (color, tokenIndex) {
     // map LudoColor -> LudoPlayer and call controller's moveToken
-    final player = _playerFromColor(color);
-    _gameController.moveToken(player, tokenIndex); // or whichever method you have
+    setState(() {
+       final player = _playerFromColor(color);
+    print("Token index for selected player $tokenIndex");
+    _gameController.moveToken(player, tokenIndex,_gameController.lastDiceRoll??0); // or whichever method you have
+    });
+   
   },
                 ),
               ),

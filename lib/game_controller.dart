@@ -59,53 +59,53 @@ final playerPaths = PlayerPath().buildPlayerPaths();
   return v;
   }
 
-  /// Core move logic
-  void handleDiceRoll(LudoPlayer player, int diceNumber) {
-    final List<Token> playerTokens = tokens[player]!;
+List<int> getMovableTokens(LudoPlayer player, int diceNumber) {
+  final List<Token> playerTokens = tokens[player]!;
+  final List<int> movable = [];
 
-    // 🟥 Case 1: all tokens are in home (-1)
-  final bool allInHome = playerTokens.every((t) => t.index == -1);
-  if (allInHome) {
-    if (diceNumber == 6) {
-      // bring one token out
-      playerTokens.first.index = 0;
-      _applyCollision(player, 0);
-    }
-    // else skip turn (do nothing)
-    return;
-  }
-
-  // 🟩 Case 2: if dice == 6 and there is still a token at home → bring it out
-  if (diceNumber == 6) {
-    final int homeTokenIndex = playerTokens.indexWhere((t) => t.index == -1);
-    if (homeTokenIndex != -1) {
-      playerTokens[homeTokenIndex].index = 0;
-      _applyCollision(player, 0);
-      return;
-    }
-  }
-
-  // 🟦 Case 3: move an existing token on the board
-  Token? chosen;
-  for (final t in playerTokens) {
-    if (t.index >= 0) {
+  for (int i = 0; i < playerTokens.length; i++) {
+    final t = playerTokens[i];
+    if (t.index == -1) {
+      // still in home
+      if (diceNumber == 6) movable.add(i); // can come out
+    } else {
       final int newIndex = t.index + diceNumber;
       if (newIndex < playerPaths[player]!.length) {
-        chosen = t;
-        break;
+        movable.add(i);
       }
     }
   }
+  return movable;
+}
 
-    if (chosen == null) {
-      // nothing can move
-      return;
-    }
+  List<Cell> highlightCells = [];
+List<int> pendingMoves = [];
 
-    final int newIndex = chosen.index + diceNumber;
-    chosen.index = newIndex;
-    _applyCollision(player, newIndex);
+void handleDiceRoll(LudoPlayer player, int diceNumber) {
+  // store valid tokens for this player & dice
+  pendingMoves = getMovableTokens(player, diceNumber);
+  lastDiceRoll = diceNumber;
+
+  if (pendingMoves.isEmpty) {
+    // No valid moves → skip turn
+    return;
   }
+
+  // ✅ Highlight tokens for this player so UI can show them selectable
+  highlightCells =  pendingMoves
+    .map((i) {
+      final token = tokens[player]![i];
+      if (token.index == -1) {
+        // token still in home, so highlight path start cell
+        return playerPaths[player]![0];
+      } else {
+        final index = token.index + diceNumber;
+        return playerPaths[player]![index];
+      }
+    })
+    .toList();
+}
+
 
   /// Collision: if any other player's token sits on the same cell (r,c), send them home.
   void _applyCollision(LudoPlayer mover, int moverIndex) {
@@ -143,14 +143,15 @@ final playerPaths = PlayerPath().buildPlayerPaths();
       for (int i = 0; i < pTokens.length; i++) {
         final Token t = pTokens[i];
         if (t.index == -1) {
-          // in yard — use homePad assigned by token slot (i)
-          out[color]!.add(homePads[player]![i]);
-        } else {
-          final int idx = t.index;
-          // defensive: clamp
-          final int safeIdx = (idx < pPath.length) ? idx : pPath.length - 1;
-          out[color]!.add(pPath[safeIdx]);
-        }
+  // still at home
+  out[color]!.add(homePads[player]![i]);
+} else if (t.index >= 0 && t.index < pPath.length) {
+  out[color]!.add(pPath[t.index]);
+} else {
+  // defensive: fallback to home if something goes wrong
+  out[color]!.add(homePads[player]![i]);
+}
+
       }
     }
     return out;
@@ -175,6 +176,11 @@ final playerPaths = PlayerPath().buildPlayerPaths();
       final list = tokens[p]!.map((t) {
         if (t.index == -1) return 'H';
         final c = playerPaths[p]![t.index];
+        if (t.index >= 0 && t.index < playerPaths[p]!.length) {
+  final c = playerPaths[p]![t.index];
+  return '(${c.r},${c.c})';
+}
+return '?';
         return '(${c.r},${c.c})';
       }).toList();
       map[p.toString()] = list;
@@ -182,44 +188,24 @@ final playerPaths = PlayerPath().buildPlayerPaths();
     return map.toString();
   }
 
-  bool moveToken(LudoPlayer player, int tokenIndex) {
-    debugPrint("Move Token CAlled");
-  final diceNumber = lastDiceRoll;
-  if (diceNumber == null) return false; // no roll yet
-
-  final List<Token> playerTokens = tokens[player]!;
-  final Token token = playerTokens[tokenIndex];
-
-  // Case 1: token is at home
-  if (token.index == -1) {
-    if (diceNumber == 6) {
-      token.index = 0; // bring onto board
-      _applyCollision(player, 0);
-      lastDiceRoll = null; // consume dice
-      notifyListeners();
-      return true;
-    } else {
-      return false; // invalid move
+void moveToken(LudoPlayer player, int tokenIndex, int diceNumber) {
+  final token = tokens[player]![tokenIndex];
+  print("Token Index ${token.index} and $diceNumber");
+  if (token.index == -1 && diceNumber == 6) {
+    token.index = 0; // bring out
+    _applyCollision(player, 0);
+  } else {
+    final newIndex = token.index + diceNumber;
+    if (newIndex < playerPaths[player]!.length) {
+      token.index = newIndex;
+      _applyCollision(player, newIndex);
     }
   }
 
-  // Case 2: token is on board
-  final int newIndex = token.index + diceNumber;
-  if (newIndex < playerPaths[player]!.length) {
-    token.index = newIndex;
-    _applyCollision(player, newIndex);
-    lastDiceRoll = null; // consume dice
-    notifyListeners();
-    return true;
-  }
-
-  if (diceNumber != 6) {
-  currentPlayer = LudoPlayer.values[
-      (currentPlayer.index + 1) % LudoPlayer.values.length];
+  // clear highlights after move
+  highlightCells = [];
+  pendingMoves = [];
 }
 
-
-  return false; // move not possible
-}
 
 }
