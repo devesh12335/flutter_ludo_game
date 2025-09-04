@@ -1,60 +1,80 @@
+import 'dart:math' as Math;
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ludo_game/models/cell.dart';
 
 /// Simple Ludo board that paints the board and places tappable token widgets
 /// on top. Call [onTokenTap] to notify parent which player/color and which
 /// token index was tapped.
-class LudoBoard extends StatelessWidget {
+class LudoBoard extends StatefulWidget {
+  final double size;
+  final bool showGrid;
+  final Map<LudoColor, List<Cell>> tokens;
+  final List<Cell> highlightCells;
+  final void Function(LudoColor color, int tokenIndex)? onTokenTap;
+
   const LudoBoard({
     super.key,
     this.size = 360,
-    this.showGrid = true,
+    this.showGrid = false,
     this.tokens = const {},
     this.highlightCells = const <Cell>[],
     this.onTokenTap,
   });
 
-  final double size;
-  final bool showGrid;
-  final Map<LudoColor, List<Cell>> tokens;
-  final List<Cell> highlightCells;
+  @override
+  State<LudoBoard> createState() => _LudoBoardState();
+}
 
-  /// Called when a token is tapped: color + tokenIndex (0..3)
-  final void Function(LudoColor color, int tokenIndex)? onTokenTap;
+class _LudoBoardState extends State<LudoBoard> {
+  ui.Image? _background;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadBoardImage("assets/board.png"); // 👈 put your asset path
+  }
+
+  Future<void> _loadBoardImage(String assetPath) async {
+    final data = await rootBundle.load(assetPath);
+    final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+    final frame = await codec.getNextFrame();
+    setState(() {
+      _background = frame.image;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // cell size in logical pixels
-    final double cell = size / _LudoPainter.n;
+    final double cell = widget.size / _LudoPainter.n;
     final double tokenSize = cell * 0.72;
 
     return SizedBox(
-      width: size,
-      height: size,
+      width: widget.size,
+      height: widget.size,
       child: Stack(
         children: [
-          // Board background painted (we pass empty tokens to painter to avoid duplicates)
-        CustomPaint(
-  size: Size.square(size),
-  painter: _LudoPainter(
-    showGrid: showGrid,
-    tokens: const {},
-    highlightCells: highlightCells,
-    showCellLabels: true, // ✅ toggle here
-  ),
-),
+          // Paint the board (with background image if loaded)
+          CustomPaint(
+            size: Size.square(widget.size),
+            painter: _LudoPainter(
+              background: _background,
+              showGrid: widget.showGrid,
+              tokens: const {},
+              highlightCells: widget.highlightCells,
+              showCellLabels: true,
+            ),
+          ),
 
-
-          // Tappable token widgets
-          // We use the tokens map that parent/controller supplies as Cell positions.
-          ...tokens.entries.expand((entry) {
+          // Tokens
+          ...widget.tokens.entries.expand((entry) {
             final LudoColor color = entry.key;
             final List<Cell> cellList = entry.value;
 
             return List.generate(cellList.length, (i) {
               final Cell pos = cellList[i];
-
-              // position token centered in the grid cell
               final double left = pos.c * cell + (cell - tokenSize) / 2;
               final double top = pos.r * cell + (cell - tokenSize) / 2;
 
@@ -64,9 +84,7 @@ class LudoBoard extends StatelessWidget {
                 width: tokenSize,
                 height: tokenSize,
                 child: GestureDetector(
-                  onTap: () {
-                    onTokenTap?.call(color, i);
-                  },
+                  onTap: () => widget.onTokenTap?.call(color, i),
                   child: _buildToken(color),
                 ),
               );
@@ -78,21 +96,18 @@ class LudoBoard extends StatelessWidget {
   }
 
   Widget _buildToken(LudoColor color) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Container(
-        width: constraints.maxWidth,
-        height: constraints.maxHeight,
-        decoration: BoxDecoration(
-          color: _colorOf(color),
-          shape: BoxShape.circle,
-          border: Border.all(color: Colors.white, width: 2),
-          boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1,1))],
-        ),
-      );
-    });
+    return Container(
+      decoration: BoxDecoration(
+        color: _colorOf(color),
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white, width: 2),
+        boxShadow: const [
+          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1, 1))
+        ],
+      ),
+    );
   }
 
-  // Local color helper (was previously inside painter)
   Color _colorOf(LudoColor c) {
     switch (c) {
       case LudoColor.red:
@@ -113,13 +128,14 @@ enum LudoColor { red, green, yellow, blue }
 /// The painter draws the board background (no tokens)
 class _LudoPainter extends CustomPainter {
   static const int n = 15; // 15x15 grid
-
+  final ui.Image? background;
   final bool showGrid;
   final Map<LudoColor, List<Cell>> tokens; // unused here when passed {}
   final List<Cell> highlightCells;
   final bool showCellLabels;
 
   _LudoPainter({
+    required this.background,
     required this.showGrid,
     required this.tokens,
     required this.highlightCells,
@@ -132,16 +148,26 @@ class _LudoPainter extends CustomPainter {
   final Color blue = const Color(0xFF2980B9);
   final Color line = const Color(0xFF222222).withOpacity(0.7);
 
+  @override
+bool shouldRepaint(covariant _LudoPainter oldDelegate) {
+  return showGrid != oldDelegate.showGrid ||
+         highlightCells != oldDelegate.highlightCells ||
+         showCellLabels != oldDelegate.showCellLabels ||
+         background != oldDelegate.background; // 👈 add this
+}
+
 @override
 void paint(Canvas canvas, Size size) {
   final double cell = size.width / n;
   final rect = Offset.zero & size;
 
+   
+
   // === 1. Background ===
   final bgPaint = Paint()..color = Colors.white;
   canvas.drawRect(rect, bgPaint);
 
-  // === 2. Quadrants ===
+  //=== 2. Quadrants ===
   final redPaint = Paint()..color = Colors.red.shade300;
   final greenPaint = Paint()..color = Colors.green.shade300;
   final yellowPaint = Paint()..color = Colors.yellow.shade300;
@@ -241,22 +267,46 @@ final darkline = Paint()
     canvas.drawLine(Offset(1*cell, 8*cell), Offset(6*cell, 8*cell), darkline);
     canvas.drawLine(Offset(1*cell, 8*cell), Offset(1*cell, 6*cell), darkline);
     canvas.drawLine(Offset(2*cell, 7*cell), Offset(2*cell, 6*cell), darkline);
+    //Green Player
+    canvas.drawLine(Offset(7*cell, 1*cell), Offset(9*cell, 1*cell), darkline);
+    canvas.drawLine(Offset(8*cell, 2*cell), Offset(9*cell, 2*cell), darkline);
+    canvas.drawLine(Offset(7*cell, 1*cell), Offset(7*cell, 6*cell), darkline);
+    canvas.drawLine(Offset(8*cell, 2*cell), Offset(8*cell, 6*cell), darkline);
+    //blue Player
+    canvas.drawLine(Offset(14*cell, 7*cell), Offset(9*cell, 7*cell), darkline);
+    canvas.drawLine(Offset(13*cell, 8*cell), Offset(9*cell, 8*cell), darkline);
+    canvas.drawLine(Offset(14*cell, 7*cell), Offset(14*cell, 9*cell), darkline);
+    canvas.drawLine(Offset(13*cell, 8*cell), Offset(13*cell, 9*cell), darkline);
+     //yellow Player
+    canvas.drawLine(Offset(8*cell, 9*cell), Offset(8*cell, 14*cell), darkline);
+    canvas.drawLine(Offset(7*cell, 9*cell), Offset(7*cell, 13*cell), darkline);
+    canvas.drawLine(Offset(6*cell, 13*cell), Offset(7*cell, 13*cell), darkline);
+    canvas.drawLine(Offset(6*cell, 14*cell), Offset(8*cell, 14*cell), darkline);
 
     
+
+    _drawStar(canvas, cell, const Cell(8,2), color: Colors.black);
+    _drawStar(canvas, cell, const Cell(2,6), color: Colors.black);
+    _drawStar(canvas, cell, const Cell(12,8), color: Colors.black);
+    _drawStar(canvas, cell, const Cell(6,12), color: Colors.black);
+
+     
   }
 
-  // === 7. Highlight cells ===
-  // final highlightPaint = Paint()
-  //   ..color = Colors.purple.withOpacity(0.3)
-  //   ..style = PaintingStyle.fill;
-  // for (var c in highlightCells) {
-  //   canvas.drawRect(
-  //     Rect.fromLTWH(c.c * cell, c.r * cell, cell, cell),
-  //     highlightPaint,
-  //   );
-  // }
+  
 
-  // === 8. Debug cell labels ===
+ // === 7. Highlight cells ===
+  final highlightPaint = Paint()
+    ..color = Colors.purple.withOpacity(0.3)
+    ..style = PaintingStyle.fill;
+  for (var c in highlightCells) {
+    canvas.drawRect(
+      Rect.fromLTWH(c.c * cell, c.r * cell, cell, cell),
+      highlightPaint,
+    );
+  }
+
+  //=== 8. Debug cell labels ===
   if (showCellLabels) {
     final textPainter = TextPainter(
       textAlign: TextAlign.center,
@@ -279,6 +329,22 @@ final darkline = Paint()
         );
       }
     }
+  }
+
+  if (background != null) {
+    // Scale image to fit board size
+    final paint = Paint();
+    final src = Rect.fromLTWH(12, 12, background!.width.toDouble()*0.975, background!.height.toDouble()*0.969);
+    final dst = Rect.fromLTWH(
+    0,
+    0,
+    size.width,
+    size.height,
+  );
+    canvas.drawImageRect(background!, src, dst, paint);
+  } else {
+    // fallback white background
+    canvas.drawRect(rect, Paint()..color = Colors.transparent);
   }
 }
 
@@ -311,10 +377,10 @@ final darkline = Paint()
       ..lineTo(center.right, center.center.dy)
       ..close();
 
-    canvas.drawPath(redTri, Paint()..color = red.withOpacity(.55));
-    canvas.drawPath(greenTri, Paint()..color = green.withOpacity(.55));
-    canvas.drawPath(yellowTri, Paint()..color = yellow.withOpacity(.55));
-    canvas.drawPath(blueTri, Paint()..color = blue.withOpacity(.55));
+    canvas.drawPath(redTri, Paint()..color = red.withAlpha(55));
+    canvas.drawPath(greenTri, Paint()..color = green.withAlpha(55));
+    canvas.drawPath(yellowTri, Paint()..color = yellow.withAlpha(55));
+    canvas.drawPath(blueTri, Paint()..color = blue.withAlpha(55));
 
     canvas.drawRect(
       center,
@@ -324,6 +390,34 @@ final darkline = Paint()
         ..strokeWidth = 1.5,
     );
   }
+
+void _drawStar(Canvas canvas, double cell, Cell pos, {Color color = Colors.black}) {
+  final double cx = (pos.c + 0.5) * cell; // center X
+  final double cy = (pos.r + 0.5) * cell; // center Y
+  final double outerRadius = cell * 0.4;   // star outer radius
+  final double innerRadius = cell * 0.18;  // star inner radius
+
+  final Path path = Path();
+  const int points = 5;
+  for (int i = 0; i < points * 2; i++) {
+    final double angle = (i * 3.14159265 / points) - 3.14159265 / 2; // rotate to top
+    final double radius = (i.isEven ? outerRadius : innerRadius);
+    final double x = cx + radius * Math.cos(angle);
+    final double y = cy + radius * Math.sin(angle);
+    if (i == 0) {
+      path.moveTo(x, y);
+    } else {
+      path.lineTo(x, y);
+    }
+  }
+  path.close();
+
+  final paint = Paint()
+    ..color = color
+    ..style = PaintingStyle.fill;
+
+  canvas.drawPath(path, paint);
+}
 
   void _drawSafeDot(Canvas canvas, double cell, Cell pos) {
     final Offset center = Offset((pos.c + .5) * cell, (pos.r + .5) * cell);
@@ -370,11 +464,11 @@ final darkline = Paint()
     }
   }
 
-@override
-bool shouldRepaint(covariant _LudoPainter oldDelegate) {
-  return showGrid != oldDelegate.showGrid ||
-         highlightCells != oldDelegate.highlightCells ||
-         showCellLabels != oldDelegate.showCellLabels; // ✅ add this
-}
+// @override
+// bool shouldRepaint(covariant _LudoPainter oldDelegate) {
+//   return showGrid != oldDelegate.showGrid ||
+//          highlightCells != oldDelegate.highlightCells ||
+//          showCellLabels != oldDelegate.showCellLabels; // ✅ add this
+// }
 
 }
