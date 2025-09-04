@@ -34,7 +34,7 @@ class _LudoBoardState extends State<LudoBoard> {
   @override
   void initState() {
     super.initState();
-    _loadBoardImage("assets/board.png"); // 👈 put your asset path
+    // _loadBoardImage("assets/board.png"); // 👈 put your asset path
   }
 
   Future<void> _loadBoardImage(String assetPath) async {
@@ -146,7 +146,7 @@ class _LudoPainter extends CustomPainter {
   final Color green = const Color(0xFF27AE60);
   final Color yellow = const Color(0xFFF1C40F);
   final Color blue = const Color(0xFF2980B9);
-  final Color line = const Color(0xFF222222).withOpacity(0.7);
+  final Color line = const Color(0xFF222222);
 
   @override
 bool shouldRepaint(covariant _LudoPainter oldDelegate) {
@@ -168,10 +168,10 @@ void paint(Canvas canvas, Size size) {
   canvas.drawRect(rect, bgPaint);
 
   //=== 2. Quadrants ===
-  final redPaint = Paint()..color = Colors.red.shade300;
-  final greenPaint = Paint()..color = Colors.green.shade300;
-  final yellowPaint = Paint()..color = Colors.yellow.shade300;
-  final bluePaint = Paint()..color = Colors.blue.shade300;
+  final redPaint = Paint()..color = Colors.red;
+  final greenPaint = Paint()..color = Colors.green;
+  final yellowPaint = Paint()..color = Colors.yellow;
+  final bluePaint = Paint()..color = Colors.blue;
 
   canvas.drawRect(Rect.fromLTWH(0, 0, 6 * cell, 6 * cell), redPaint); // top-left
   canvas.drawRect(Rect.fromLTWH(9 * cell, 0, 6 * cell, 6 * cell), greenPaint); // top-right
@@ -239,7 +239,7 @@ void paint(Canvas canvas, Size size) {
     final gridPaint = Paint()
       ..color = Colors.black
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.5;
+      ..strokeWidth = 1;
     for (int i = 0; i <= n; i++) {
       canvas.drawLine(Offset(i * cell, 0), Offset(i * cell, size.height), gridPaint);
       canvas.drawLine(Offset(0, i * cell), Offset(size.width, i * cell), gridPaint);
@@ -289,6 +289,9 @@ final darkline = Paint()
     _drawStar(canvas, cell, const Cell(2,6), color: Colors.black);
     _drawStar(canvas, cell, const Cell(12,8), color: Colors.black);
     _drawStar(canvas, cell, const Cell(6,12), color: Colors.black);
+
+
+
 
      
   }
@@ -346,8 +349,119 @@ final darkline = Paint()
     // fallback white background
     canvas.drawRect(rect, Paint()..color = Colors.transparent);
   }
+
+   // Example: draw at (row 2, col 2)
+  // _drawHomeQuadrant(canvas, cell, 0, 0, red);
+  // _drawCustomSquare(canvas, cell*6, 0, 0, red);
+  _drawCustomSquare(canvas, cell*6, 0, 0,red);
+   _drawCustomSquare(canvas, cell*6, 228, 0,yellow);
+    _drawCustomSquare(canvas, cell*6, 0, 228,green);
+     _drawCustomSquare(canvas, cell*6, 228,228,blue);
+
+   _drawHomeQuadrantCell(canvas, cell, 1, 1,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 1, 4,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 4, 1,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 4, 4,Colors.blueGrey);
+
+     _drawHomeQuadrantCell(canvas, cell, 1, 10,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 1, 13,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 4, 10,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 4, 13,Colors.blueGrey);
+
+      _drawHomeQuadrantCell(canvas, cell, 10, 1,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 10, 4,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 13, 1,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 13, 4,Colors.blueGrey);
+
+        _drawHomeQuadrantCell(canvas, cell, 10, 10,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 10, 13,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 13, 10,Colors.blueGrey);
+  _drawHomeQuadrantCell(canvas, cell, 13, 13,Colors.blueGrey);
 }
 
+void _drawCustomSquare(Canvas canvas, double cellSize, double row, double col,Color color) {
+  final double left = col ;
+  final double top = row ;
+  final Rect outerRect = Rect.fromLTWH(left, top, cellSize, cellSize);
+
+  // Paint outer green square
+  final Paint greenPaint = Paint()..color = color; // green
+  canvas.drawRect(outerRect, greenPaint);
+
+  // Create inner white rounded square (smaller inside)
+  final double margin = cellSize * 0.15; // adjust for padding
+  final Rect innerRect = Rect.fromLTWH(
+    left + margin/0.36,
+    top + margin,
+    30,
+    cellSize - 2 * margin,
+  );
+
+  final Rect innerRectHorizontal = Rect.fromLTWH(
+    left + margin,
+    top + margin/0.38,
+    cellSize - 2 * margin,
+    30,
+  );
+
+  final RRect roundedInner = RRect.fromRectAndRadius(
+    innerRect,
+    Radius.circular(cellSize * 0.1), // curve radius
+  );
+
+  final Paint whitePaint = Paint()..color = const Color(0xFFFFFFFF).withAlpha(80);
+  canvas.drawRRect(roundedInner, whitePaint);
+
+  final RRect roundedInnerHorizontal = RRect.fromRectAndRadius(
+    innerRectHorizontal,
+    Radius.circular(cellSize * 0.1), // curve radius
+  );
+
+  // final Paint whitePaint = Paint()..color = const Color(0xFFFFFFFF).withAlpha(80);
+  canvas.drawRRect(roundedInnerHorizontal, whitePaint);
+}
+
+
+
+
+void _drawHomeQuadrantCell(Canvas canvas, double cellSize, int row, int col,Color color) {
+  final double left = col * cellSize;
+  final double top = row * cellSize;
+  final Rect outerRect = Rect.fromLTWH(left, top, cellSize, cellSize);
+
+  // 1. Paint outer green square (background)
+  final Paint greenPaint = Paint()..color = color;
+  canvas.drawRect(outerRect, greenPaint);
+
+  // 2. Draw inner white border (slightly smaller rect)
+  final double borderMargin = cellSize * 0.08; // thickness of border
+  final Rect borderRect = Rect.fromLTWH(
+    left + borderMargin,
+    top + borderMargin,
+    cellSize - 2 * borderMargin,
+    cellSize - 2 * borderMargin,
+  );
+
+  final Paint whitePaint = Paint()..color = Colors.white;
+  canvas.drawRect(borderRect, whitePaint);
+
+  // 3. Draw rounded inner white square inside the border
+  final double innerMargin = cellSize * 0.18; // distance from outer edges
+  final Rect innerRect = Rect.fromLTWH(
+    left + innerMargin,
+    top + innerMargin,
+    cellSize - 2 * innerMargin,
+    cellSize - 2 * innerMargin,
+  );
+
+  final RRect roundedInner = RRect.fromRectAndRadius(
+    innerRect,
+    Radius.circular(cellSize * 0.25), // curve radius
+  );
+
+  final Paint innerWhitePaint = Paint()..color = Colors.white;
+  canvas.drawRRect(roundedInner, innerWhitePaint);
+}
 
 
 
@@ -391,7 +505,7 @@ final darkline = Paint()
     );
   }
 
-void _drawStar(Canvas canvas, double cell, Cell pos, {Color color = Colors.black}) {
+void _drawStar(Canvas canvas, double cell, Cell pos, {Color color = Colors.purple}) {
   final double cx = (pos.c + 0.5) * cell; // center X
   final double cy = (pos.r + 0.5) * cell; // center Y
   final double outerRadius = cell * 0.4;   // star outer radius
