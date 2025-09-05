@@ -1,4 +1,4 @@
-import 'package:ludo_game/dice.dart';
+import 'package:ludo_game/ludo_game/dice.dart';
 import 'package:ludo_game/models/cell.dart';
 
 class PlayerPath {

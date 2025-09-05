@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:ludo_game/board.dart';
-import 'package:ludo_game/dice.dart';
+import 'package:ludo_game/ludo_game/board.dart';
+import 'package:ludo_game/ludo_game/dice.dart';
 import 'package:ludo_game/models/cell.dart';
 import 'package:ludo_game/models/player_path.dart';
 

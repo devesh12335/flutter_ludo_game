@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ludo_game/board.dart' as board;
-import 'package:ludo_game/dice.dart' as dice;
-import 'package:ludo_game/game_controller.dart' hide Cell;
+import 'package:ludo_game/ludo_game/board.dart' as board;
+import 'package:ludo_game/ludo_game/dice.dart' as dice;
+import 'package:ludo_game/ludo_game/game_controller.dart' hide Cell;
 import 'package:ludo_game/models/cell.dart';
 
 class Game extends StatefulWidget {

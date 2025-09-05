@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ludo_game/board.dart';
-import 'package:ludo_game/dice.dart';
-import 'package:ludo_game/game.dart';
+import 'package:ludo_game/ludo_game/board.dart';
+import 'package:ludo_game/ludo_game/dice.dart';
+import 'package:ludo_game/ludo_game/game.dart';
 
 void main() {
   runApp(const MyApp());
