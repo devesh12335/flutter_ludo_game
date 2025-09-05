@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ludo_game/global_state/globalState.dart';
+import 'package:ludo_game/presentation/resources/router/route_manager.dart';
+import 'package:ludo_game/services/firebase_auth_service.dart';
 
 import 'bloc.dart';
 import 'event.dart';
@@ -20,6 +23,9 @@ class SplashPage extends StatelessWidget {
             case SplashStatus.initial:
             case SplashStatus.loading:
             case SplashStatus.loaded:
+            if(FirebaseAuthService.instance.currentUser != null){
+              Navigator.pushNamedAndRemoveUntil(context, Routes.ludoPage, (_)=>false);
+            }
             case SplashStatus.error:
             case null:
           }

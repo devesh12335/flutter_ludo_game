@@ -3,6 +3,7 @@ import 'package:ludo_game/ludo_game/board.dart' as board;
 import 'package:ludo_game/ludo_game/dice.dart' as dice;
 import 'package:ludo_game/ludo_game/game_controller.dart' hide Cell;
 import 'package:ludo_game/models/cell.dart';
+import 'package:ludo_game/presentation/resources/backgrounds.dart';
 
 class Game extends StatefulWidget {
   const Game({super.key});
@@ -29,85 +30,99 @@ class _GameState extends State<Game> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: [
-            //Dices for each player
-            Positioned(
-              left: 10,
-              bottom: 630,
-              child: dice.AnimatedDice(
-                player: dice.LudoPlayer.red,
-                onRolled: (value, player) {
-                  setState(() {
-                    _gameController.handleDiceRoll(player, value);
-                  });
-                },
-              ),
-            ),
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: NetworkImage(Backgrounds.board),fit: BoxFit.fill),
+         
+    
+        ),
 
-            Positioned(
-              right: 10,
-              bottom: 630,
-              child: dice.AnimatedDice(
-                player: dice.LudoPlayer.green,
-                onRolled: (value, player) {
-                  setState(() {
-                    _gameController.handleDiceRoll(player, value);
-                  });
-                },
+       
+        child: Container(
+            decoration: BoxDecoration(
+          color: Colors.purple.withAlpha(100)
+         
+    
+        ),
+          child: Stack(
+            children: [
+              //Dices for each player
+              Positioned(
+                left: 10,
+                bottom: 630,
+                child: dice.AnimatedDice(
+                  player: dice.LudoPlayer.red,
+                  onRolled: (value, player) {
+                    setState(() {
+                      _gameController.handleDiceRoll(player, value);
+                    });
+                  },
+                ),
               ),
-            ),
-
-            Positioned(
-              left: 10,
-              top: 640,
-              child: dice.AnimatedDice(
-                player: dice.LudoPlayer.yellow,
-                onRolled: (value, player) {
-                  setState(() {
-                    _gameController.handleDiceRoll(player, value);
-                  });
-                },
+          
+              Positioned(
+                right: 10,
+                bottom: 630,
+                child: dice.AnimatedDice(
+                  player: dice.LudoPlayer.green,
+                  onRolled: (value, player) {
+                    setState(() {
+                      _gameController.handleDiceRoll(player, value);
+                    });
+                  },
+                ),
               ),
-            ),
-
-            Positioned(
-              right: 10,
-              top: 640,
-              child: dice.AnimatedDice(
-                player: dice.LudoPlayer.blue,
-                onRolled: (value, player) {
-                  setState(() {
-                    _gameController.handleDiceRoll(player, value);
-                  });
-                },
+          
+              Positioned(
+                left: 10,
+                top: 640,
+                child: dice.AnimatedDice(
+                  player: dice.LudoPlayer.yellow,
+                  onRolled: (value, player) {
+                    setState(() {
+                      _gameController.handleDiceRoll(player, value);
+                    });
+                  },
+                ),
               ),
-            ),
-
-            //ludo board
-            Center(
-              child: board.LudoBoard(
-                size: 380,
-                showGrid: true,
-                tokens: _gameController.getTokenCells(),
-                highlightCells: [Cell(7, 6), Cell(7, 8)],
-                onTokenTap: (color, tokenIndex) {
-                  // map LudoColor -> LudoPlayer and call controller's moveToken
-                  setState(() {
-                    final player = _playerFromColor(color);
-                    print("Token index for selected player $tokenIndex");
-                    _gameController.moveToken(
-                      player,
-                      tokenIndex,
-                      _gameController.lastDiceRoll ?? 0,
-                    ); // or whichever method you have
-                  });
-                },
+          
+              Positioned(
+                right: 10,
+                top: 640,
+                child: dice.AnimatedDice(
+                  player: dice.LudoPlayer.blue,
+                  onRolled: (value, player) {
+                    setState(() {
+                      _gameController.handleDiceRoll(player, value);
+                    });
+                  },
+                ),
               ),
-            ),
-          ],
+          
+              //ludo board
+              Center(
+                child: board.LudoBoard(
+                  size: 380,
+                  showGrid: true,
+                  tokens: _gameController.getTokenCells(),
+                  highlightCells: [Cell(7, 6), Cell(7, 8)],
+                  onTokenTap: (color, tokenIndex) {
+                    // map LudoColor -> LudoPlayer and call controller's moveToken
+                    setState(() {
+                      final player = _playerFromColor(color);
+                      print("Token index for selected player $tokenIndex");
+                      _gameController.moveToken(
+                        player,
+                        tokenIndex,
+                        _gameController.lastDiceRoll ?? 0,
+                      ); // or whichever method you have
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

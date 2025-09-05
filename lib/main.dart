@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: GlobalState.instance.navigatorKey,
             debugShowCheckedModeBanner: false,
 
-            // initialRoute: Routes.splashPage,
+            initialRoute: Routes.splashPage,
             onGenerateRoute: RouteGenerator.getRoute,
             home: LoginPage(),
             theme: AppThemes.instance.isDarkMode.value
