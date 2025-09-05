@@ -54,7 +54,7 @@ class _GameState extends State<Game> {
                 player: dice.LudoPlayer.green,
                 onRolled: (value, player) {
                   setState(() {
-                    _gameController.handleDiceRoll(player, 1);
+                    _gameController.handleDiceRoll(player, value);
                   });
                 },
               ),
