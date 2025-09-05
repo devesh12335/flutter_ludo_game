@@ -1,0 +1,1631 @@
+mixin AppLocale {
+
+  //splash screen
+  static const String splashTitle1 = "Find your";
+  static const String splashTitle2 = "Dream Job";
+  static const String splashTitle3 = " Here";
+  static const String splashTitle4 = "Finding, Connecting, Building Success";
+
+
+  // HomePage
+  static const String homeAppbarTitle = "Good Morning!";
+  static const String job = "Job";
+  static const String course = "Course";
+  static const String scholarship = "Scholarship";
+  static const String homeTotalCandidate = "Total Candidate";
+  static const String homeTotalIncome = "Total Income";
+  static const String homeTotalJobsAvailable = "Total Jobs Available";
+  static const String homeTotalSkillsCourse = "Total Skills Course";
+  static const String homeTotalScholarship = "Total Scholarship";
+  static const String homeExpertServices = "Expert Services";
+  static const String homeAllCandidates = "All Candidates";
+  static const String registeredCandidates = "Registered Candidates";
+  static const String preRegisteredCandidates = "Pre-Registered Candidates";
+  static const String addCandidates = "Add Candidates";
+  static const String addAny = "Add";
+
+  // Candidate profile
+  static const String expertService = "Expert Service";
+  static const String profile = "Profile";
+
+  // My profile
+  static const String myProfile = "My Profile";
+  static const String allCandidates = "All Candidates";
+  static const String totalEarningTillNow = "Total Earning Till Now";
+  static const String joinedDate = "Joined Date";
+  static const String basicInformation = "Basic Information";
+  static const String transaction = "Transaction";
+  static const String settings = "Settings";
+  static const String aboutDheya = "About Dheya";
+  static const String helpAndSupport = "Help & Support";
+  static const String rateUs = "Rate Us";
+  static const String logOut = "Log Out";
+
+  // Edit Profile
+  static const String editProfile = "Edit Profile";
+  static const String fullName = "Full Name";
+  static const String lastName = "Last Name";
+  static const String phoneNumber = "Phone Number";
+  static const String selectYourGender = "Select Your Gender";
+  static const String male = "Male";
+  static const String female = "Female";
+  static const String maritalStatus = "Marital Status";
+  static const String updateProfile = "Update Profile";
+
+  // Settings
+  static const String notifications = "Notifications";
+  static const String controlHowTheAppAlertsYou = "Control how the app alerts you";
+  static const String language = "Language";
+  static const String privacyPolicy = "Privacy Policy";
+
+  // Income History
+  static const String incomeHistory = "Income History";
+  static const String jobApplications = "Job Applications";
+  static const String courseApplication = "Course Applications";
+  static const String scholarshipApplication = "Scholarship Applications";
+  static const String expertServiceApplication = "Expert Service Applications";
+  static const String totalIncome = "Total Income";
+
+  //Candidate course
+  static const String nameNotFound = "Name Not Found";
+  static const String vacancies = "vacancies";
+
+  //Course Details
+  static const String courseDetails = "Course Details";
+  static const String lessons = "Lessons";
+  static const String ratings = "Ratings";
+  static const String enrolled = "Enrolled";
+
+  //Edit Languages
+  static const String editLangugae = "Edit Language";
+
+  //Edit Profile Details
+  static const String enterFullName = "Enter full name";
+  static const String enterEmail = "Enter email";
+  static const String email = "Email";
+  static const String enterphoneNumber = "Enter Phone number";
+  static const String single = "Single";
+  static const String married = "Married";
+  static const String divorcee = "Divorcee";
+  static const String selectMaritalStatus = "Select Marital Status";
+  static const String pleaseEnterValidInformation = "Please Enter Valid Information";
+
+  //Expert Services
+  static const String applicants = "Applicants";
+  static const String time = "Time";
+  static const String date = "Date";
+  static const String name = "Name";
+
+  //Help and Support
+  static const String howCanWeHelpYou = "How can we help you?";
+  static const String welcomeToHelpText = "Welcome to our Help & Support center. Before reaching out, please check our";
+  static const String didntFindAns = "Didn’t find the answer to your question?";
+  static const String emailUs = "Email US";
+  static const String callUs = "Call US";
+  static const String chatWithCounsellor = "Chat with counsellor";
+
+  //IncomeHistory Page
+  static const String courseApplications = "Course Applications";
+  static const String expertServicesApplications = "Expert Services Application";
+  static const String scholarshipApplications = "Scholarship Application";
+  static const String today = "Today";
+
+  //Job Details
+  static const String jobDetails = "Job Details";
+  static const String minExperience = "Min Experience";
+
+  //Login Page
+  static const String invalidPhoneNumber = "Invalid Mobile Number";
+  static const String notFound = "Not Found";
+
+  //Otp Page
+  static const String enter6DigitOtp = "Enter the 6 digit OTP";
+  static const String codeHasSentTo = "Code has sent to";
+  static const String didntRecieveCode = "Didn’t receive Code? ";
+  static const String resendOtp = "Re-send OTP";
+  static const String loginAllCap = "LOGIN";
+
+  //personnel Info
+  static const String personalInformation = "Personnel Information";
+
+  //forms
+  static const String addCourse = "Add Course";
+  static const String addScholarship= "Add Scholarship";
+
+
+  //Pre-Register Screen
+  static const String preRegister = "Pre-Register";
+  static const String enterFirstName = "Enter First name";
+  static const String firstName = "First name";
+  static const String enterLastName = "Enter Last name";
+  static const String enterEmailAddress = "Enter Email Address";
+  static const String emailAddress = "Email Address";
+  static const String enterContactNumber = "Enter Contact Number";
+  static const String contactNumber = "Contact Number";
+  static const String verificationCode = "Verification Code";
+  static const String codeEnteredIs = "Code entered is";
+  static const String verify = "Verify";
+  static const String selectLocation = "Select Location";
+  static const String selectedAddress = "Selected Address : ";
+  static const String enterHighestQualification = "Enter Highest Qualification";
+  static const String highestQualification = "Highest Qualification";
+  static const String enterPincode = " Enter Pin Code";
+  static const String pinCode = "Pin Code";
+  static const String selectVillage = "Select Village";
+  static const String enterCityName = "Enter City/Town name";
+  static const String cityName = "City/Town name";
+  static const String enterTalukaName = "Enter Taluka name";
+  static const String talukaName = "Taluka name";
+  static const String addCandidate = "Add Candidate";
+
+  //Profile details
+  static const String bio = "Bio";
+  static const String gender = "Gender";
+  static const String address = "Address";
+  static const String department = "Department";
+  static const String designation = "Designation";
+
+  //settings
+  static const String controlAppAlertText = "Control how the app alerts you";
+  static const String mobileNumberVerification = "Mobile number Verification";
+  static const String enter6DigitOtpsentYour = "Enter the 6-Digit OTP sent to your";
+  static const String mobileNumberIs = "Mobile Number Is";
+  // static const String verify = "Verify";
+  // static const String verify = "Verify";
+
+
+  //Cart Screen
+  static const String cartText = 'Cart';
+  static const String totalApplicatio = 'Total Application Received';
+  static const String alertMsg = 'Include desclaimer, gst will be charge extra';
+  static const String payNow = 'Pay Now';
+
+  //candidate management
+  static const String matching = 'Matching';
+  static const String applied = 'Applied';
+  static const String shortlisted = 'Shortlisted';
+  static const String joined = 'Joined';
+
+  // Translations for different languages
+  static const Map<String, dynamic> EN = {
+    splashTitle1: "Find your",
+    splashTitle2: "Dream Job",
+    splashTitle3: " Here",
+    splashTitle4: "Finding, Connecting, Building Success",
+
+    //Forms
+    addCourse: "Add Course",
+    addScholarship: "Add Scholarship",
+
+    homeAppbarTitle: 'Good Morning!',
+    homeTotalCandidate: 'Total Candidate',
+    homeTotalIncome: 'Total Income',
+    homeTotalJobsAvailable: 'Total Jobs Available',
+    homeTotalSkillsCourse: 'Total Skills Course',
+    homeTotalScholarship: 'Total Scholarship',
+    homeExpertServices: 'Expert Services',
+    homeAllCandidates: 'All Candidates',
+    registeredCandidates: 'Registered Candidates',
+    preRegisteredCandidates: 'Pre-Registered Candidates',
+    addCandidates: 'Add Candidates',
+    addAny:'Add',
+    job: 'Job',
+    course: 'Course',
+    scholarship: 'Scholarship',
+    expertService: 'Expert Service',
+    profile: 'Profile',
+    myProfile: 'My Profile',
+    totalEarningTillNow: 'Total Earning Till Now',
+    joinedDate: 'Joined Date',
+    basicInformation: 'Basic Information',
+    settings: 'Settings',
+    aboutDheya: 'About Dheya',
+    transaction: "Transaction",
+    helpAndSupport: 'Help & Support',
+    rateUs: 'Rate Us',
+    logOut: 'Log Out',
+    editProfile: 'Edit Profile',
+    fullName: 'Full Name',
+    lastName: 'Last Name',
+    phoneNumber: 'Phone Number',
+    selectYourGender: 'Select Your Gender',
+    male: 'Male',
+    female: 'Female',
+    maritalStatus: 'Marital Status',
+    updateProfile: 'Update Profile',
+    notifications: 'Notifications',
+    controlHowTheAppAlertsYou: 'Control how the app alerts you',
+    language: 'Language',
+    privacyPolicy: 'Privacy Policy',
+    incomeHistory: 'Income History',
+    jobApplications: 'Job Applications',
+    courseApplication: 'Course Applications',
+    scholarshipApplication: 'Scholarship Applications',
+    expertServiceApplication: 'Expert Service Applications',
+
+    nameNotFound: 'Name Not Found',
+    vacancies: 'Vacancies',
+    courseDetails: 'Course Details',
+    lessons: 'Lessons',
+    ratings: 'Ratings',
+    enrolled: 'Enrolled',
+    editLangugae: 'Edit Language',
+    enterFullName: 'Enter Full Name',
+    enterEmail: 'Enter Email',
+    email: 'Email',
+    enterphoneNumber: 'Enter Phone Number',
+    single: 'Single',
+    married: 'Married',
+    divorcee: 'Divorced',
+    selectMaritalStatus: 'Select Marital Status',
+    pleaseEnterValidInformation: 'Please Enter Valid Information',
+    applicants: 'Applicants',
+    time: 'Time',
+    date: 'Date',
+    name: 'Name',
+    howCanWeHelpYou: 'How can we help you?',
+    welcomeToHelpText: 'Welcome to our Help & Support center. Before reaching out, please check our',
+    didntFindAns: 'Didn’t find the answer to your question?',
+    emailUs: 'Email Us',
+    callUs: 'Call Us',
+    chatWithCounsellor: 'Chat with counsellor',
+    // courseApplications: 'Course Applications',
+    expertServicesApplications: 'Expert Services Applications',
+    scholarshipApplications: 'Scholarship Applications',
+    today: 'Today',
+    jobDetails: 'Job Details',
+    minExperience: 'Min Experience',
+    invalidPhoneNumber: 'Invalid Mobile Number',
+    notFound: 'Not Found',
+    enter6DigitOtp: 'Enter the 6 digit OTP',
+    codeHasSentTo: 'Code has been sent to',
+    didntRecieveCode: 'Didn’t receive Code?',
+    resendOtp: 'Re-send OTP',
+    loginAllCap: 'LOGIN',
+    personalInformation: 'Personal Information',
+    preRegister: 'Pre-Register',
+    enterFirstName: 'Enter First Name',
+    firstName: 'First Name',
+    enterLastName: 'Enter Last Name',
+    enterEmailAddress: 'Enter Email Address',
+    emailAddress: 'Email Address',
+    enterContactNumber: 'Enter Contact Number',
+    contactNumber: 'Contact Number',
+    verificationCode: 'Verification Code',
+    codeEnteredIs: 'Code entered is',
+    verify: 'Verify',
+    selectLocation: 'Select Location',
+    selectedAddress: 'Selected Address: ',
+    enterHighestQualification: 'Enter Highest Qualification',
+    highestQualification: 'Highest Qualification',
+    enterPincode: 'Enter Pin Code',
+    pinCode: 'Pin Code',
+    selectVillage: 'Select Village',
+    enterCityName: 'Enter City/Town name',
+    cityName: 'City/Town name',
+    enterTalukaName: 'Enter Taluka name',
+    talukaName: 'Taluka name',
+    addCandidate: 'Add Candidate',
+    bio: 'Bio',
+    gender: 'Gender',
+    address: 'Address',
+    department: 'Department',
+    designation: 'Designation',
+    // controlAppAlertText: 'Control how the app alerts you',
+    mobileNumberVerification: 'Mobile Number Verification',
+    enter6DigitOtpsentYour: 'Enter the 6-digit OTP sent to your',
+    mobileNumberIs: 'Mobile Number Is',
+
+
+    //cart
+    cartText:'Cart',
+    totalApplicatio:'Total Application Received',
+    alertMsg: 'Include desclaimer, gst will be charge extra',
+    payNow: 'Pay Now',
+
+    //candidate management
+    matching:'Matching',
+    applied:'Applied',
+    shortlisted:'Shortlisted',
+    joined:'Joined'
+
+  };
+
+  static const Map<String, dynamic> MARATHI = {
+
+     //splash screen
+    splashTitle1: 'तुमचा',
+    splashTitle2: 'स्वप्नातील नोकरी',
+    splashTitle3: ' इथे',
+    splashTitle4: 'शोधणे, कनेक्ट करणे, यश निर्माण करणे',
+
+    //form
+    addCourse: "अभ्यासक्रम जोडा",
+    addScholarship: "शिष्यवृत्ती जोडा",
+
+    homeAppbarTitle: 'शुभ सकाळ',
+    homeTotalCandidate: 'एकूण उमेदवार',
+    homeTotalIncome: 'एकूण आदाय',
+    homeTotalJobsAvailable: 'एकूण उपलब्ध नोकर्या',
+    homeTotalSkillsCourse: 'एकूण कौशल्य कोर्स',
+    homeTotalScholarship: 'एकूण शिष्यवृत्ती',
+    homeExpertServices: 'विशेषज्ञ सेवा',
+    homeAllCandidates: 'सर्व उमेदवार',
+    registeredCandidates: 'नोंदणीकृत उमेदवार',
+    preRegisteredCandidates: 'पूर्व-नोंदणीकृत उमेदवार',
+    addCandidates: 'उमेदवार जोडा',
+    addAny:'जोडा',
+    job: 'नोकरी',
+    course: 'कोर्स',
+    scholarship: 'शिष्यवृत्ती',
+    expertService: 'विशेषज्ञ सेवा',
+    profile: 'प्रोफाइल',
+    myProfile: 'माझे प्रोफाइल',
+    totalEarningTillNow: 'आतापर्यंतची एकूण कमाई',
+    joinedDate: 'सामील झाल्याची तारीख',
+    basicInformation: 'मूलभूत माहिती',
+    settings: 'सेटिंग्ज',
+    aboutDheya: 'धेयाबद्दल',
+    transaction: "लेन-देन",
+    helpAndSupport: 'मदत आणि समर्थन',
+    rateUs: 'आम्हाला रेट करा',
+    logOut: 'लॉग आउट',
+    editProfile: 'प्रोफाइल संपादित करा',
+    fullName: 'पूर्ण नाव',
+    lastName: 'आडनाव',
+    phoneNumber: 'फोन नंबर',
+    selectYourGender: 'आपले लिंग निवडा',
+    male: 'पुरुष',
+    female: 'महिला',
+    maritalStatus: 'वैवाहिक स्थिती',
+    updateProfile: 'प्रोफाइल अपडेट करा',
+    notifications: 'सूचना',
+    controlHowTheAppAlertsYou: 'अ‍ॅप कसे सूचना देते हे नियंत्रित करा',
+    language: 'भाषा',
+    privacyPolicy: 'गोपनीयता धोरण',
+    incomeHistory: 'आदाय इतिहास',
+    jobApplications: 'नोकरी अर्ज',
+    courseApplication: 'कोर्स अर्ज',
+    scholarshipApplication: 'शिष्यवृत्ती अर्ज',
+    expertServiceApplication: 'विशेषज्ञ सेवा अर्ज',
+
+    nameNotFound: 'नाव आढळले नाही',
+    vacancies: 'रिक्त पदे',
+    courseDetails: 'कोर्स तपशील',
+    lessons: 'धडे',
+    ratings: 'रेटिंग',
+    enrolled: 'नोंदणी केली',
+    editLangugae: 'भाषा संपादित करा',
+    enterFullName: 'पूर्ण नाव प्रविष्ट करा',
+    enterEmail: 'ई-मेल प्रविष्ट करा',
+    email: 'ई-मेल',
+    enterphoneNumber: 'फोन नंबर प्रविष्ट करा',
+    single: 'अविवाहित',
+    married: 'विवाहित',
+    divorcee: 'घटस्फोटीत',
+    selectMaritalStatus: 'वैवाहिक स्थिती निवडा',
+    pleaseEnterValidInformation: 'कृपया वैध माहिती प्रविष्ट करा',
+    applicants: 'अर्जदार',
+    time: 'वेळ',
+    date: 'तारीख',
+    name: 'नाव',
+    howCanWeHelpYou: 'आम्ही तुम्हाला कसा मदत करू शकतो?',
+    welcomeToHelpText: 'आमच्या मदत आणि समर्थन केंद्रात स्वागत आहे. संपर्क साधण्यापूर्वी, कृपया आमचा तपासा',
+    didntFindAns: 'आपल्या प्रश्नाचे उत्तर सापडले नाही?',
+    emailUs: 'आम्हाला ई-मेल करा',
+    callUs: 'आम्हाला कॉल करा',
+    chatWithCounsellor: 'समुपदेशकाशी संवाद साधा',
+    // courseApplications: 'कोर्स अर्ज',
+    expertServicesApplications: 'विशेषज्ञ सेवा अर्ज',
+    scholarshipApplications: 'शिष्यवृत्ती अर्ज',
+    today: 'आज',
+    jobDetails: 'नोकरी तपशील',
+    minExperience: 'किमान अनुभव',
+    invalidPhoneNumber: 'अवैध मोबाइल नंबर',
+    notFound: 'सापडले नाही',
+    enter6DigitOtp: '6 अंकी ओटीपी प्रविष्ट करा',
+    codeHasSentTo: 'कोड पाठविला गेला आहे',
+    didntRecieveCode: 'कोड मिळाला नाही?',
+    resendOtp: 'ओटीपी पुन्हा पाठवा',
+    loginAllCap: 'लॉगिन',
+    personalInformation: 'वैयक्तिक माहिती',
+    preRegister: 'पूर्व-नोंदणी',
+    enterFirstName: 'पहिले नाव प्रविष्ट करा',
+    firstName: 'पहिले नाव',
+    enterLastName: 'शेवटचे नाव प्रविष्ट करा',
+    enterEmailAddress: 'ई-मेल पत्ता प्रविष्ट करा',
+    emailAddress: 'ई-मेल पत्ता',
+    enterContactNumber: 'संपर्क क्रमांक प्रविष्ट करा',
+    contactNumber: 'संपर्क क्रमांक',
+    verificationCode: 'सत्यापन कोड',
+    codeEnteredIs: 'प्रविष्ट केलेला कोड आहे',
+    verify: 'सत्यापित करा',
+    selectLocation: 'स्थान निवडा',
+    selectedAddress: 'निवडलेला पत्ता: ',
+    enterHighestQualification: 'सर्वोच्च पात्रता प्रविष्ट करा',
+    highestQualification: 'सर्वोच्च पात्रता',
+    enterPincode: 'पिन कोड प्रविष्ट करा',
+    pinCode: 'पिन कोड',
+    selectVillage: 'गाव निवडा',
+    enterCityName: 'शहर/गाव नाव प्रविष्ट करा',
+    cityName: 'शहर/गाव नाव',
+    enterTalukaName: 'तालुका नाव प्रविष्ट करा',
+    talukaName: 'तालुका नाव',
+    addCandidate: 'उमेदवार जोडा',
+    bio: 'चरित्र',
+    gender: 'लिंग',
+    address: 'पत्ता',
+    department: 'विभाग',
+    designation: 'हुद्दा',
+    // controlAppAlertText: 'अ‍ॅप कसे सूचना देते हे नियंत्रित करा',
+    mobileNumberVerification: 'मोबाइल नंबर सत्यापन',
+    enter6DigitOtpsentYour: 'तुमच्या नंबरवर पाठवलेला 6 अंकी ओटीपी प्रविष्ट करा',
+    mobileNumberIs: 'मोबाइल नंबर आहे',
+
+
+    //cart
+    cartText:'कार्ट',
+    totalApplicatio: 'एकूण अर्ज प्राप्त झाले',
+    alertMsg:'कृपया लक्षात घ्या, GST अतिरिक्त आकारले जाईल',
+    payNow: 'आता पैसे भरा',
+
+     //candidate management
+    matching:'जुळवणे',
+    applied:'अर्ज केले',
+    shortlisted:'शॉर्टलिस्ट केले',
+    joined:'सामील झाले'
+  };
+
+  static const Map<String, dynamic> HINDI = {
+
+    //splash screen
+    splashTitle1: 'अपनी खोजें',
+    splashTitle2: 'सपनों की नौकरी',
+    splashTitle3: 'यहां',
+    splashTitle4: 'खोज, कनेक्टिंग, सफलता निर्माण',
+
+    
+    //फॉर्म
+    addCourse: "पाठ्यक्रम जोड़ें",
+    addScholarship: "छात्रवृत्ति जोड़ें",
+    homeAppbarTitle: 'सुप्रभात',
+    homeTotalCandidate: 'कुल उम्मीदवार',
+    homeTotalIncome: 'कुल आय',
+    homeTotalJobsAvailable: 'कुल उपलब्ध नौकरियां',
+    homeTotalSkillsCourse: 'कुल कौशल पाठ्यक्रम',
+    homeTotalScholarship: 'कुल छात्रवृत्ति',
+    homeExpertServices: 'विशेषज्ञ सेवाएं',
+    homeAllCandidates: 'सभी उम्मीदवार',
+    registeredCandidates: 'पंजीकृत उम्मीदवार',
+    preRegisteredCandidates: 'पूर्व-पंजीकृत उम्मीदवार',
+    addCandidates: 'उम्मीदवार जोड़ें',
+    addAny:'जोड़ें',
+    job: 'नौकरी',
+    course: 'पाठ्यक्रम',
+    scholarship: 'छात्रवृत्ति',
+    expertService: 'विशेषज्ञ सेवा',
+    profile: 'प्रोफाइल',
+    myProfile: 'मेरा प्रोफाइल',
+    totalEarningTillNow: 'अब तक की कुल कमाई',
+    joinedDate: 'शामिल होने की तिथि',
+    basicInformation: 'मूलभूत जानकारी',
+    settings: 'सेटिंग्स',
+    aboutDheya: 'धेय के बारे में',
+    transaction: "लेन-देन",
+    helpAndSupport: 'मदद और समर्थन',
+    rateUs: 'हमें रेट करें',
+    logOut: 'लॉग आउट',
+    editProfile: 'प्रोफाइल संपादित करें',
+    fullName: 'पूरा नाम',
+    lastName: 'अंतिम नाम',
+    phoneNumber: 'फोन नंबर',
+    selectYourGender: 'अपना लिंग चुनें',
+    male: 'पुरुष',
+    female: 'महिला',
+    maritalStatus: 'वैवाहिक स्थिति',
+    updateProfile: 'प्रोफाइल अपडेट करें',
+    notifications: 'सूचनाएं',
+    controlHowTheAppAlertsYou: 'ऐप आपको कैसे सतर्क करता है, इसे नियंत्रित करें',
+    language: 'भाषा',
+    privacyPolicy: 'गोपनीयता नीति',
+    incomeHistory: 'आय इतिहास',
+    jobApplications: 'नौकरी आवेदन',
+    courseApplication: 'पाठ्यक्रम आवेदन',
+    scholarshipApplication: 'छात्रवृत्ति आवेदन',
+    expertServiceApplication: 'विशेषज्ञ सेवा आवेदन',
+
+    nameNotFound: 'नाम नहीं मिला',
+    vacancies: 'रिक्तियाँ',
+    courseDetails: 'कोर्स विवरण',
+    lessons: 'पाठ',
+    ratings: 'रेटिंग',
+    enrolled: 'नामांकित',
+    editLangugae: 'भाषा संपादित करें',
+    enterFullName: 'पूरा नाम दर्ज करें',
+    enterEmail: 'ईमेल दर्ज करें',
+    email: 'ईमेल',
+    enterphoneNumber: 'फोन नंबर दर्ज करें',
+    single: 'अविवाहित',
+    married: 'विवाहित',
+    divorcee: 'तलाकशुदा',
+    selectMaritalStatus: 'वैवाहिक स्थिति चुनें',
+    pleaseEnterValidInformation: 'कृपया वैध जानकारी दर्ज करें',
+    applicants: 'आवेदक',
+    time: 'समय',
+    date: 'तारीख',
+    name: 'नाम',
+    howCanWeHelpYou: 'हम आपकी कैसे सहायता कर सकते हैं?',
+    welcomeToHelpText: 'हमारे सहायता और समर्थन केंद्र में आपका स्वागत है। संपर्क करने से पहले कृपया हमारी जाँच करें',
+    didntFindAns: 'क्या आपको अपने प्रश्न का उत्तर नहीं मिला?',
+    emailUs: 'हमें ईमेल करें',
+    callUs: 'हमें कॉल करें',
+    chatWithCounsellor: 'सलाहकार से चैट करें',
+    // courseApplications: 'कोर्स आवेदन',
+    expertServicesApplications: 'विशेषज्ञ सेवा आवेदन',
+    scholarshipApplications: 'छात्रवृत्ति आवेदन',
+    today: 'आज',
+    jobDetails: 'नौकरी का विवरण',
+    minExperience: 'न्यूनतम अनुभव',
+    invalidPhoneNumber: 'अमान्य मोबाइल नंबर',
+    notFound: 'नहीं मिला',
+    enter6DigitOtp: '6 अंकों का ओटीपी दर्ज करें',
+    codeHasSentTo: 'कोड भेजा गया है',
+    didntRecieveCode: 'कोड प्राप्त नहीं हुआ?',
+    resendOtp: 'ओटीपी फिर से भेजें',
+    loginAllCap: 'लॉगिन',
+    personalInformation: 'व्यक्तिगत जानकारी',
+    preRegister: 'पूर्व-पंजीकरण',
+    enterFirstName: 'पहला नाम दर्ज करें',
+    firstName: 'पहला नाम',
+    enterLastName: 'अंतिम नाम दर्ज करें',
+    enterEmailAddress: 'ईमेल पता दर्ज करें',
+    emailAddress: 'ईमेल पता',
+    enterContactNumber: 'संपर्क नंबर दर्ज करें',
+    contactNumber: 'संपर्क नंबर',
+    verificationCode: 'सत्यापन कोड',
+    codeEnteredIs: 'दर्ज कोड है',
+    verify: 'सत्यापित करें',
+    selectLocation: 'स्थान चुनें',
+    selectedAddress: 'चयनित पता: ',
+    enterHighestQualification: 'उच्चतम योग्यता दर्ज करें',
+    highestQualification: 'उच्चतम योग्यता',
+    enterPincode: 'पिन कोड दर्ज करें',
+    pinCode: 'पिन कोड',
+    selectVillage: 'गांव चुनें',
+    enterCityName: 'शहर/कस्बे का नाम दर्ज करें',
+    cityName: 'शहर/कस्बे का नाम',
+    enterTalukaName: 'तालुका का नाम दर्ज करें',
+    talukaName: 'तालुका का नाम',
+    addCandidate: 'उम्मीदवार जोड़ें',
+    bio: 'बायो',
+    gender: 'लिंग',
+    address: 'पता',
+    department: 'विभाग',
+    designation: 'पदनाम',
+    // controlAppAlertText: 'एप्लिकेशन कैसे आपको सूचित करता है इसे नियंत्रित करें',
+    mobileNumberVerification: 'मोबाइल नंबर सत्यापन',
+    enter6DigitOtpsentYour: 'आपके पर भेजा गया 6 अंकों का ओटीपी दर्ज करें',
+    mobileNumberIs: 'मोबाइल नंबर है',
+
+    //cartText
+    cartText:'गाड़ी',
+    totalApplicatio: 'कुल आवेदन प्राप्त हुए',
+    alertMsg:'नोट: जीएसटी अतिरिक्त शुल्क के रूप में लागू होगा।',
+    payNow: 'अभी भुगतान करें',
+
+    matching: 'मिलान',
+    applied: 'आवेदन किया',
+    shortlisted: 'शॉर्टलिस्टेड',
+    joined: 'शामिल हुआ',
+
+  };
+
+  static const Map<String, dynamic> GUJARATI = {
+
+    //splash title
+    splashTitle1: 'તમારો શોધો',
+    splashTitle2: 'સપનાનો નોકરી',
+    splashTitle3: 'અહીં',
+    splashTitle4: 'શોધ, કનેક્ટિંગ, સફળતા નિર્માણ',
+
+
+    //form
+    addCourse: "કોર્સ ઉમેરો",
+    addScholarship: "શિષ્યવૃત્તિ ઉમેરો",
+
+
+    homeAppbarTitle: 'સુપ્રભાત!',
+    homeTotalCandidate: 'કુલ ઉમેદવાર',
+    homeTotalIncome: 'કુલ આવક',
+    homeTotalJobsAvailable: 'કુલ ઉપલબ્ધ નોકરીઓ',
+    homeTotalSkillsCourse: 'કુલ કુશળતા કોર્સ',
+    homeTotalScholarship: 'કુલ વિદ્યાર્થી સ્કોલરશિપ',
+    homeExpertServices: 'વિશેષજ્ઞ સેવાઓ',
+    homeAllCandidates: 'બધા ઉમેદવારો',
+    registeredCandidates: 'નોંધાયેલા ઉમેદવારો',
+    preRegisteredCandidates: 'પૂર્વ નોંધાયેલા ઉમેદવારો',
+    addCandidates: 'ઉમેદવારો ઉમેરો',
+    addAny:'ઉમેરો',
+    job: 'નોકરી',
+    course: 'કોર્સ',
+    scholarship: 'વિદ્યાર્થી',
+    expertService: 'વિશેષજ્ઞ સેવા',
+    profile: 'પ્રોફાઇલ',
+    myProfile: 'મારો પ્રોફાઇલ',
+    totalEarningTillNow: 'આપણાં સુધીની કુલ કમાણી',
+    joinedDate: 'જોડાયેલ તારીખ',
+    basicInformation: 'મૂળભૂત માહિતી',
+    settings: 'સેટિંગ્સ',
+    aboutDheya: 'ધેય વિશે',
+    transaction: "લેણદેણ",
+    helpAndSupport: 'મદદ અને સપોર્ટ',
+    rateUs: 'અમને રેટ કરો',
+    logOut: 'લોગ આઉટ',
+    editProfile: 'પ્રોફાઇલ સંપાદિત કરો',
+    fullName: 'પૂર્ણ નામ',
+    lastName: 'અંતિમ નામ',
+    phoneNumber: 'ફોન નંબર',
+    selectYourGender: 'તમારું લિંગ પસંદ કરો',
+    male: 'પુરુષ',
+    female: 'મહિલા',
+    maritalStatus: 'वैवाहिक स्थिति',
+    updateProfile: 'પ્રોફાઇલ અપડેટ કરો',
+    notifications: 'સૂચનાઓ',
+    controlHowTheAppAlertsYou: 'અપ્ કિવ રીતે સૂચિત કરે છે તેને નિયંત્રણ કરો',
+    language: 'ભાષા',
+    privacyPolicy: 'ગોપનીયતા નીતિ',
+    incomeHistory: 'આવક ઇતિહાસ',
+    jobApplications: 'નોકરી અરજી',
+    courseApplication: 'કોર્સ અરજી',
+    scholarshipApplication: 'વિદ્યાર્થી સ્કોલરશિપ અરજી',
+    expertServiceApplication: 'વિશેષજ્ઞ સેવા અરજી',
+
+    nameNotFound: 'નામ મળ્યું નથી',
+    vacancies: 'ખાલી જગ્યા',
+    courseDetails: 'કોર્સ વિગતો',
+    lessons: 'પાઠ',
+    ratings: 'મૂલ્યાંકન',
+    enrolled: 'નોંધાયેલ',
+    editLangugae: 'ભાષા સંપાદિત કરો',
+    enterFullName: 'સંપૂર્ણ નામ દાખલ કરો',
+    enterEmail: 'ઇમેઇલ દાખલ કરો',
+    email: 'ઇમેઇલ',
+    enterphoneNumber: 'ફોન નંબર દાખલ કરો',
+    single: 'અવિવાહિત',
+    married: 'પરિણીત',
+    divorcee: 'છૂટાછેડા લીધેલ',
+    selectMaritalStatus: 'વિવાહિક સ્થિતિ પસંદ કરો',
+    pleaseEnterValidInformation: 'કૃપા કરીને માન્ય માહિતી દાખલ કરો',
+    applicants: 'અરજદાર',
+    time: 'સમય',
+    date: 'તારીખ',
+    name: 'નામ',
+    howCanWeHelpYou: 'અમે તમારી કેવી રીતે મદદ કરી શકીએ?',
+    welcomeToHelpText: 'અમારા સહાયતા અને આધાર કેન્દ્રમાં તમારું સ્વાગત છે. સંપર્ક કરતા પહેલા, કૃપા કરીને અમારી તપાસો',
+    didntFindAns: 'શું તમારો પ્રશ્નનો જવાબ નહીં મળ્યો?',
+    emailUs: 'અમને ઇમેઇલ કરો',
+    callUs: 'અમને કૉલ કરો',
+    chatWithCounsellor: 'પરામર્શક સાથે વાત કરો',
+    // courseApplications: 'કોર્સ એપ્લિકેશન',
+    expertServicesApplications: 'વિશેષજ્ઞ સેવાઓ એપ્લિકેશન્સ',
+    scholarshipApplications: 'શિષ્યવૃત્તિ એપ્લિકેશન્સ',
+    today: 'આજે',
+    jobDetails: 'નોકરી વિગતો',
+    minExperience: 'કમ از کم અનુભવ',
+    invalidPhoneNumber: 'અમાન્ય મોબાઇલ નંબર',
+    notFound: 'મળ્યું નથી',
+    enter6DigitOtp: '6 આંકડાનો ઓટીપી દાખલ કરો',
+    codeHasSentTo: 'કોડ મોકલવામાં આવ્યો છે',
+    didntRecieveCode: 'કોડ મળ્યો નથી?',
+    resendOtp: 'ઓટીપી ફરીથી મોકલો',
+    loginAllCap: 'લૉગિન',
+    personalInformation: 'વ્યક્તિગત માહિતી',
+    preRegister: 'પૂર્વ-રજિસ્ટર',
+    enterFirstName: 'પ્રથમ નામ દાખલ કરો',
+    firstName: 'પ્રથમ નામ',
+    enterLastName: 'છેલ્લું નામ દાખલ કરો',
+    enterEmailAddress: 'ઇમેઇલ સરનામું દાખલ કરો',
+    emailAddress: 'ઇમેઇલ સરનામું',
+    enterContactNumber: 'સંપર્ક નંબર દાખલ કરો',
+    contactNumber: 'સંપર્ક નંબર',
+    verificationCode: 'સાચા પાડવાનો કોડ',
+    codeEnteredIs: 'દાખલ કરેલો કોડ છે',
+    verify: 'સાચા પાડો',
+    selectLocation: 'સ્થાન પસંદ કરો',
+    selectedAddress: 'પસંદ કરેલું સરનામું: ',
+    enterHighestQualification: 'ઉચ્ચતમ લાયકાત દાખલ કરો',
+    highestQualification: 'ઉચ્ચતમ લાયકાત',
+    enterPincode: 'પિન કોડ દાખલ કરો',
+    pinCode: 'પિન કોડ',
+    selectVillage: 'ગામ પસંદ કરો',
+    enterCityName: 'શહેર/ગામનું નામ દાખલ કરો',
+    cityName: 'શહેર/ગામનું નામ',
+    enterTalukaName: 'તાલુકા નામ દાખલ કરો',
+    talukaName: 'તાલુકા નામ',
+    addCandidate: 'ઉમેદવાર ઉમેરો',
+    bio: 'બાયો',
+    gender: 'લિંગ',
+    address: 'સરનામું',
+    department: 'વિભાગ',
+    designation: 'હોદ્દો',
+    // controlAppAlertText: 'અપ્લિકેશન કેવી રીતે તમને સચેત કરે છે તે નિયંત્રિત કરો',
+    mobileNumberVerification: 'મોબાઇલ નંબર વેરિફિકેશન',
+    enter6DigitOtpsentYour: 'તમારા પર મોકલવામાં આવેલ 6-અંકોનો ઓટીપી દાખલ કરો',
+    mobileNumberIs: 'મોબાઇલ નંબર છે',
+
+    //cart
+    cartText:'ગાડી',
+    totalApplicatio: 'કુલ અરજી મળી',
+    alertMsg:'કૃપા કરીને નોંધો, GST વધારાનો ચાર્જ લાગશે',
+    payNow: 'હવે ચૂકવો',
+
+    //candidate management
+    matching: 'મેચિંગ',
+    applied: 'અરજી કરેલ',
+    shortlisted: 'શોર્ટલિસ્ટેડ',
+    joined: 'જોડાયા',
+
+  };
+
+  static const Map<String, dynamic> TAMIL = {
+
+    //splash title
+    splashTitle1: 'உங்கள் தேடுங்கள்',
+    splashTitle2: 'கனவுகளின் வேலை',
+    splashTitle3: 'இங்கே',
+    splashTitle4: 'தேடல், இணைப்பு, வெற்றியை கட்டுவது',
+
+    //form
+    addCourse: "பாடத்தைச் சேர்",
+    addScholarship: "உதவித்தொகையைச் சேர்",
+
+
+    homeAppbarTitle: 'காலை வணக்கம்!',
+    homeTotalCandidate: 'மொத்த விண்ணப்பத்தார்',
+    homeTotalIncome: 'மொத்த வருமானம்',
+    homeTotalJobsAvailable: 'மொத்த வேலைகள் கிடைக்கும்',
+    homeTotalSkillsCourse: 'மொத்த திறன் பாடங்கள்',
+    homeTotalScholarship: 'மொத்த புகாரளி',
+    homeExpertServices: 'முதியவர் சேவைகள்',
+    homeAllCandidates: 'அனைத்து விண்ணப்பங்கள்',
+    registeredCandidates: 'பதிவுசெய்யப்பட்ட விண்ணப்பதாரர்கள்',
+    preRegisteredCandidates: 'முந்தைய பதிவுசெய்யப்பட்ட விண்ணப்பதாரர்கள்',
+    addCandidates: 'விண்ணப்பதாரர்களைச் சேர்',
+    addAny:'கூட்டு',
+    job: 'வேலை',
+    course: 'பாடநெறி',
+    scholarship: 'புகாரளி',
+    expertService: 'முதியவர் சேவைகள்',
+    profile: 'சுயவிவரம்',
+    myProfile: 'என் சுயவிவரம்',
+    totalEarningTillNow: 'இன்றுவரை மொத்த வருமானம்',
+    joinedDate: 'சேர்ந்து கொண்ட தேதி',
+    basicInformation: 'அடிப்படை தகவல்',
+    settings: 'அமைப்புகள்',
+    aboutDheya: 'தெய்யா பற்றி',
+    transaction: "பரிமாற்றம்",
+    helpAndSupport: 'உதவி மற்றும் ஆதரவு',
+    rateUs: 'எங்களை மதிப்பீடு செய்',
+    logOut: 'வெளியேறு',
+    editProfile: 'சுயவிவரம் திருத்து',
+    fullName: 'முழு பெயர்',
+    lastName: 'இறுதி பெயர்',
+    phoneNumber: 'தொலைபேசி எண்',
+    selectYourGender: 'உங்கள் பாலினத்தைத் தேர்ந்தெடுக்கவும்',
+    male: 'ஆண்',
+    female: 'பெண்',
+    maritalStatus: 'திருமண நிலை',
+    updateProfile: 'சுயவிவரம் புதுப்பிக்கவும்',
+    notifications: 'அறிவிப்புகள்',
+    controlHowTheAppAlertsYou: 'விண்ணப்பம் உங்களை எவ்வாறு எச்சரிக்கிறது என்பதை கட்டுப்படுத்துங்கள்',
+    language: 'மொழி',
+    privacyPolicy: 'தனியுரிமைக் கொள்கை',
+    incomeHistory: 'வருமான வரலாறு',
+    jobApplications: 'வேலைவாய்ப்பு விண்ணப்பங்கள்',
+    courseApplication: 'பாடநெறி விண்ணப்பங்கள்',
+    scholarshipApplication: 'புகாரளி விண்ணப்பங்கள்',
+    expertServiceApplication: 'முதியவர் சேவை விண்ணப்பங்கள்',
+
+    nameNotFound: 'பெயர் கிடைக்கவில்லை',
+    vacancies: 'காலியிடங்கள்',
+    courseDetails: 'கோர்ஸ் விவரங்கள்',
+    lessons: 'பாடங்கள்',
+    ratings: 'மதிப்பீடுகள்',
+    enrolled: 'பதிவு செய்யப்பட்ட',
+    editLangugae: 'மொழியைத் திருத்து',
+    enterFullName: 'முழுப் பெயரை உள்ளிடவும்',
+    enterEmail: 'மின்னஞ்சலை உள்ளிடவும்',
+    email: 'மின்னஞ்சல்',
+    enterphoneNumber: 'தொலைபேசி எண்ணை உள்ளிடவும்',
+    single: 'தனிப்பட்ட',
+    married: 'திருமணமாகி',
+    divorcee: 'விவாகரத்து செய்யப்பட்டவர்',
+    selectMaritalStatus: 'திருமண நிலையைத் தேர்வுசெய்க',
+    pleaseEnterValidInformation: 'சரியான தகவலை உள்ளிடவும்',
+    applicants: 'விண்ணப்பதாரர்கள்',
+    time: 'நேரம்',
+    date: 'தேதி',
+    name: 'பெயர்',
+    howCanWeHelpYou: 'எப்படி நாங்கள் உங்களுக்கு உதவ முடியும்?',
+    welcomeToHelpText: 'எங்கள் உதவி & ஆதரவு மையத்திற்கு வரவேற்கிறோம். எங்களைத் தொடர்பு கொள்வதற்கு முன், தயவுசெய்து எங்கள் மையத்தினைப் பார்க்கவும்',
+    didntFindAns: 'உங்கள் கேள்விக்கு பதில் கிடைக்கவில்லை?',
+    emailUs: 'எங்களுக்கு மின்னஞ்சல் செய்யவும்',
+    callUs: 'எங்களை அழைக்கவும்',
+    chatWithCounsellor: 'உதவியாளருடன் உரையாடவும்',
+    // courseApplications: 'கோர்ஸ் விண்ணப்பங்கள்',
+    expertServicesApplications: 'நிபுணர் சேவை விண்ணப்பங்கள்',
+    scholarshipApplications: 'படிப்பு உதவி விண்ணப்பங்கள்',
+    today: 'இன்று',
+    jobDetails: 'வேலை விவரங்கள்',
+    minExperience: 'குறைந்தபட்ச அனுபவம்',
+    invalidPhoneNumber: 'தவறான மொபைல் எண்',
+    notFound: 'கிடைக்கவில்லை',
+    enter6DigitOtp: '6 இலக்க OTP ஐ உள்ளிடவும்',
+    codeHasSentTo: 'குறியீடு அனுப்பப்பட்டுள்ளது',
+    didntRecieveCode: 'குறியீடு கிடைக்கவில்லையா?',
+    resendOtp: 'OTP ஐ மீண்டும் அனுப்பு',
+    loginAllCap: 'உள்நுழைக',
+    personalInformation: 'தனிப்பட்ட தகவல்',
+    preRegister: 'முன் பதிவு',
+    enterFirstName: 'முதல் பெயரை உள்ளிடவும்',
+    firstName: 'முதல் பெயர்',
+    enterLastName: 'கடைசி பெயரை உள்ளிடவும்',
+    enterEmailAddress: 'மின்னஞ்சல் முகவரியை உள்ளிடவும்',
+    emailAddress: 'மின்னஞ்சல் முகவரி',
+    enterContactNumber: 'தொடர்பு எண்ணை உள்ளிடவும்',
+    contactNumber: 'தொடர்பு எண்',
+    verificationCode: 'சரிபார்ப்புக் குறியீடு',
+    codeEnteredIs: 'உள்ளீடு செய்யப்பட்ட குறியீடு',
+    verify: 'சரிபார்க்கவும்',
+    selectLocation: 'இடத்தைத் தேர்வுசெய்க',
+    selectedAddress: 'தேர்ந்தெடுக்கப்பட்ட முகவரி: ',
+    enterHighestQualification: 'அதிகபட்ச தகுதியை உள்ளிடவும்',
+    highestQualification: 'அதிகபட்ச தகுதி',
+    enterPincode: 'பின் குறியீட்டை உள்ளிடவும்',
+    pinCode: 'பின் குறியீடு',
+    selectVillage: 'கிராமத்தைத் தேர்வுசெய்க',
+    enterCityName: 'நகரம்/கிராமத்தின் பெயரை உள்ளிடவும்',
+    cityName: 'நகரம்/கிராமத்தின் பெயர்',
+    enterTalukaName: 'தாலுகா பெயரை உள்ளிடவும்',
+    talukaName: 'தாலுகா பெயர்',
+    addCandidate: 'தேடல் சேர்',
+    bio: 'உற்சவருக்க்குய',
+    gender: 'பாலினம்',
+    address: 'முகவரி',
+    department: 'துறைகல்வி',
+    designation: 'பதவி',
+    // controlAppAlertText: 'ஆப்பைப் பற்றிய எச்சரிக்கைகளை கட்டுப்படுத்துங்கள்',
+    mobileNumberVerification: 'கைபேசி எண் சரிபார்ப்பு',
+    enter6DigitOtpsentYour: 'உங்கள் எண்ணுக்கு அனுப்பிய 6 இலக்க OTP ஐ உள்ளிடவும்',
+    mobileNumberIs: 'கைபேசி எண்',
+
+    //cart
+    cartText:'வண்டி',
+    totalApplicatio: 'மொத்த விண்ணப்பம் பெறப்பட்டது',
+    alertMsg:'காப்புப் பதிவு உட்பட, ஜிஎஸ்டி கூடுதலாக வசூலிக்கப்படும்',
+    payNow: 'இப்போது செலுத்தவும்',
+
+    matching: 'பொருந்துதல்',
+    applied: 'விண்ணப்பித்த',
+    shortlisted: 'தேர்ந்தெடுக்கப்பட்டது',
+    joined: 'சேர்ந்தது',
+  };
+
+  static const Map<String, dynamic> BENGALI = {
+
+    //splash title
+    splashTitle1: 'আপনার খুঁজুন',
+    splashTitle2: 'স্বপ্নের কাজ',
+    splashTitle3: 'এখানে',
+    splashTitle4: 'অনুসন্ধান, সংযোগ, সাফল্য নির্মাণ',
+
+    ///form
+    addCourse: "কোর্স যোগ করুন",
+    addScholarship: "অ্যাড স্কলারশিপ",
+
+    homeAppbarTitle: 'সুপ্রভাত!',
+    homeTotalCandidate: 'মোট প্রার্থী',
+    homeTotalIncome: 'মোট আয়',
+    homeTotalJobsAvailable: 'মোট চাকরি উপলব্ধ',
+    homeTotalSkillsCourse: 'মোট দক্ষতা কোর্স',
+    homeTotalScholarship: 'মোট ছাত্রবৃত্তি',
+    homeExpertServices: 'অভিজ্ঞ পরিষেবা',
+    homeAllCandidates: 'সমস্ত প্রার্থী',
+    registeredCandidates: 'নিবন্ধিত প্রার্থীরা',
+    preRegisteredCandidates: 'পূর্বে নিবন্ধিত প্রার্থীরা',
+    addCandidates: 'প্রার্থীদের যোগ করুন',
+    addAny:'যোগ করুন',
+    job: 'চাকরি',
+    course: 'কোর্স',
+    scholarship: 'ছাত্রবৃত্তি',
+    expertService: 'অভিজ্ঞ পরিষেবা',
+    profile: 'প্রোফাইল',
+    myProfile: 'আমার প্রোফাইল',
+    totalEarningTillNow: 'এখন পর্যন্ত মোট আয়',
+    joinedDate: 'যোগদানের তারিখ',
+    basicInformation: 'প্রাথমিক তথ্য',
+    settings: 'সেটিংস',
+    aboutDheya: 'ধেয়া সম্পর্কে',
+    transaction: "লেনদেন",
+    helpAndSupport: 'সহায়তা এবং সমর্থন',
+    rateUs: 'আমাদের রেট করুন',
+    logOut: 'লগ আউট',
+    editProfile: 'প্রোফাইল সম্পাদনা করুন',
+    fullName: 'পূর্ণ নাম',
+    lastName: 'শেষ নাম',
+    phoneNumber: 'ফোন নম্বর',
+    selectYourGender: 'আপনার লিঙ্গ নির্বাচন করুন',
+    male: 'পুরুষ',
+    female: 'মহিলা',
+    maritalStatus: 'বৈবাহিক অবস্থা',
+    updateProfile: 'প্রোফাইল আপডেট করুন',
+    notifications: 'বিজ্ঞপ্তি',
+    controlHowTheAppAlertsYou: 'অ্যাপ আপনাকে কীভাবে সতর্ক করে তা নিয়ন্ত্রণ করুন',
+    language: 'ভাষা',
+    privacyPolicy: 'গোপনীয়তা নীতি',
+    incomeHistory: 'আয় ইতিহাস',
+    jobApplications: 'চাকরির আবেদন',
+    courseApplication: 'কোর্স আবেদন',
+    scholarshipApplication: 'ছাত্রবৃত্তি আবেদন',
+    expertServiceApplication: 'অভিজ্ঞ পরিষেবা আবেদন',
+
+    nameNotFound: 'নাম পাওয়া যায়নি',
+    vacancies: 'শূন্যপদ',
+    courseDetails: 'কোর্সের বিবরণ',
+    lessons: 'পাঠ',
+    ratings: 'রেটিংস',
+    enrolled: 'নিবন্ধিত',
+    editLangugae: 'ভাষা সম্পাদনা করুন',
+    enterFullName: 'সম্পূর্ণ নাম লিখুন',
+    enterEmail: 'ইমেইল লিখুন',
+    email: 'ইমেইল',
+    enterphoneNumber: 'ফোন নম্বর লিখুন',
+    single: 'অবিবাহিত',
+    married: 'বিবাহিত',
+    divorcee: 'তালাকপ্রাপ্ত',
+    selectMaritalStatus: 'বৈবাহিক অবস্থা নির্বাচন করুন',
+    pleaseEnterValidInformation: 'অনুগ্রহ করে সঠিক তথ্য লিখুন',
+    applicants: 'আবেদনকারীরা',
+    time: 'সময়',
+    date: 'তারিখ',
+    name: 'নাম',
+    howCanWeHelpYou: 'আমরা আপনাকে কীভাবে সাহায্য করতে পারি?',
+    welcomeToHelpText: 'আমাদের সহায়তা এবং সমর্থন কেন্দ্রে স্বাগতম। আমাদের সাথে যোগাযোগ করার আগে, অনুগ্রহ করে আমাদের চেক করুন',
+    didntFindAns: 'আপনার প্রশ্নের উত্তর খুঁজে পাওয়া যায়নি?',
+    emailUs: 'আমাদের ইমেইল করুন',
+    callUs: 'আমাদের কল করুন',
+    chatWithCounsellor: 'পরামর্শদাতার সাথে কথা বলুন',
+    // courseApplications: 'কোর্স আবেদন',
+    expertServicesApplications: 'বিশেষজ্ঞ পরিষেবা আবেদন',
+    scholarshipApplications: 'বৃত্তি আবেদন',
+    today: 'আজ',
+    jobDetails: 'চাকরির বিবরণ',
+    minExperience: 'নূন্যতম অভিজ্ঞতা',
+    invalidPhoneNumber: 'অবৈধ মোবাইল নম্বর',
+    notFound: 'পাওয়া যায়নি',
+    enter6DigitOtp: '6 অঙ্কের ওটিপি লিখুন',
+    codeHasSentTo: 'কোড পাঠানো হয়েছে',
+    didntRecieveCode: 'কোড পাওয়া যায়নি?',
+    resendOtp: 'ওটিপি পুনরায় পাঠান',
+    loginAllCap: 'লগইন',
+    personalInformation: 'ব্যক্তিগত তথ্য',
+    preRegister: 'পূর্ব নিবন্ধন',
+    enterFirstName: 'প্রথম নাম লিখুন',
+    firstName: 'প্রথম নাম',
+    enterLastName: 'শেষ নাম লিখুন',
+    enterEmailAddress: 'ইমেইল ঠিকানা লিখুন',
+    emailAddress: 'ইমেইল ঠিকানা',
+    enterContactNumber: 'যোগাযোগ নম্বর লিখুন',
+    contactNumber: 'যোগাযোগ নম্বর',
+    verificationCode: 'যাচাইকরণ কোড',
+    codeEnteredIs: 'প্রবেশিত কোডটি',
+    verify: 'যাচাই করুন',
+    selectLocation: 'অবস্থান নির্বাচন করুন',
+    selectedAddress: 'নির্বাচিত ঠিকানা: ',
+    enterHighestQualification: 'সর্বোচ্চ যোগ্যতা লিখুন',
+    highestQualification: 'সর্বোচ্চ যোগ্যতা',
+    enterPincode: 'পিন কোড লিখুন',
+    pinCode: 'পিন কোড',
+    selectVillage: 'গ্রাম নির্বাচন করুন',
+    enterCityName: 'শহর/গাঁয়ের নাম লিখুন',
+    cityName: 'শহর/গাঁয়ের নাম',
+    enterTalukaName: 'তালুকা নাম লিখুন',
+    talukaName: 'তালুকা নাম',
+    addCandidate: 'প্রার্থী যোগ করুন',
+    bio: 'জীবনী',
+    gender: 'লিঙ্গ',
+    address: 'ঠিকানা',
+    department: 'বিভাগ',
+    designation: 'পদবী',
+    // controlAppAlertText: 'অ্যাপটি কিভাবে আপনাকে সতর্ক করে তা নিয়ন্ত্রণ করুন',
+    mobileNumberVerification: 'মোবাইল নম্বর যাচাইকরণ',
+    enter6DigitOtpsentYour: 'আপনার কাছে পাঠানো 6 অঙ্কের ওটিপি লিখুন',
+    mobileNumberIs: 'মোবাইল নম্বর',
+
+    //cart
+    cartText:'গাড়ি',
+    totalApplicatio: 'মোট আবেদন গ্রহণ করা হয়েছে',
+    alertMsg:'অনুগ্রহ করে মনে রাখবেন, জিএসটি অতিরিক্ত চার্জ করা হবে।',
+    payNow: 'এখনই পেমেন্ট করুন',
+
+    matching: 'মিলছে',
+    applied: 'আবেদন করা হয়েছে',
+    shortlisted: 'ছোট তালিকাভুক্ত',
+    joined: 'যোগদান করেছে',
+  };
+
+  static const Map<String, dynamic> TELUGU = {
+
+    //splash screen
+    splashTitle1: "మీ కనుగొనండి",
+    splashTitle2: "నా కల",
+    splashTitle3: " ఇక్కడ",
+    splashTitle4: "కనుగొనడం, కనెక్ట్ చేయడం, విజయం సాధించడం",
+
+    //form
+    addCourse: "కోర్సును జోడించు",
+    addScholarship: "స్కాలర్‌షిప్‌ని జోడించు",
+
+    homeAppbarTitle: 'శుభోదయం!',
+    homeTotalCandidate: 'మొత్తం అభ్యర్థులు',
+    homeTotalIncome: 'మొత్తం ఆదాయం',
+    homeTotalJobsAvailable: 'మొత్తం ఉపలబ్ధ ఉద్యోగాలు',
+    homeTotalSkillsCourse: 'మొత్తం నైపుణ్యం కోర్సులు',
+    homeTotalScholarship: 'మొత్తం విద్యార్థి విద్యానిధులు',
+    homeExpertServices: 'నిపుణుల సేవలు',
+    homeAllCandidates: 'అన్ని అభ్యర్థులు',
+    registeredCandidates: 'నమోదిత అభ్యర్థులు',
+    preRegisteredCandidates: 'మునుపటి నమోదిత అభ్యర్థులు',
+    addCandidates: 'అభ్యర్థులను జోడించండి',
+    addAny:'జోడించు',
+    job: 'ఉద్యోగం',
+    course: 'కోర్సు',
+    scholarship: 'విద్యానిధి',
+    expertService: 'నిపుణుల సేవ',
+    profile: 'ప్రొఫైల్',
+    myProfile: 'నా ప్రొఫైల్',
+    totalEarningTillNow: 'ఇప్పటివరకు మొత్తం ఆదాయం',
+    joinedDate: 'చేరిన తేదీ',
+    basicInformation: 'ప్రాథమిక సమాచారం',
+    settings: 'సెట్టింగ్స్',
+    aboutDheya: 'ధేయా గురించి',
+    transaction: "లావాదేవీ",
+    helpAndSupport: 'సహాయం మరియు మద్దతు',
+    rateUs: 'మాకు రేట్ చేయండి',
+    logOut: 'లాగౌట్',
+    editProfile: 'ప్రొఫైల్ ఎడిట్ చేయండి',
+    fullName: 'పూర్తి పేరు',
+    lastName: 'చివరి పేరు',
+    phoneNumber: 'ఫోన్ నంబర్',
+    selectYourGender: 'మీ లింగాన్ని ఎంచుకోండి',
+    male: 'పురుషుడు',
+    female: 'స్త్రీ',
+    maritalStatus: 'వివాహ స్థితి',
+    updateProfile: 'ప్రొఫైల్ అప్డేట్ చేయండి',
+    notifications: 'నోటిఫికేషన్లు',
+    controlHowTheAppAlertsYou: 'యాప్ మీరు ఎలా అలర్ట్ చేస్తుందో నియంత్రించండి',
+    language: 'భాష',
+    privacyPolicy: 'గోప్యతా విధానం',
+    incomeHistory: 'ఆదాయం చరిత్ర',
+    jobApplications: 'ఉద్యోగ దరఖాస్తులు',
+    courseApplication: 'కోర్సు దరఖాస్తులు',
+    scholarshipApplication: 'విద్యానిధి దరఖాస్తులు',
+    expertServiceApplication: 'నిపుణుల సేవ దరఖాస్తులు',
+
+    nameNotFound: 'పేరు కనపడలేదు',
+    vacancies: 'ఖాళీలు',
+    courseDetails: 'కోర్సు వివరాలు',
+    lessons: 'పాఠాలు',
+    ratings: 'రేటింగ్స్',
+    enrolled: 'నమోదు చేయబడింది',
+    editLangugae: 'భాషను సవరించండి',
+    enterFullName: 'పూర్తి పేరు నమోదు చేయండి',
+    enterEmail: 'ఇమెయిల్ నమోదు చేయండి',
+    email: 'ఇమెయిల్',
+    enterphoneNumber: 'ఫోన్ నంబర్ నమోదు చేయండి',
+    single: 'పెళ్లి కాని',
+    married: 'వివాహితుడు/వివాహిత',
+    divorcee: 'తలాక్ పొందినవారు',
+    selectMaritalStatus: 'వివాహ స్థితిని ఎంచుకోండి',
+    pleaseEnterValidInformation: 'దయచేసి సరైన సమాచారాన్ని నమోదు చేయండి',
+    applicants: 'దరఖాస్తుదారులు',
+    time: 'సమయం',
+    date: 'తేదీ',
+    name: 'పేరు',
+    howCanWeHelpYou: 'మేము మీకు ఎలా సహాయం చేయగలం?',
+    welcomeToHelpText: 'మా సహాయం & మద్దతు కేంద్రానికి స్వాగతం. మమ్మల్ని సంప్రదించే ముందు, దయచేసి మా పరిశీలించండి',
+    didntFindAns: 'మీ ప్రశ్నకు సమాధానం దొరకలేదు?',
+    emailUs: 'మాకు ఇమెయిల్ చేయండి',
+    callUs: 'మాకు కాల్ చేయండి',
+    chatWithCounsellor: 'కౌన్సిలర్‌తో చాట్ చేయండి',
+    // courseApplications: 'కోర్సు దరఖాస్తులు',
+    expertServicesApplications: 'నిపుణుల సేవా దరఖాస్తులు',
+    scholarshipApplications: 'విద్యా సహాయం దరఖాస్తులు',
+    today: 'నేడు',
+    jobDetails: 'ఉద్యోగ వివరాలు',
+    minExperience: 'కనీస అనుభవం',
+    invalidPhoneNumber: 'చెల్లని మొబైల్ నంబర్',
+    notFound: 'కనపడలేదు',
+    enter6DigitOtp: '6 అంకెల OTPని నమోదు చేయండి',
+    codeHasSentTo: 'కోడ్ పంపబడింది',
+    didntRecieveCode: 'కోడ్ అందలేదు?',
+    resendOtp: 'OTPని మళ్లీ పంపు',
+    loginAllCap: 'లాగిన్',
+    personalInformation: 'వ్యక్తిగత సమాచారం',
+    preRegister: 'ముందుగా నమోదు చేసుకోండి',
+    enterFirstName: 'మొదటి పేరు నమోదు చేయండి',
+    firstName: 'మొదటి పేరు',
+    enterLastName: 'చివరి పేరు నమోదు చేయండి',
+    enterEmailAddress: 'ఇమెయిల్ చిరునామాను నమోదు చేయండి',
+    emailAddress: 'ఇమెయిల్ చిరునామా',
+    enterContactNumber: 'సంప్రదింపు నంబర్ నమోదు చేయండి',
+    contactNumber: 'సంప్రదింపు నంబర్',
+    verificationCode: 'ధృవీకరణ కోడ్',
+    codeEnteredIs: 'నమోదు చేసిన కోడ్',
+    verify: 'ధృవీకరించండి',
+    selectLocation: 'ప్రదేశాన్ని ఎంచుకోండి',
+    selectedAddress: 'ఎంచుకున్న చిరునామా: ',
+    enterHighestQualification: 'అత్యున్నత అర్హతను నమోదు చేయండి',
+    highestQualification: 'అత్యున్నత అర్హత',
+    enterPincode: 'పిన్ కోడ్ నమోదు చేయండి',
+    pinCode: 'పిన్ కోడ్',
+    selectVillage: 'గ్రామం ఎంచుకోండి',
+    enterCityName: 'నగరం/గ్రామం పేరు నమోదు చేయండి',
+    cityName: 'నగరం/గ్రామం పేరు',
+    enterTalukaName: 'తాలూకా పేరు నమోదు చేయండి',
+    talukaName: 'తాలూకా పేరు',
+    addCandidate: 'అభ్యర్థిని చేర్చండి',
+    bio: 'జీవిత చరిత్ర',
+    gender: 'లింగం',
+    address: 'చిరునామా',
+    department: 'శాఖ',
+    designation: 'హోదా',
+    // controlAppAlertText: 'యాప్ ఎలా మీరు హెచ్చరించవచ్చు నియంత్రించండి',
+    mobileNumberVerification: 'మొబైల్ నంబర్ ధృవీకరణ',
+    enter6DigitOtpsentYour: 'మీకు పంపించిన 6-అంకెల OTPని నమోదు చేయండి',
+    mobileNumberIs: 'మొబైల్ నంబర్',
+
+    //cart
+    cartText:'కార్ట్',
+    totalApplicatio: 'మొత్తం దరఖాస్తులు స్వీకరించబడ్డాయి',
+    alertMsg:'దయచేసి గమనించండి, జీఎస్టీ అదనంగా వసూలు చేయబడుతుంది.',
+    payNow: 'ఇపుడు చెల్లించండి',
+
+    matching: 'మ్యాచింగ్',
+    applied: 'వర్తింపు',
+    shortlisted: 'షార్ట్‌లిస్ట్ చేయబడింది',
+    joined: 'చేరింది'
+
+  };
+
+  static const Map<String, dynamic> KANNADA = {
+
+    //splash screen
+    splashTitle1: "ನಿಮ್ಮನ್ನು ಹುಡುಕಿ",
+    splashTitle2: "ಡ್ರೀಮ್ ಜಾಬ್",
+    splashTitle3: "ಇಲ್ಲಿ",
+    splashTitle4: "ಹುಡುಕುವುದು, ಸಂಪರ್ಕಿಸುವುದು, ಯಶಸ್ಸನ್ನು ನಿರ್ಮಿಸುವುದು",
+
+    //form
+    addCourse: "ಕೋರ್ಸ್ ಸೇರಿಸಿ",
+    addScholarship: "ವಿದ್ಯಾರ್ಥಿವೇತನವನ್ನು ಸೇರಿಸಿ",
+
+    homeAppbarTitle: 'ಶುಭೋದಯ!',
+    homeTotalCandidate: 'ಒಟ್ಟು ಅಭ್ಯರ್ಥಿಗಳು',
+    homeTotalIncome: 'ಒಟ್ಟು ಆದಾಯ',
+    homeTotalJobsAvailable: 'ಒಟ್ಟು ಲಭ್ಯವಿರುವ ಉದ್ಯೋಗಗಳು',
+    homeTotalSkillsCourse: 'ಒಟ್ಟು ಹೊಲಸು ಕೋರ್ಸುಗಳು',
+    homeTotalScholarship: 'ಒಟ್ಟು ವಿದ್ಯಾರ್ಥಿ ವಿದ್ಯಾರ್ಥಿನಿ',
+    homeExpertServices: 'ನಿಪುಣ ಸೇವೆಗಳು',
+    homeAllCandidates: 'ಎಲ್ಲಾ ಅಭ್ಯರ್ಥಿಗಳು',
+    registeredCandidates: 'ನೋಂದಾಯಿತ ಅಭ್ಯರ್ಥಿಗಳು',
+    preRegisteredCandidates: 'ಪೂರ್ವ ನೋಂದಾಯಿತ ಅಭ್ಯರ್ಥಿಗಳು',
+    addCandidates: 'ಅಭ್ಯರ್ಥಿಗಳನ್ನು ಸೇರಿಸಿ',
+    addAny:'ಸೇರಿಸಿ',
+    job: 'ಉದ್ಯೋಗ',
+    course: 'ಕೋರ್ಸ್',
+    scholarship: 'ವಿದ್ಯಾರ್ಥಿ',
+    expertService: 'ನಿಪುಣ ಸೇವೆ',
+    profile: 'ಪ್ರೊಫೈಲ್',
+    myProfile: 'ನನ್ನ ಪ್ರೊಫೈಲ್',
+    totalEarningTillNow: 'ಇತ್ತಿಚೆಗೆ ಒಟ್ಟು ಆದಾಯ',
+    joinedDate: 'ಸೇರಿದ ದಿನಾಂಕ',
+    basicInformation: 'ಮೂಲ ಮಾಹಿತಿ',
+    settings: 'ಸಂಯೋಜನೆಗಳು',
+    aboutDheya: 'ಧೇಯ ಬಗ್ಗೆ',
+    transaction: "ವ್ಯವಹಾರ",
+    helpAndSupport: 'ಸಹಾಯ ಮತ್ತು ಬೆಂಬಲ',
+    rateUs: 'ನಮ್ಮನ್ನು ರೇಟ್ ಮಾಡಿ',
+    logOut: 'ಲಾಗೌಟ್',
+    editProfile: 'ಪ್ರೊಫೈಲ್ ತಿದ್ದು',
+    fullName: 'ಪೂರ್ಣ ಹೆಸರು',
+    lastName: 'ಕೊನೆಯ ಹೆಸರು',
+    phoneNumber: 'ದೂರವಾಣಿ ಸಂಖ್ಯೆ',
+    selectYourGender: 'ನಿಮ್ಮ ಲಿಂಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ',
+    male: 'ಪುರುಷ',
+    female: 'ಮಹಿಳೆ',
+    maritalStatus: 'ವೈವಾಹಿಕ ಸ್ಥಿತಿ',
+    updateProfile: 'ಪ್ರೊಫೈಲ್ ನವೀಕರಿಸಿ',
+    notifications: 'ಅಧಿಸೂಚನೆಗಳು',
+    controlHowTheAppAlertsYou: 'ಅಪ್ಲಿಕೇಶನ್ ನಿಮಗೆ ಹೇಗೆ ಎಚ್ಚರಿಸುತ್ತದೆ ಎಂದು ನಿಯಂತ್ರಿಸಿ',
+    language: 'ಭಾಷೆ',
+    privacyPolicy: 'ಗೋಪ್ಯತಾ ನೀತಿ',
+    incomeHistory: 'ಆದಾಯದ ಇತಿಹಾಸ',
+    jobApplications: 'ಉದ್ಯೋಗ ಅರ್ಜಿಗಳು',
+    courseApplication: 'ಕೋರ್ಸ್ ಅರ್ಜಿಗಳು',
+    scholarshipApplication: 'ವಿದ್ಯಾರ್ಥಿ ಅರ್ಜಿಗಳು',
+    expertServiceApplication: 'ನಿಪುಣ ಸೇವೆ ಅರ್ಜಿಗಳು',
+
+    nameNotFound: 'ಹೆಸರು ಸಿಕ್ಕಿಲ್ಲ',
+    vacancies: 'ಖಾಲಿ ಹುದ್ದೆಗಳು',
+    courseDetails: 'ಪಠ್ಯ ವಿವರಗಳು',
+    lessons: 'ಪಾಠಗಳು',
+    ratings: 'ಮೌಲ್ಯಮಾಪನಗಳು',
+    enrolled: 'ನೋಂದಾಯಿಸಲಾಗಿದೆ',
+    editLangugae: 'ಭಾಷೆಯನ್ನು ಸಂಪಾದಿಸಿ',
+    enterFullName: 'ಪೂರ್ಣ ಹೆಸರು ನಮೂದಿಸಿ',
+    enterEmail: 'ಇಮೇಲ್ ನಮೂದಿಸಿ',
+    email: 'ಇಮೇಲ್',
+    enterphoneNumber: 'ಫೋನ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ',
+    single: 'ಏಕ',
+    married: 'ವಿವಾಹಿತ',
+    divorcee: 'ವಿಚ್ಛೇದಿತ',
+    selectMaritalStatus: 'ವೈವಾಹಿಕ ಸ್ಥಿತಿಯನ್ನು ಆರಿಸಿ',
+    pleaseEnterValidInformation: 'ದಯವಿಟ್ಟು ಮಾನ್ಯ ಮಾಹಿತಿಯನ್ನು ನಮೂದಿಸಿ',
+    applicants: 'ಅರ್ಜಿದಾರರು',
+    time: 'ಸಮಯ',
+    date: 'ದಿನಾಂಕ',
+    name: 'ಹೆಸರು',
+    howCanWeHelpYou: 'ನಾವು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?',
+    welcomeToHelpText: 'ನಮ್ಮ ಸಹಾಯ & ಬೆಂಬಲ ಕೇಂದ್ರಕ್ಕೆ ಸುಸ್ವಾಗತ. ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುವ ಮೊದಲು, ದಯವಿಟ್ಟು ನಮ್ಮ ಪರಿಶೀಲಿಸಿ',
+    didntFindAns: 'ನಿಮ್ಮ ಪ್ರಶ್ನೆಗೆ ಉತ್ತರ ಸಿಕ್ಕಿಲ್ಲ?',
+    emailUs: 'ನಮಗೆ ಇಮೇಲ್ ಮಾಡಿ',
+    callUs: 'ನಮಗೆ ಕರೆ ಮಾಡಿ',
+    chatWithCounsellor: 'ಉಪದೇಶಕರೊಂದಿಗೆ ಚಾಟ್ ಮಾಡಿ',
+    // courseApplications: 'ಪಠ್ಯ ಅರ್ಜಿಗಳು',
+    expertServicesApplications: 'ತಜ್ಞ ಸೇವೆಗಳ ಅರ್ಜಿಗಳು',
+    scholarshipApplications: 'ಶಿಷ್ಯವೃತ್ತಿ ಅರ್ಜಿಗಳು',
+    today: 'ಇಂದು',
+    jobDetails: 'ಕೆಲಸ ವಿವರಗಳು',
+    minExperience: 'ಕನಿಷ್ಠ ಅನುಭವ',
+    invalidPhoneNumber: 'ಅಮಾನ್ಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ',
+    notFound: 'ಸಿಕ್ಕಿಲ್ಲ',
+    enter6DigitOtp: '6 ಅಂಕೆಗಳ OTP ಅನ್ನು ನಮೂದಿಸಿ',
+    codeHasSentTo: 'ಕೋಡ್ ಕಳುಹಿಸಲಾಗಿದೆ',
+    didntRecieveCode: 'ಕೋಡ್ ಸಿಕ್ಕಿಲ್ಲ?',
+    resendOtp: 'OTP ಪುನಃ ಕಳುಹಿಸಿ',
+    loginAllCap: 'ಲಾಗಿನ್',
+    personalInformation: 'ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ',
+    preRegister: 'ಮುಂಚಿನ ನೋಂದಣಿ',
+    enterFirstName: 'ಮೊದಲ ಹೆಸರನ್ನು ನಮೂದಿಸಿ',
+    firstName: 'ಮೊದಲ ಹೆಸರು',
+    enterLastName: 'ಕೊನೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ',
+    enterEmailAddress: 'ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ',
+    emailAddress: 'ಇಮೇಲ್ ವಿಳಾಸ',
+    enterContactNumber: 'ಸಂಪರ್ಕ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ',
+    contactNumber: 'ಸಂಪರ್ಕ ಸಂಖ್ಯೆ',
+    verificationCode: 'ಧೃಡೀಕರಣ ಕೋಡ್',
+    codeEnteredIs: 'ನಮೂದಿಸಿದ ಕೋಡ್',
+    verify: 'ಧೃಡೀಕರಿಸಿ',
+    selectLocation: 'ಸ್ಥಳವನ್ನು ಆರಿಸಿ',
+    selectedAddress: 'ಆಯ್ಕೆಮಾಡಿದ ವಿಳಾಸ: ',
+    enterHighestQualification: 'ಅತ್ಯುನ್ನತ ವಿದ್ಯಾರ್ಹತೆ ನಮೂದಿಸಿ',
+    highestQualification: 'ಅತ್ಯುನ್ನತ ವಿದ್ಯಾರ್ಹತೆ',
+    enterPincode: 'ಪಿನ್ ಕೋಡ್ ನಮೂದಿಸಿ',
+    pinCode: 'ಪಿನ್ ಕೋಡ್',
+    selectVillage: 'ಗ್ರಾಮವನ್ನು ಆರಿಸಿ',
+    enterCityName: 'ನಗರ/ಹಳ್ಳಿಯ ಹೆಸರು ನಮೂದಿಸಿ',
+    cityName: 'ನಗರ/ಹಳ್ಳಿಯ ಹೆಸರು',
+    enterTalukaName: 'ತಾಲೂಕು ಹೆಸರನ್ನು ನಮೂದಿಸಿ',
+    talukaName: 'ತಾಲೂಕು ಹೆಸರು',
+    addCandidate: 'ಅಭ್ಯರ್ಥಿಯನ್ನು ಸೇರಿಸಿ',
+    bio: 'ಚರಿತ್ರೆ',
+    gender: 'ಲಿಂಗ',
+    address: 'ವಿಳಾಸ',
+    department: 'ಇಲಾಖೆ',
+    designation: 'ಹುದ್ದೆ',
+    // controlAppAlertText: 'ಅಪ್ಲಿಕೇಶನ್‌ನ ಹೈಟ್ ಎಚ್ಚರಿಕೆಗಳನ್ನು ನಿಯಂತ್ರಿಸಿ',
+    mobileNumberVerification: 'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ಪರಿಶೀಲನೆ',
+    enter6DigitOtpsentYour: 'ನೀವು ಕಳುಹಿಸಿದ 6-ಅಂಕೆಯ OTP ಅನ್ನು ನಮೂದಿಸಿ',
+    mobileNumberIs: 'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ',
+
+    //cart 
+    cartText:'ವಾಹನ',
+    totalApplicatio: 'ಒಟ್ಟು ಅರ್ಜಿಗಳು ಸ್ವೀಕರಿಸಲಾಗಿದೆ',
+    alertMsg:'ದಯವಿಟ್ಟು ಗಮನಿಸಿ, ಜಿಎಸ್ಟಿ ಹೆಚ್ಚುವರಿ ಶುಲ್ಕವಾಗಲಿದೆ.',
+    payNow: 'ಈಗ ಪಾವತಿ ಮಾಡಿ',
+
+
+    matching: 'ಮ್ಯಾಚಿಂಗ್',
+    applied: 'ಅರ್ಜಿ ಸಲ್ಲಿಸಲಾಗಿದೆ',
+    shortlisted: 'ಶಾರ್ಟ್ಲಿಸ್ಟ್ ಆಗಿದೆ',
+    joined: 'ಸೇರಿದರು'
+  };  
+
+  static const Map<String, dynamic> MALAYALAM = {
+
+    //splash screen
+    splashTitle1: "നിങ്ങളുടെ കണ്ടെത്തുക",
+    splashTitle2: "ഡ്രീം ജോബ്",
+    splashTitle3: " ഇവിടെ",
+    splashTitle4: "കണ്ടെത്തൽ, ബന്ധിപ്പിക്കൽ, വിജയം കെട്ടിപ്പടുക്കൽ",
+
+    //form
+    addCourse: "കോഴ്‌സ് ചേർക്കുക",
+    addScholarship: "സ്കോളർഷിപ്പ് ചേർക്കുക",
+
+
+    homeAppbarTitle: 'സുപ്രഭാതം!',
+    homeTotalCandidate: 'മൊത്തം അഭ്യര്‍ത്ഥികള്‍',
+    homeTotalIncome: 'മൊത്തം വരുമാനം',
+    homeTotalJobsAvailable: 'മൊത്തം റെഡിയായ ജോലികള്‍',
+    homeTotalSkillsCourse: 'മൊത്തം താളമയ കോഴ്സുകള്‍',
+    homeTotalScholarship: 'മൊത്തം പഠനകേന്ദ്രങ്ങള്‍',
+    homeExpertServices: 'തിരിച്ചുവരവ് സേവനങ്ങള്‍',
+    homeAllCandidates: 'എല്ലാ അഭ്യര്‍ത്ഥികളും',
+    registeredCandidates: 'രജിസ്ട്രേഷന്‍ ചെയ്ത അഭ്യര്‍ത്ഥികള്‍',
+    preRegisteredCandidates: 'മുന്‍പ് രജിസ്ട്രേഷന്‍ ചെയ്ത അഭ്യര്‍ത്ഥികള്‍',
+    addCandidates: 'അഭ്യര്‍ത്ഥികളെ ചേര്‍ക്കുക',
+    addAny:'ചേർക്കുക',
+    job: 'ജോലി',
+    course: 'കോഴ്സ്',
+    scholarship: 'പഠനകേന്ദ്രം',
+    expertService: 'വിദഗ്ധ സേവനം',
+    profile: 'പ്രൊഫൈൽ',
+    myProfile: 'എന്റെ പ്രൊഫൈൽ',
+    totalEarningTillNow: 'ഇതുവരെ ആകെ വരുമാനം',
+    joinedDate: 'ചേരുന്ന തീയതി',
+    basicInformation: 'അടിസ്ഥാന വിവരങ്ങൾ',
+    settings: 'ക്രമീകരണങ്ങൾ',
+    aboutDheya: 'ധേയയെക്കുറിച്ച്',
+    transaction: "ഇടപാട്",
+    helpAndSupport: 'സഹായവും പിന്തുണയും',
+    rateUs: 'ഞങ്ങളെ റേറ്റ് ചെയ്യുക',
+    logOut: 'ലോഗ് ഔട്ട്',
+    editProfile: 'പ്രൊഫൈൽ എഡിറ്റ് ചെയ്യുക',
+    fullName: 'പൂർണ്ണ നാമം',
+    lastName: 'അവസാന നാമം',
+    phoneNumber: 'ഫോൺ നമ്പർ',
+    selectYourGender: 'നിങ്ങളുടെ ലിംഗം തിരഞ്ഞെടുക്കുക',
+    male: 'പുരുഷൻ',
+    female: 'സ്ത്രീ',
+    maritalStatus: 'വിവാഹം സ്ഥിതി',
+    updateProfile: 'പ്രൊഫൈൽ അപ്ഡേറ്റ് ചെയ്യുക',
+    notifications: 'അറിയിപ്പുകൾ',
+    controlHowTheAppAlertsYou: 'ആപ്പ് നിങ്ങളെ എങ്ങനെ മുന്നറിയിപ്പ് നൽകുന്നു എന്ന് നിയന്ത്രിക്കുക',
+    language: 'ഭാഷ',
+    privacyPolicy: 'സ്വകാര്യതാ നയം',
+    incomeHistory: 'വരുമാന ചരിത്രം',
+    jobApplications: 'ജോലി അപേക്ഷകൾ',
+    courseApplication: 'കോഴ്സ് അപേക്ഷകൾ',
+    scholarshipApplication: 'പഠനകേന്ദ്ര അപേക്ഷകൾ',
+    expertServiceApplication: 'വിദഗ്ധ സേവന അപേക്ഷകൾ',
+
+    nameNotFound: 'പേര് കണ്ടെത്തിയില്ല',
+    vacancies: 'വിജ്ഞാപനം',
+    courseDetails: 'കോഴ്സ് വിശദാംശങ്ങൾ',
+    lessons: 'പാഠങ്ങൾ',
+    ratings: 'റേറ്റിംഗുകൾ',
+    enrolled: 'രജിസ്റ്റർ ചെയ്ത',
+    editLangugae: 'ഭാഷ എഡിറ്റ് ചെയ്യുക',
+    enterFullName: 'പൂർണ്ണ പേര് നൽകുക',
+    enterEmail: 'ഇമെയിൽ നൽകുക',
+    email: 'ഇമെയിൽ',
+    enterphoneNumber: 'ഫോൺ നമ്പർ നൽകുക',
+    single: 'സിംഗിൾ',
+    married: 'വിവാഹിതൻ/വിവാഹിത',
+    divorcee: 'വിഭജനം',
+    selectMaritalStatus: 'വിവാഹം തിരഞ്ഞെടുക്കുക',
+    pleaseEnterValidInformation: 'ദയവായി ശരിയായ വിവരങ്ങൾ നൽകുക',
+    applicants: 'അപേക്ഷകർ',
+    time: 'സമയം',
+    date: 'തീയതി',
+    name: 'പേര്',
+    howCanWeHelpYou: 'ഞങ്ങൾ നിങ്ങളെ എങ്ങനെ സഹായിക്കാം?',
+    welcomeToHelpText: 'ഞങ്ങളുടെ സഹായ & പിന്തുണ കേന്ദ്രത്തിലേക്ക് സ്വാഗതം. ഞങ്ങളെ ബന്ധപ്പെടുന്നതിന് മുമ്പ്, ദയവായി ഞങ്ങളുടെ പരിശോധിക്കുക',
+    didntFindAns: 'നിങ്ങളുടെ ചോദ്യത്തിന് ഉത്തരം ലഭിച്ചില്ല?',
+    emailUs: 'ഞങ്ങൾക്ക് ഇമെയിൽ ചെയ്യുക',
+    callUs: 'ഞങ്ങളെ വിളിക്കുക',
+    chatWithCounsellor: 'കൗൺസിലറുമായി ചാറ്റ് ചെയ്യുക',
+    // courseApplications: 'കോഴ്സ് അപേക്ഷകൾ',
+    expertServicesApplications: 'വിദഗ്ധ സേവന അപേക്ഷകൾ',
+    scholarshipApplications: 'സ്കോളർഷിപ്പ് അപേക്ഷകൾ',
+    today: 'ഇന്ന്',
+    jobDetails: 'ജോലി വിശദാംശങ്ങൾ',
+    minExperience: 'കുറഞ്ഞത് അനുഭവം',
+    invalidPhoneNumber: 'അസാധുവായ മൊബൈൽ നമ്പർ',
+    notFound: 'കണ്ടെത്തിയില്ല',
+    enter6DigitOtp: '6 അക്ക OTP നൽകുക',
+    codeHasSentTo: 'കോഡ് അയച്ചു',
+    didntRecieveCode: 'കോഡ് ലഭിച്ചില്ല?',
+    resendOtp: 'OTP വീണ്ടും അയയ്ക്കുക',
+    loginAllCap: 'ലോഗിൻ',
+    personalInformation: 'വ്യക്തിഗത വിവരങ്ങൾ',
+    preRegister: 'പ്രിവാര്സ് രജിസ്ട്രേഷൻ',
+    enterFirstName: 'മുൻപേർ നൽകുക',
+    firstName: 'മുൻപേർ',
+    enterLastName: 'പേരിന്റെ അവസാനം നൽകുക',
+    enterEmailAddress: 'ഇമെയിൽ വിലാസം നൽകുക',
+    emailAddress: 'ഇമെയിൽ വിലാസം',
+    enterContactNumber: 'ബന്ധപ്പെടുന്ന നമ്പർ നൽകുക',
+    contactNumber: 'ബന്ധപ്പെടുന്ന നമ്പർ',
+    verificationCode: 'സ്ഥിരീകരണ കോഡ്',
+    codeEnteredIs: 'പ്രവേശിച്ച കോഡ്',
+    verify: 'സ്ഥിരീകരിക്കുക',
+    selectLocation: 'സ്ഥലം തിരഞ്ഞെടുക്കുക',
+    selectedAddress: 'തിരഞ്ഞെടുത്ത വിലാസം: ',
+    enterHighestQualification: 'ഉയർന്ന യോഗ്യത നൽകുക',
+    highestQualification: 'ഉയർന്ന യോഗ്യത',
+    enterPincode: 'പിൻകോഡ് നൽകുക',
+    pinCode: 'പിൻകോഡ്',
+    selectVillage: 'ഗ്രാമം തിരഞ്ഞെടുക്കുക',
+    enterCityName: 'നഗരം/ഗ്രാമം പേര് നൽകുക',
+    cityName: 'നഗരം/ഗ്രാമം പേര്',
+    enterTalukaName: 'താലൂക്ക് പേര് നൽകുക',
+    talukaName: 'താലൂക്ക് പേര്',
+    addCandidate: 'ക്യാൻഡിഡേറ്റ് ചേർക്കുക',
+    bio: 'ജീവചരിത്രം',
+    gender: 'ലിംഗം',
+    address: 'വിലാസം',
+    department: 'വകുപ്പ്',
+    designation: 'ലിംഗം',
+    // controlAppAlertText: 'ആപ്പ് എങ്ങനെ നിങ്ങളെ മുന്നറിയിപ്പുകൾ ചെയ്യുന്നു നിയന്ത്രിക്കുക',
+    mobileNumberVerification: 'മൊബൈൽ നമ്പർ പരിശോധിക്കുക',
+    enter6DigitOtpsentYour: 'നിങ്ങളുടെ നമ്പറിലേക്ക് അയച്ച 6 അക്ക OTP നൽകുക',
+    mobileNumberIs: 'മൊബൈൽ നമ്പർ',
+
+    //cart Text
+    cartText:'വാഹനം',
+    totalApplicatio: 'മൊത്തം അപേക്ഷകൾ സ്വീകരിച്ചിരിക്കുന്നു',
+    alertMsg:'ദയവായി ശ്രദ്ധിക്കുക, ജിഎസ്ടി അധികമായി ഈടാക്കപ്പെടും.',
+    payNow: 'ഇപ്പോൾ പേയ് ചെയ്യൂ',
+
+    matching: 'മാച്ചിംഗ്',
+    applied: 'അപേക്ഷിച്ചു',
+    shortlisted: 'ഷോർട്ട്‌ലിസ്റ്റ് ചെയ്‌തു',
+    joined: 'ചേർന്നു',
+  };
+
+  static const Map<String, dynamic> ASSAMESE = {
+
+    //splash screen
+    splashTitle1: "আপোনাৰ বিচাৰি উলিয়াওক",
+    splashTitle2: "সপোনৰ চাকৰি",
+    splashTitle3: " ইয়াত",
+    splashTitle4: "বিচাৰ, সংযোগ, সফলতা নিৰ্মাণ",
+
+    //form
+    addCourse: "পাঠ্যক্ৰম যোগ কৰক",
+    addScholarship: "বৃত্তি যোগ কৰক",
+
+    homeAppbarTitle: 'সুপ্ৰভাত!',
+    homeTotalCandidate: 'মুঠ প্ৰার্থী',
+    homeTotalIncome: 'মুঠ আয়',
+    homeTotalJobsAvailable: 'মুঠ বিতৰণ চাকৰিৰ',
+    homeTotalSkillsCourse: 'মুঠ দক্ষতা পাঠশালা',
+    homeTotalScholarship: 'মুঠ ছাত্ৰাবৃত্তি',
+    homeExpertServices: 'বিশেষজ্ঞ সেৱা',
+    homeAllCandidates: 'সকলো প্ৰার্থী',
+    registeredCandidates: 'পঞ্জীয়কৃত প্ৰার্থী',
+    preRegisteredCandidates: 'পূৰ্বে পঞ্জীয়কৃত প্ৰার্থী',
+    addCandidates: 'প্ৰার্থী সংযোগ কৰক',
+    addAny:'যোগ কৰা',
+    job: 'চাকৰি',
+    course: 'কোর্স',
+    scholarship: 'ছাত্ৰাবৃত্তি',
+    expertService: 'বিশেষজ্ঞ সেৱা',
+    profile: 'প্ৰফাইল',
+    myProfile: 'মোৰ প্ৰফাইল',
+    totalEarningTillNow: 'সকলো আয়',
+    joinedDate: 'যোগদান তাৰিখ',
+    basicInformation: 'মৌলিক তথ্য',
+    settings: 'ছেটিংছ',
+    aboutDheya: 'ধেয়া সম্পর্কে',
+    transaction: "লেনদেন",
+    helpAndSupport: 'সহায় আৰু সমৰ্থন',
+    rateUs: 'আমাক ৰেট কৰক',
+    logOut: 'লগ আউট',
+    editProfile: 'প্ৰফাইল সম্পাদনা কৰক',
+    fullName: 'সম্পূৰ্ণ নাম',
+    lastName: 'শেহ নাম',
+    phoneNumber: 'ফোন নম্বৰ',
+    selectYourGender: 'আপোনাৰ লিংগ বাচনি কৰক',
+    male: 'পুৰুষ',
+    female: 'মহিলা',
+    maritalStatus: 'বৈবাহিক স্থিতি',
+    updateProfile: 'প্ৰফাইল আপডেট কৰক',
+    notifications: 'অধিসূচনাবোৰ',
+    controlHowTheAppAlertsYou: 'অ্যাপ্লিকেশ্বনে আপোনাক কেনেকৈ সতর্ক কৰে সেইটো নিয়ন্ত্ৰণ কৰক',
+    language: 'ভাষা',
+    privacyPolicy: 'গোপনীয়তা নীতি',
+    incomeHistory: 'আয় ইতিহাস',
+    jobApplications: 'চাকৰি আবেদন',
+    courseApplication: 'কোর্স আবেদন',
+    scholarshipApplication: 'ছাত্ৰাবৃত্তি আবেদন',
+    expertServiceApplication: 'বিশেষজ্ঞ সেৱা আবেদন',
+
+    nameNotFound: 'নাম পোৱা নগ’ল',
+    vacancies: 'খালী পদ',
+    courseDetails: 'কোৰ্চৰ বিৱৰণ',
+    lessons: 'পাঠবোৰ',
+    ratings: 'ৰেটিং',
+    enrolled: 'নথিভুক্ত',
+    editLangugae: 'ভাষা সম্পাদনা কৰক',
+    enterFullName: 'সম্পূৰ্ণ নাম লিখক',
+    enterEmail: 'ইমেইল লিখক',
+    email: 'ইমেইল',
+    enterphoneNumber: 'ফোন নম্বৰ লিখক',
+    single: 'অবিবাহিত',
+    married: 'বিবাহিত',
+    divorcee: 'বিচ্ছিন্ন',
+    selectMaritalStatus: 'বৈৱাহিক স্থিতি বাছনি কৰক',
+    pleaseEnterValidInformation: 'অনুগ্ৰহ কৰি সঠিক তথ্য লিখক',
+    applicants: 'আবেদনকাৰীসকল',
+    time: 'সময়',
+    date: 'তাৰিখ',
+    name: 'নাম',
+    howCanWeHelpYou: 'আমিবোৰ আপোনাক কেনেকৈ সহায় কৰিব পাৰো?',
+    welcomeToHelpText: 'আমাৰ সহায় আৰু সমৰ্থন কেন্দ্ৰত স্বাগতম। আমাৰ সৈতে যোগাযোগ কৰাৰ আগতে, অনুগ্ৰহ কৰি আমাৰ পৰীক্ষা কৰক',
+    didntFindAns: 'আপোনাৰ প্ৰশ্নৰ উত্তৰ পোৱা নগ’ল?',
+    emailUs: 'আমালৈ ইমেইল কৰক',
+    callUs: 'আমালৈ ফোন কৰক',
+    chatWithCounsellor: 'উপদেশকৰ সৈতে কথোপকথন কৰক',
+    // courseApplications: 'কোৰ্চ আবেদন',
+    expertServicesApplications: 'বিশেষজ্ঞ সেৱা আবেদন',
+    scholarshipApplications: 'স্কলাৰশ্বিপ আবেদন',
+    today: 'আজি',
+    jobDetails: 'চাকৰিৰ বিৱৰণ',
+    minExperience: 'অৱনতম অভিজ্ঞতা',
+    invalidPhoneNumber: 'অবৈধ মোবাইল নম্বৰ',
+    notFound: 'পোৱা নগ’ল',
+    enter6DigitOtp: '6 সংখ্যাৰ OTP লিখক',
+    codeHasSentTo: 'ক’ড পঠোৱা হৈছে',
+    didntRecieveCode: 'ক’ড পোৱা নগ’ল?',
+    resendOtp: 'OTP পুনৰ পঠাওক',
+    loginAllCap: 'লগইন',
+    personalInformation: 'ব্যক্তিগত তথ্য',
+    preRegister: 'পূৰ্বপৰিচয়',
+    enterFirstName: 'প্ৰথম নাম লিখক',
+    firstName: 'প্ৰথম নাম',
+    enterLastName: 'শেষ নাম লিখক',
+    enterEmailAddress: 'ইমেইল ঠিকনা লিখক',
+    emailAddress: 'ইমেইল ঠিকনা',
+    enterContactNumber: 'যোগাযোগ নম্বৰ লিখক',
+    contactNumber: 'যোগাযোগ নম্বৰ',
+    verificationCode: 'যাচাইকৰণ ক’ড',
+    codeEnteredIs: 'লিখা ক’ড',
+    verify: 'যাচাই কৰক',
+    selectLocation: 'অৱস্থান বাছনি কৰক',
+    selectedAddress: 'বাছনি কৰা ঠিকনা: ',
+    enterHighestQualification: 'সৰ্বোচ্চ অৰ্হতা লিখক',
+    highestQualification: 'সৰ্বোচ্চ অৰ্হতা',
+    enterPincode: 'পিন ক’ড লিখক',
+    pinCode: 'পিন ক’ড',
+    selectVillage: 'গাঁৱ বাছনি কৰক',
+    enterCityName: 'নগৰ/গাঁৱৰ নাম লিখক',
+    cityName: 'নগৰ/গাঁৱৰ নাম',
+    enterTalukaName: 'তালুকাৰ নাম লিখক',
+    talukaName: 'তালুকাৰ নাম',
+    addCandidate: 'প্ৰাৰ্থী যোগ কৰক',
+    bio: 'জীৱনী',
+    gender: 'লিংগ',
+    address: 'ঠিকনা',
+    department: 'বিভাগ',
+    designation: 'পদ',
+    // controlAppAlertText: 'আপোনাক কেনেকৈ সতৰ্ক কৰক সেইয়া নিয়ন্ত্ৰণ কৰক',
+    mobileNumberVerification: 'মোবাইল নম্বৰ যাচাইকৰণ',
+    enter6DigitOtpsentYour: 'আপোনাৰ দিয়া নম্বৰলৈ পঠোৱা 6 সংখ্যাৰ OTP লিখক',
+    mobileNumberIs: 'মোবাইল নম্বৰ',
+
+    //cart Text
+    cartText:'গাড়ী',
+    totalApplicatio: 'মুঠ আবেদন পোৱা হৈছে',
+    alertMsg:'মনত ৰাখিব, জিএচটি অতিৰিক্তভাৱে আৰোপ কৰা হব।',
+    payNow: 'এতিয়া পইচা দিয়ক',
+
+    matching: 'মিল',
+    applied: 'আবেদন কৰা',
+    shortlisted: 'চুটি তালিকাভুক্ত',
+    joined: 'যোগদান কৰা',
+  };
+}
