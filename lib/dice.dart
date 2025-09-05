@@ -7,11 +7,7 @@ class AnimatedDice extends StatefulWidget {
   final LudoPlayer player;
   final void Function(int value, LudoPlayer player)? onRolled;
 
-  const AnimatedDice({
-    super.key,
-    required this.player,
-    this.onRolled,
-  });
+  const AnimatedDice({super.key, required this.player, this.onRolled});
 
   @override
   State<AnimatedDice> createState() => _AnimatedDiceState();
@@ -27,8 +23,10 @@ class _AnimatedDiceState extends State<AnimatedDice>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -66,7 +64,8 @@ class _AnimatedDiceState extends State<AnimatedDice>
           turns: Tween(begin: 0.0, end: 1.0).animate(_animation),
           child: InkWell(
             onTap: _rollDice,
-            child: DiceFace(value: _currentValue,color: _playerColor(),)),
+            child: DiceFace(value: _currentValue, color: _playerColor()),
+          ),
         ),
         const SizedBox(height: 10),
         // ElevatedButton(
@@ -96,7 +95,7 @@ class _AnimatedDiceState extends State<AnimatedDice>
 class DiceFace extends StatelessWidget {
   final int value;
   final Color color;
-  const DiceFace({super.key, required this.value,required this.color});
+  const DiceFace({super.key, required this.value, required this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -111,9 +110,7 @@ class DiceFace extends StatelessWidget {
           BoxShadow(color: Colors.black26, blurRadius: 8, offset: Offset(2, 2)),
         ],
       ),
-      child: CustomPaint(
-        painter: _DicePainter(value),
-      ),
+      child: CustomPaint(painter: _DicePainter(value)),
     );
   }
 }

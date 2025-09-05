@@ -79,21 +79,9 @@ class _LudoBoardState extends State<LudoBoard> {
               final double top = pos.r * cell + (cell - tokenSize) / 2;
 
               // Inside build method, replace Positioned with AnimatedPositioned
-return AnimatedPositioned(
-  duration: const Duration(milliseconds: 500), // adjust speed
-  curve: Curves.easeInOut,                     // smooth motion
-  left: left,
-  top: top,
-  width: tokenSize,
-  height: tokenSize,
-  child: GestureDetector(
-    onTap: () => widget.onTokenTap?.call(color, i),
-    child: _buildToken(color),
-  ),
-);
-
-
-              return Positioned(
+              return AnimatedPositioned(
+                duration: const Duration(milliseconds: 500), // adjust speed
+                curve: Curves.easeInOut, // smooth motion
                 left: left,
                 top: top,
                 width: tokenSize,
@@ -103,6 +91,7 @@ return AnimatedPositioned(
                   child: _buildToken(color),
                 ),
               );
+
             });
           }),
         ],
@@ -117,7 +106,7 @@ return AnimatedPositioned(
         shape: BoxShape.circle,
         border: Border.all(color: Colors.teal, width: 2),
         boxShadow: const [
-          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1, 1))
+          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1, 1)),
         ],
       ),
     );
@@ -154,7 +143,7 @@ class _LudoPainter extends CustomPainter {
     required this.showGrid,
     required this.tokens,
     required this.highlightCells,
-    required this.showCellLabels
+    required this.showCellLabels,
   });
 
   final Color red = const Color(0xFFE74C3C);
@@ -164,321 +153,450 @@ class _LudoPainter extends CustomPainter {
   final Color line = const Color(0xFF222222);
 
   @override
-bool shouldRepaint(covariant _LudoPainter oldDelegate) {
-  return showGrid != oldDelegate.showGrid ||
-         highlightCells != oldDelegate.highlightCells ||
-         showCellLabels != oldDelegate.showCellLabels ||
-         background != oldDelegate.background; // 👈 add this
-}
-
-@override
-void paint(Canvas canvas, Size size) {
-  final double cell = size.width / n;
-  final rect = Offset.zero & size;
-
-   
-
-  // === 1. Background ===
-  final bgPaint = Paint()..color = Colors.white;
-  canvas.drawRect(rect, bgPaint);
-
-  //=== 2. Quadrants ===
-  final redPaint = Paint()..color = Colors.red;
-  final greenPaint = Paint()..color = Colors.green;
-  final yellowPaint = Paint()..color = Colors.yellow;
-  final bluePaint = Paint()..color = Colors.blue;
-
-  canvas.drawRect(Rect.fromLTWH(0, 0, 6 * cell, 6 * cell), redPaint); // top-left
-  canvas.drawRect(Rect.fromLTWH(9 * cell, 0, 6 * cell, 6 * cell), greenPaint); // top-right
-  canvas.drawRect(Rect.fromLTWH(0, 9 * cell, 6 * cell, 6 * cell), yellowPaint); // bottom-left
-  canvas.drawRect(Rect.fromLTWH(9 * cell, 9 * cell, 6 * cell, 6 * cell), bluePaint); // bottom-right
-
-  // === 3. Cross paths ===
-  final whitePaint = Paint()..color = Colors.white;
-  canvas.drawRect(Rect.fromLTWH(6 * cell, 0, 3 * cell, 15 * cell), whitePaint); // vertical bar
-  canvas.drawRect(Rect.fromLTWH(0, 6 * cell, 15 * cell, 3 * cell), whitePaint); // horizontal bar
-
-  // colored paths
-  canvas.drawRect(Rect.fromLTWH(7 * cell, 1 * cell, 1 * cell, 5 * cell), greenPaint);
-  canvas.drawRect(Rect.fromLTWH(1 * cell, 7 * cell, 5 * cell, 1 * cell), redPaint);
-  canvas.drawRect(Rect.fromLTWH(9 * cell, 7 * cell, 5 * cell, 1 * cell), bluePaint);
-  canvas.drawRect(Rect.fromLTWH(7 * cell, 9 * cell, 1 * cell, 5 * cell), yellowPaint);
-  //Entry point places
-  canvas.drawRect(Rect.fromLTWH(8 * cell, 1 * cell, 1 * cell, 1 * cell), greenPaint);
-  canvas.drawRect(Rect.fromLTWH(1 * cell, 6 * cell, 1 * cell, 1 * cell), redPaint);
-  canvas.drawRect(Rect.fromLTWH(13 * cell, 8 * cell, 1 * cell, 1 * cell), bluePaint);
-  canvas.drawRect(Rect.fromLTWH(6 * cell, 13 * cell, 1 * cell, 1 * cell), yellowPaint);
-
-  
-
-  // === 4. Center triangles ===
-  final path = Path();
-
-  // red
-  path.moveTo(6 * cell, 6 * cell);
-  path.lineTo(9 * cell, 6 * cell);
-  path.lineTo(7.5 * cell, 7.5 * cell);
-  path.close();
-  canvas.drawPath(path, greenPaint);
-
-  // green
-  path.reset();
-  path.moveTo(9 * cell, 6 * cell);
-  path.lineTo(9 * cell, 9 * cell);
-  path.lineTo(7.5 * cell, 7.5 * cell);
-  path.close();
-  canvas.drawPath(path, bluePaint);
-
-  // blue
-  path.reset();
-  path.moveTo(9 * cell, 9 * cell);
-  path.lineTo(6 * cell, 9 * cell);
-  path.lineTo(7.5 * cell, 7.5 * cell);
-  path.close();
-  canvas.drawPath(path, yellowPaint);
-
-  // yellow
-  path.reset();
-  path.moveTo(6 * cell, 9 * cell);
-  path.lineTo(6 * cell, 6 * cell);
-  path.lineTo(7.5 * cell, 7.5 * cell);
-  path.close();
-  canvas.drawPath(path, redPaint);
-
-  
-
-  
-
-  // === 6. Grid lines ===
-  if (showGrid) {
-    final gridPaint = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1;
-    for (int i = 0; i <= n; i++) {
-      canvas.drawLine(Offset(i * cell, 0), Offset(i * cell, size.height), gridPaint);
-      canvas.drawLine(Offset(0, i * cell), Offset(size.width, i * cell), gridPaint);
-    }
-
-    //darker outlines
-final darkline = Paint()
-      ..color = Colors.black
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
-      //verticle lines
-    canvas.drawLine(Offset(6 * cell, 0), Offset(6 * cell, size.height), darkline);
-    canvas.drawLine(Offset(9 * cell, 0), Offset(9 * cell, size.height), darkline);
-    canvas.drawLine(Offset(0, 0), Offset(0, size.height), darkline);
-    canvas.drawLine(Offset(15*cell, 0), Offset(15*cell, size.height), darkline);
-    //horizontal lines
-    canvas.drawLine(Offset(0, 6 * cell), Offset(size.width, 6 * cell), darkline);
-    canvas.drawLine(Offset(0, 9 * cell), Offset(size.width, 9 * cell), darkline);
-    canvas.drawLine(Offset(0, 0), Offset(size.width, 0), darkline);
-    canvas.drawLine(Offset(0, 15 * cell), Offset(size.width, 15 * cell), darkline);
-
-    //Player Home Lines
-    //Red Player
-    canvas.drawLine(Offset(2*cell, 7*cell), Offset(6*cell, 7*cell), darkline);
-    canvas.drawLine(Offset(1*cell, 8*cell), Offset(6*cell, 8*cell), darkline);
-    canvas.drawLine(Offset(1*cell, 8*cell), Offset(1*cell, 6*cell), darkline);
-    canvas.drawLine(Offset(2*cell, 7*cell), Offset(2*cell, 6*cell), darkline);
-    //Green Player
-    canvas.drawLine(Offset(7*cell, 1*cell), Offset(9*cell, 1*cell), darkline);
-    canvas.drawLine(Offset(8*cell, 2*cell), Offset(9*cell, 2*cell), darkline);
-    canvas.drawLine(Offset(7*cell, 1*cell), Offset(7*cell, 6*cell), darkline);
-    canvas.drawLine(Offset(8*cell, 2*cell), Offset(8*cell, 6*cell), darkline);
-    //blue Player
-    canvas.drawLine(Offset(14*cell, 7*cell), Offset(9*cell, 7*cell), darkline);
-    canvas.drawLine(Offset(13*cell, 8*cell), Offset(9*cell, 8*cell), darkline);
-    canvas.drawLine(Offset(14*cell, 7*cell), Offset(14*cell, 9*cell), darkline);
-    canvas.drawLine(Offset(13*cell, 8*cell), Offset(13*cell, 9*cell), darkline);
-     //yellow Player
-    canvas.drawLine(Offset(8*cell, 9*cell), Offset(8*cell, 14*cell), darkline);
-    canvas.drawLine(Offset(7*cell, 9*cell), Offset(7*cell, 13*cell), darkline);
-    canvas.drawLine(Offset(6*cell, 13*cell), Offset(7*cell, 13*cell), darkline);
-    canvas.drawLine(Offset(6*cell, 14*cell), Offset(8*cell, 14*cell), darkline);
-
-    
-
-    _drawStar(canvas, cell, const Cell(8,2), color: Colors.black);
-    _drawStar(canvas, cell, const Cell(2,6), color: Colors.black);
-    _drawStar(canvas, cell, const Cell(12,8), color: Colors.black);
-    _drawStar(canvas, cell, const Cell(6,12), color: Colors.black);
-
-
-
-
-     
+  bool shouldRepaint(covariant _LudoPainter oldDelegate) {
+    return showGrid != oldDelegate.showGrid ||
+        highlightCells != oldDelegate.highlightCells ||
+        showCellLabels != oldDelegate.showCellLabels ||
+        background != oldDelegate.background; // 👈 add this
   }
 
-  
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double cell = size.width / n;
+    final rect = Offset.zero & size;
 
- // === 7. Highlight cells ===
-  final highlightPaint = Paint()
-    ..color = Colors.purple.withOpacity(0.3)
-    ..style = PaintingStyle.fill;
-  for (var c in highlightCells) {
+    // === 1. Background ===
+    final bgPaint = Paint()..color = Colors.white;
+    canvas.drawRect(rect, bgPaint);
+
+    //=== 2. Quadrants ===
+    final redPaint = Paint()..color = Colors.red;
+    final greenPaint = Paint()..color = Colors.green;
+    final yellowPaint = Paint()..color = Colors.yellow;
+    final bluePaint = Paint()..color = Colors.blue;
+
     canvas.drawRect(
-      Rect.fromLTWH(c.c * cell, c.r * cell, cell, cell),
-      highlightPaint,
-    );
-  }
+      Rect.fromLTWH(0, 0, 6 * cell, 6 * cell),
+      redPaint,
+    ); // top-left
+    canvas.drawRect(
+      Rect.fromLTWH(9 * cell, 0, 6 * cell, 6 * cell),
+      greenPaint,
+    ); // top-right
+    canvas.drawRect(
+      Rect.fromLTWH(0, 9 * cell, 6 * cell, 6 * cell),
+      yellowPaint,
+    ); // bottom-left
+    canvas.drawRect(
+      Rect.fromLTWH(9 * cell, 9 * cell, 6 * cell, 6 * cell),
+      bluePaint,
+    ); // bottom-right
 
-  //=== 8. Debug cell labels ===
-  if (showCellLabels) {
-    final textPainter = TextPainter(
-      textAlign: TextAlign.center,
-      textDirection: TextDirection.ltr,
+    // === 3. Cross paths ===
+    final whitePaint = Paint()..color = Colors.white;
+    canvas.drawRect(
+      Rect.fromLTWH(6 * cell, 0, 3 * cell, 15 * cell),
+      whitePaint,
+    ); // vertical bar
+    canvas.drawRect(
+      Rect.fromLTWH(0, 6 * cell, 15 * cell, 3 * cell),
+      whitePaint,
+    ); // horizontal bar
+
+    // colored paths
+    canvas.drawRect(
+      Rect.fromLTWH(7 * cell, 1 * cell, 1 * cell, 5 * cell),
+      greenPaint,
     );
-    for (int r = 0; r < n; r++) {
-      for (int c = 0; c < n; c++) {
-        final Rect cellRect = Rect.fromLTWH(c * cell, r * cell, cell, cell);
-        textPainter.text = TextSpan(
-          text: "$r,$c",
-          style: const TextStyle(fontSize: 7, color: Colors.black),
+    canvas.drawRect(
+      Rect.fromLTWH(1 * cell, 7 * cell, 5 * cell, 1 * cell),
+      redPaint,
+    );
+    canvas.drawRect(
+      Rect.fromLTWH(9 * cell, 7 * cell, 5 * cell, 1 * cell),
+      bluePaint,
+    );
+    canvas.drawRect(
+      Rect.fromLTWH(7 * cell, 9 * cell, 1 * cell, 5 * cell),
+      yellowPaint,
+    );
+    //Entry point places
+    canvas.drawRect(
+      Rect.fromLTWH(8 * cell, 1 * cell, 1 * cell, 1 * cell),
+      greenPaint,
+    );
+    canvas.drawRect(
+      Rect.fromLTWH(1 * cell, 6 * cell, 1 * cell, 1 * cell),
+      redPaint,
+    );
+    canvas.drawRect(
+      Rect.fromLTWH(13 * cell, 8 * cell, 1 * cell, 1 * cell),
+      bluePaint,
+    );
+    canvas.drawRect(
+      Rect.fromLTWH(6 * cell, 13 * cell, 1 * cell, 1 * cell),
+      yellowPaint,
+    );
+
+    // === 4. Center triangles ===
+    final path = Path();
+
+    // red
+    path.moveTo(6 * cell, 6 * cell);
+    path.lineTo(9 * cell, 6 * cell);
+    path.lineTo(7.5 * cell, 7.5 * cell);
+    path.close();
+    canvas.drawPath(path, greenPaint);
+
+    // green
+    path.reset();
+    path.moveTo(9 * cell, 6 * cell);
+    path.lineTo(9 * cell, 9 * cell);
+    path.lineTo(7.5 * cell, 7.5 * cell);
+    path.close();
+    canvas.drawPath(path, bluePaint);
+
+    // blue
+    path.reset();
+    path.moveTo(9 * cell, 9 * cell);
+    path.lineTo(6 * cell, 9 * cell);
+    path.lineTo(7.5 * cell, 7.5 * cell);
+    path.close();
+    canvas.drawPath(path, yellowPaint);
+
+    // yellow
+    path.reset();
+    path.moveTo(6 * cell, 9 * cell);
+    path.lineTo(6 * cell, 6 * cell);
+    path.lineTo(7.5 * cell, 7.5 * cell);
+    path.close();
+    canvas.drawPath(path, redPaint);
+
+    // === 6. Grid lines ===
+    if (showGrid) {
+      final gridPaint = Paint()
+        ..color = Colors.black
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1;
+      for (int i = 0; i <= n; i++) {
+        canvas.drawLine(
+          Offset(i * cell, 0),
+          Offset(i * cell, size.height),
+          gridPaint,
         );
-        textPainter.layout(minWidth: 0, maxWidth: cell);
-        textPainter.paint(
-          canvas,
-          Offset(
-            cellRect.left + (cell - textPainter.width) / 2,
-            cellRect.top + (cell - textPainter.height) / 2,
-          ),
+        canvas.drawLine(
+          Offset(0, i * cell),
+          Offset(size.width, i * cell),
+          gridPaint,
         );
       }
+
+      //darker outlines
+      final darkline = Paint()
+        ..color = Colors.black
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2;
+      //verticle lines
+      canvas.drawLine(
+        Offset(6 * cell, 0),
+        Offset(6 * cell, size.height),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(9 * cell, 0),
+        Offset(9 * cell, size.height),
+        darkline,
+      );
+      canvas.drawLine(Offset(0, 0), Offset(0, size.height), darkline);
+      canvas.drawLine(
+        Offset(15 * cell, 0),
+        Offset(15 * cell, size.height),
+        darkline,
+      );
+      //horizontal lines
+      canvas.drawLine(
+        Offset(0, 6 * cell),
+        Offset(size.width, 6 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(0, 9 * cell),
+        Offset(size.width, 9 * cell),
+        darkline,
+      );
+      canvas.drawLine(Offset(0, 0), Offset(size.width, 0), darkline);
+      canvas.drawLine(
+        Offset(0, 15 * cell),
+        Offset(size.width, 15 * cell),
+        darkline,
+      );
+
+      //Player Home Lines
+      //Red Player
+      canvas.drawLine(
+        Offset(2 * cell, 7 * cell),
+        Offset(6 * cell, 7 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(1 * cell, 8 * cell),
+        Offset(6 * cell, 8 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(1 * cell, 8 * cell),
+        Offset(1 * cell, 6 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(2 * cell, 7 * cell),
+        Offset(2 * cell, 6 * cell),
+        darkline,
+      );
+      //Green Player
+      canvas.drawLine(
+        Offset(7 * cell, 1 * cell),
+        Offset(9 * cell, 1 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(8 * cell, 2 * cell),
+        Offset(9 * cell, 2 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(7 * cell, 1 * cell),
+        Offset(7 * cell, 6 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(8 * cell, 2 * cell),
+        Offset(8 * cell, 6 * cell),
+        darkline,
+      );
+      //blue Player
+      canvas.drawLine(
+        Offset(14 * cell, 7 * cell),
+        Offset(9 * cell, 7 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(13 * cell, 8 * cell),
+        Offset(9 * cell, 8 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(14 * cell, 7 * cell),
+        Offset(14 * cell, 9 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(13 * cell, 8 * cell),
+        Offset(13 * cell, 9 * cell),
+        darkline,
+      );
+      //yellow Player
+      canvas.drawLine(
+        Offset(8 * cell, 9 * cell),
+        Offset(8 * cell, 14 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(7 * cell, 9 * cell),
+        Offset(7 * cell, 13 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(6 * cell, 13 * cell),
+        Offset(7 * cell, 13 * cell),
+        darkline,
+      );
+      canvas.drawLine(
+        Offset(6 * cell, 14 * cell),
+        Offset(8 * cell, 14 * cell),
+        darkline,
+      );
+
+      _drawStar(canvas, cell, const Cell(8, 2), color: Colors.black);
+      _drawStar(canvas, cell, const Cell(2, 6), color: Colors.black);
+      _drawStar(canvas, cell, const Cell(12, 8), color: Colors.black);
+      _drawStar(canvas, cell, const Cell(6, 12), color: Colors.black);
     }
+
+    // === 7. Highlight cells ===
+    final highlightPaint = Paint()
+      ..color = Colors.purple.withOpacity(0.3)
+      ..style = PaintingStyle.fill;
+    for (var c in highlightCells) {
+      canvas.drawRect(
+        Rect.fromLTWH(c.c * cell, c.r * cell, cell, cell),
+        highlightPaint,
+      );
+    }
+
+    //=== 8. Debug cell labels ===
+    if (showCellLabels) {
+      final textPainter = TextPainter(
+        textAlign: TextAlign.center,
+        textDirection: TextDirection.ltr,
+      );
+      for (int r = 0; r < n; r++) {
+        for (int c = 0; c < n; c++) {
+          final Rect cellRect = Rect.fromLTWH(c * cell, r * cell, cell, cell);
+          textPainter.text = TextSpan(
+            text: "$r,$c",
+            style: const TextStyle(fontSize: 7, color: Colors.black),
+          );
+          textPainter.layout(minWidth: 0, maxWidth: cell);
+          textPainter.paint(
+            canvas,
+            Offset(
+              cellRect.left + (cell - textPainter.width) / 2,
+              cellRect.top + (cell - textPainter.height) / 2,
+            ),
+          );
+        }
+      }
+    }
+
+    if (background != null) {
+      // Scale image to fit board size
+      final paint = Paint();
+      final src = Rect.fromLTWH(
+        12,
+        12,
+        background!.width.toDouble() * 0.975,
+        background!.height.toDouble() * 0.969,
+      );
+      final dst = Rect.fromLTWH(0, 0, size.width, size.height);
+      canvas.drawImageRect(background!, src, dst, paint);
+    } else {
+      // fallback white background
+      canvas.drawRect(rect, Paint()..color = Colors.transparent);
+    }
+
+    // Example: draw at (row 2, col 2)
+    // _drawHomeQuadrant(canvas, cell, 0, 0, red);
+    // _drawCustomSquare(canvas, cell*6, 0, 0, red);
+    _drawCustomSquare(canvas, cell * 6, 0, 0, red);
+    _drawCustomSquare(canvas, cell * 6, 228, 0, yellow);
+    _drawCustomSquare(canvas, cell * 6, 0, 228, green);
+    _drawCustomSquare(canvas, cell * 6, 228, 228, blue);
+
+    _drawHomeQuadrantCell(canvas, cell, 1, 1, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 1, 4, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 4, 1, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 4, 4, Colors.blueGrey);
+
+    _drawHomeQuadrantCell(canvas, cell, 1, 10, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 1, 13, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 4, 10, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 4, 13, Colors.blueGrey);
+
+    _drawHomeQuadrantCell(canvas, cell, 10, 1, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 10, 4, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 13, 1, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 13, 4, Colors.blueGrey);
+
+    _drawHomeQuadrantCell(canvas, cell, 10, 10, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 10, 13, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 13, 10, Colors.blueGrey);
+    _drawHomeQuadrantCell(canvas, cell, 13, 13, Colors.blueGrey);
   }
 
-  if (background != null) {
-    // Scale image to fit board size
-    final paint = Paint();
-    final src = Rect.fromLTWH(12, 12, background!.width.toDouble()*0.975, background!.height.toDouble()*0.969);
-    final dst = Rect.fromLTWH(
-    0,
-    0,
-    size.width,
-    size.height,
-  );
-    canvas.drawImageRect(background!, src, dst, paint);
-  } else {
-    // fallback white background
-    canvas.drawRect(rect, Paint()..color = Colors.transparent);
+  void _drawCustomSquare(
+    Canvas canvas,
+    double cellSize,
+    double row,
+    double col,
+    Color color,
+  ) {
+    final double left = col;
+    final double top = row;
+    final Rect outerRect = Rect.fromLTWH(left, top, cellSize, cellSize);
+
+    // Paint outer green square
+    final Paint greenPaint = Paint()..color = color; // green
+    canvas.drawRect(outerRect, greenPaint);
+
+    // Create inner white rounded square (smaller inside)
+    final double margin = cellSize * 0.15; // adjust for padding
+    final Rect innerRect = Rect.fromLTWH(
+      left + margin / 0.36,
+      top + margin,
+      30,
+      cellSize - 2 * margin,
+    );
+
+    final Rect innerRectHorizontal = Rect.fromLTWH(
+      left + margin,
+      top + margin / 0.38,
+      cellSize - 2 * margin,
+      30,
+    );
+
+    final RRect roundedInner = RRect.fromRectAndRadius(
+      innerRect,
+      Radius.circular(cellSize * 0.1), // curve radius
+    );
+
+    final Paint whitePaint = Paint()
+      ..color = const Color(0xFFFFFFFF).withAlpha(80);
+    canvas.drawRRect(roundedInner, whitePaint);
+
+    final RRect roundedInnerHorizontal = RRect.fromRectAndRadius(
+      innerRectHorizontal,
+      Radius.circular(cellSize * 0.1), // curve radius
+    );
+
+    // final Paint whitePaint = Paint()..color = const Color(0xFFFFFFFF).withAlpha(80);
+    canvas.drawRRect(roundedInnerHorizontal, whitePaint);
   }
 
-   // Example: draw at (row 2, col 2)
-  // _drawHomeQuadrant(canvas, cell, 0, 0, red);
-  // _drawCustomSquare(canvas, cell*6, 0, 0, red);
-  _drawCustomSquare(canvas, cell*6, 0, 0,red);
-   _drawCustomSquare(canvas, cell*6, 228, 0,yellow);
-    _drawCustomSquare(canvas, cell*6, 0, 228,green);
-     _drawCustomSquare(canvas, cell*6, 228,228,blue);
+  void _drawHomeQuadrantCell(
+    Canvas canvas,
+    double cellSize,
+    int row,
+    int col,
+    Color color,
+  ) {
+    final double left = col * cellSize;
+    final double top = row * cellSize;
+    final Rect outerRect = Rect.fromLTWH(left, top, cellSize, cellSize);
 
-   _drawHomeQuadrantCell(canvas, cell, 1, 1,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 1, 4,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 4, 1,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 4, 4,Colors.blueGrey);
+    // 1. Paint outer green square (background)
+    final Paint greenPaint = Paint()..color = color;
+    canvas.drawRect(outerRect, greenPaint);
 
-     _drawHomeQuadrantCell(canvas, cell, 1, 10,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 1, 13,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 4, 10,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 4, 13,Colors.blueGrey);
+    // 2. Draw inner white border (slightly smaller rect)
+    final double borderMargin = cellSize * 0.08; // thickness of border
+    final Rect borderRect = Rect.fromLTWH(
+      left + borderMargin,
+      top + borderMargin,
+      cellSize - 2 * borderMargin,
+      cellSize - 2 * borderMargin,
+    );
 
-      _drawHomeQuadrantCell(canvas, cell, 10, 1,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 10, 4,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 13, 1,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 13, 4,Colors.blueGrey);
+    final Paint whitePaint = Paint()..color = Colors.white;
+    canvas.drawRect(borderRect, whitePaint);
 
-        _drawHomeQuadrantCell(canvas, cell, 10, 10,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 10, 13,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 13, 10,Colors.blueGrey);
-  _drawHomeQuadrantCell(canvas, cell, 13, 13,Colors.blueGrey);
-}
+    // 3. Draw rounded inner white square inside the border
+    final double innerMargin = cellSize * 0.18; // distance from outer edges
+    final Rect innerRect = Rect.fromLTWH(
+      left + innerMargin,
+      top + innerMargin,
+      cellSize - 2 * innerMargin,
+      cellSize - 2 * innerMargin,
+    );
 
-void _drawCustomSquare(Canvas canvas, double cellSize, double row, double col,Color color) {
-  final double left = col ;
-  final double top = row ;
-  final Rect outerRect = Rect.fromLTWH(left, top, cellSize, cellSize);
+    final RRect roundedInner = RRect.fromRectAndRadius(
+      innerRect,
+      Radius.circular(cellSize * 0.25), // curve radius
+    );
 
-  // Paint outer green square
-  final Paint greenPaint = Paint()..color = color; // green
-  canvas.drawRect(outerRect, greenPaint);
-
-  // Create inner white rounded square (smaller inside)
-  final double margin = cellSize * 0.15; // adjust for padding
-  final Rect innerRect = Rect.fromLTWH(
-    left + margin/0.36,
-    top + margin,
-    30,
-    cellSize - 2 * margin,
-  );
-
-  final Rect innerRectHorizontal = Rect.fromLTWH(
-    left + margin,
-    top + margin/0.38,
-    cellSize - 2 * margin,
-    30,
-  );
-
-  final RRect roundedInner = RRect.fromRectAndRadius(
-    innerRect,
-    Radius.circular(cellSize * 0.1), // curve radius
-  );
-
-  final Paint whitePaint = Paint()..color = const Color(0xFFFFFFFF).withAlpha(80);
-  canvas.drawRRect(roundedInner, whitePaint);
-
-  final RRect roundedInnerHorizontal = RRect.fromRectAndRadius(
-    innerRectHorizontal,
-    Radius.circular(cellSize * 0.1), // curve radius
-  );
-
-  // final Paint whitePaint = Paint()..color = const Color(0xFFFFFFFF).withAlpha(80);
-  canvas.drawRRect(roundedInnerHorizontal, whitePaint);
-}
-
-
-
-
-void _drawHomeQuadrantCell(Canvas canvas, double cellSize, int row, int col,Color color) {
-  final double left = col * cellSize;
-  final double top = row * cellSize;
-  final Rect outerRect = Rect.fromLTWH(left, top, cellSize, cellSize);
-
-  // 1. Paint outer green square (background)
-  final Paint greenPaint = Paint()..color = color;
-  canvas.drawRect(outerRect, greenPaint);
-
-  // 2. Draw inner white border (slightly smaller rect)
-  final double borderMargin = cellSize * 0.08; // thickness of border
-  final Rect borderRect = Rect.fromLTWH(
-    left + borderMargin,
-    top + borderMargin,
-    cellSize - 2 * borderMargin,
-    cellSize - 2 * borderMargin,
-  );
-
-  final Paint whitePaint = Paint()..color = Colors.white;
-  canvas.drawRect(borderRect, whitePaint);
-
-  // 3. Draw rounded inner white square inside the border
-  final double innerMargin = cellSize * 0.18; // distance from outer edges
-  final Rect innerRect = Rect.fromLTWH(
-    left + innerMargin,
-    top + innerMargin,
-    cellSize - 2 * innerMargin,
-    cellSize - 2 * innerMargin,
-  );
-
-  final RRect roundedInner = RRect.fromRectAndRadius(
-    innerRect,
-    Radius.circular(cellSize * 0.25), // curve radius
-  );
-
-  final Paint innerWhitePaint = Paint()..color = Colors.white;
-  canvas.drawRRect(roundedInner, innerWhitePaint);
-}
-
-
+    final Paint innerWhitePaint = Paint()..color = Colors.white;
+    canvas.drawRRect(roundedInner, innerWhitePaint);
+  }
 
   void _drawCenterTriangles(Canvas canvas, double cell) {
     final double s = cell;
@@ -520,41 +638,62 @@ void _drawHomeQuadrantCell(Canvas canvas, double cellSize, int row, int col,Colo
     );
   }
 
-void _drawStar(Canvas canvas, double cell, Cell pos, {Color color = Colors.purple}) {
-  final double cx = (pos.c + 0.5) * cell; // center X
-  final double cy = (pos.r + 0.5) * cell; // center Y
-  final double outerRadius = cell * 0.4;   // star outer radius
-  final double innerRadius = cell * 0.18;  // star inner radius
+  void _drawStar(
+    Canvas canvas,
+    double cell,
+    Cell pos, {
+    Color color = Colors.purple,
+  }) {
+    final double cx = (pos.c + 0.5) * cell; // center X
+    final double cy = (pos.r + 0.5) * cell; // center Y
+    final double outerRadius = cell * 0.4; // star outer radius
+    final double innerRadius = cell * 0.18; // star inner radius
 
-  final Path path = Path();
-  const int points = 5;
-  for (int i = 0; i < points * 2; i++) {
-    final double angle = (i * 3.14159265 / points) - 3.14159265 / 2; // rotate to top
-    final double radius = (i.isEven ? outerRadius : innerRadius);
-    final double x = cx + radius * Math.cos(angle);
-    final double y = cy + radius * Math.sin(angle);
-    if (i == 0) {
-      path.moveTo(x, y);
-    } else {
-      path.lineTo(x, y);
+    final Path path = Path();
+    const int points = 5;
+    for (int i = 0; i < points * 2; i++) {
+      final double angle =
+          (i * 3.14159265 / points) - 3.14159265 / 2; // rotate to top
+      final double radius = (i.isEven ? outerRadius : innerRadius);
+      final double x = cx + radius * Math.cos(angle);
+      final double y = cy + radius * Math.sin(angle);
+      if (i == 0) {
+        path.moveTo(x, y);
+      } else {
+        path.lineTo(x, y);
+      }
     }
+    path.close();
+
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
+
+    canvas.drawPath(path, paint);
   }
-  path.close();
-
-  final paint = Paint()
-    ..color = color
-    ..style = PaintingStyle.fill;
-
-  canvas.drawPath(path, paint);
-}
 
   void _drawSafeDot(Canvas canvas, double cell, Cell pos) {
     final Offset center = Offset((pos.c + .5) * cell, (pos.r + .5) * cell);
-    canvas.drawCircle(center, cell * .12, Paint()..color = Colors.black.withOpacity(.35));
+    canvas.drawCircle(
+      center,
+      cell * .12,
+      Paint()..color = Colors.black.withOpacity(.35),
+    );
   }
 
-  void _drawYardBorder(Canvas canvas, double cell, {required int baseRow, required int baseCol, required Color color}) {
-    final Rect yardRect = Rect.fromLTWH(baseCol * cell, baseRow * cell, 6 * cell, 6 * cell);
+  void _drawYardBorder(
+    Canvas canvas,
+    double cell, {
+    required int baseRow,
+    required int baseCol,
+    required Color color,
+  }) {
+    final Rect yardRect = Rect.fromLTWH(
+      baseCol * cell,
+      baseRow * cell,
+      6 * cell,
+      6 * cell,
+    );
     canvas.drawRRect(
       RRect.fromRectAndRadius(yardRect, Radius.circular(cell * .2)),
       Paint()
@@ -565,7 +704,12 @@ void _drawStar(Canvas canvas, double cell, Cell pos, {Color color = Colors.purpl
   }
 
   // Helpers
-  Iterable<Rect> _cellsRect(int startRow, int startCol, int rows, int cols) sync* {
+  Iterable<Rect> _cellsRect(
+    int startRow,
+    int startCol,
+    int rows,
+    int cols,
+  ) sync* {
     for (int r = startRow; r < startRow + rows; r++) {
       for (int c = startCol; c < startCol + cols; c++) {
         yield Rect.fromLTWH(c.toDouble(), r.toDouble(), 1, 1);
@@ -585,19 +729,28 @@ void _drawStar(Canvas canvas, double cell, Cell pos, {Color color = Colors.purpl
     }
   }
 
-  void _fillCells(Canvas canvas, double cell, Iterable<Rect> cells, Color color) {
+  void _fillCells(
+    Canvas canvas,
+    double cell,
+    Iterable<Rect> cells,
+    Color color,
+  ) {
     final Paint p = Paint()..color = color;
     for (final unit in cells) {
-      final Rect r = Rect.fromLTWH(unit.left * cell, unit.top * cell, cell, cell);
+      final Rect r = Rect.fromLTWH(
+        unit.left * cell,
+        unit.top * cell,
+        cell,
+        cell,
+      );
       canvas.drawRect(r, p);
     }
   }
 
-// @override
-// bool shouldRepaint(covariant _LudoPainter oldDelegate) {
-//   return showGrid != oldDelegate.showGrid ||
-//          highlightCells != oldDelegate.highlightCells ||
-//          showCellLabels != oldDelegate.showCellLabels; // ✅ add this
-// }
-
+  // @override
+  // bool shouldRepaint(covariant _LudoPainter oldDelegate) {
+  //   return showGrid != oldDelegate.showGrid ||
+  //          highlightCells != oldDelegate.highlightCells ||
+  //          showCellLabels != oldDelegate.showCellLabels; // ✅ add this
+  // }
 }
