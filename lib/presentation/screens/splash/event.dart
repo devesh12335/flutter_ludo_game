@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 
 
 
-abstract class HomeEvent {}
+abstract class SplashEvent {}
 
-class InitEvent extends HomeEvent {}
+class InitEvent extends SplashEvent {}
 
-class ViewNewsEvent extends HomeEvent {
+class ViewNewsEvent extends SplashEvent {
   BuildContext context;
   String newsUrl;
   ViewNewsEvent({required this.context,required this.newsUrl});
 }
 
-class SearchNewsEvent extends HomeEvent {
+class SearchNewsEvent extends SplashEvent {
   BuildContext context;
   String searchQuery;
   SearchNewsEvent({required this.context,required this.searchQuery});

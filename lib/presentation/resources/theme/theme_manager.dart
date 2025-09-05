@@ -3,9 +3,13 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../global_state/globalState.dart';
+
 
 class AppThemes {
+
+  static AppThemes instance = AppThemes._();
+  AppThemes._();
+
   ValueNotifier<bool> isDarkMode = ValueNotifier(false);
 
   static final lightTheme = ThemeData(

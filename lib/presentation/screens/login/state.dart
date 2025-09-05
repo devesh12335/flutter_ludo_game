@@ -4,31 +4,31 @@ import 'package:flutter/material.dart';
 
 import 'bloc.dart';
 
-enum HomeStatus { initial, loading, loaded, error }
+enum LoginStatus { initial, loading, loaded, error }
 
-class HomeState extends Equatable {
-  HomeStatus? status;
+class LoginState extends Equatable {
+  LoginStatus? status;
   String? error;
  
 
-  HomeState({
+  LoginState({
     this.status,
     this.error,
    
   });
 
-  static HomeState initial() {
-    return HomeState(
-        status: HomeStatus.initial,);
+  static LoginState initial() {
+    return LoginState(
+        status: LoginStatus.initial,);
        
   }
 
-  HomeState clone({
-    HomeStatus? status,
+  LoginState clone({
+    LoginStatus? status,
     String? error,
    
   }) {
-    return HomeState(
+    return LoginState(
       status: status ?? this.status,
       error: error ?? this.error,
     

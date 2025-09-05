@@ -6,21 +6,21 @@ import 'bloc.dart';
 import 'event.dart';
 import 'state.dart';
 
-class HomePage extends StatelessWidget {
+class SplashPage extends StatelessWidget {
  
-  HomePage({super.key, });
+  SplashPage({super.key, });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeBloc()..add(InitEvent()),
-      child: BlocConsumer<HomeBloc, HomeState>(
+      create: (context) => SplashBloc()..add(InitEvent()),
+      child: BlocConsumer<SplashBloc, SplashState>(
         listener: (context, state) {
           switch (state.status) {
-            case HomeStatus.initial:
-            case HomeStatus.loading:
-            case HomeStatus.loaded:
-            case HomeStatus.error:
+            case SplashStatus.initial:
+            case SplashStatus.loading:
+            case SplashStatus.loaded:
+            case SplashStatus.error:
             case null:
           }
         },
@@ -31,28 +31,28 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildPage(BuildContext context, HomeState state, ) {
+  Widget _buildPage(BuildContext context, SplashState state, ) {
     //print("${state.status}");
     switch (state.status) {
-      case HomeStatus.initial:
+      case SplashStatus.initial:
         return const Scaffold(
           body: Center(child: Text("Initial__")),
         );
-      case HomeStatus.loading:
+      case SplashStatus.loading:
         return Scaffold(
           body: Center(
             child: CircularProgressIndicator(),
           ),
         );
 
-      case HomeStatus.loaded:
+      case SplashStatus.loaded:
         //print(":call loaded");
         return Page(
           state: state,
          
         );
 
-      case HomeStatus.error:
+      case SplashStatus.error:
         //print(":call loaded");
         return Scaffold(
           body: Center(
@@ -62,14 +62,14 @@ class HomePage extends StatelessWidget {
 
       default:
         return const Scaffold(
-          body: Center(child: Text("Home default")),
+          body: Center(child: Text("Splash default")),
         );
     }
   }
 }
 
 class Page extends StatelessWidget {
-  HomeState state;
+  SplashState state;
 
   Page({required this.state});
 

@@ -8,21 +8,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'event.dart';
 import 'state.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(HomeState.initial()) {
+class SplashBloc extends Bloc<SplashEvent, SplashState> {
+  SplashBloc() : super(SplashState.initial()) {
     on<InitEvent>(_init);
     on<ViewNewsEvent>(_viewNews);
   }
 
-  Future<void> _init(InitEvent event, Emitter<HomeState> emit) async {
+  Future<void> _init(InitEvent event, Emitter<SplashState> emit) async {
     try {
       emit(state.clone(
-        status: HomeStatus.loading,
+        status: SplashStatus.loading,
       ));
     
-      emit(state.clone(status: HomeStatus.loaded));
+      emit(state.clone(status: SplashStatus.loaded));
     } catch (e) {
-      emit(state.clone(status: HomeStatus.error, error: e.toString()));
+      emit(state.clone(status: SplashStatus.error, error: e.toString()));
       throw e;
     }
   }
@@ -39,7 +39,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     
   }
 
-  Future<void> _viewNews(ViewNewsEvent event, Emitter<HomeState> emit) async {
+  Future<void> _viewNews(ViewNewsEvent event, Emitter<SplashState> emit) async {
    
   }
 }
