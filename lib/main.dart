@@ -1,9 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ludo_game/ludo_game/board.dart';
 import 'package:ludo_game/ludo_game/dice.dart';
 import 'package:ludo_game/ludo_game/game.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+   await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
