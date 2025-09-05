@@ -17,6 +17,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthResult<T> {
@@ -35,6 +36,7 @@ class FirebaseAuthService {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+ 
 
   /// Stream to listen to authentication state changes (User?).
   Stream<User?> get authStateChanges => _auth.authStateChanges();
@@ -81,25 +83,35 @@ class FirebaseAuthService {
   /// Sign in with Google (works on Android/iOS/web with proper setup).
   Future<AuthResult<User>> signInWithGoogle() async {
     try {
+      _googleSignIn.initialize(serverClientId: "178669730773-nue4reppp27vcrdkcb2n20b9h9otki4a.apps.googleusercontent.com");
       // Trigger the authentication flow
-      final googleUser = await _googleSignIn.authenticate();
-      if (googleUser == null) return AuthResult(error: Exception('Google sign in aborted by user'));
+      if(_googleSignIn.supportsAuthenticate()){
+         final googleUser = await _googleSignIn.authenticate();
+         // if (googleUser == null) return AuthResult(error: Exception('Google sign in aborted by user'));
 
-      // Obtain the auth details from the request
+      // // Obtain the auth details from the request
       final googleAuth = await googleUser.authentication;
 
-      // Create a new credential
+      print("GoogleIdToken ${googleAuth.idToken}");
+
+      // // Create a new credential
       final credential = GoogleAuthProvider.credential(
         // accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-
-      // Sign in to Firebase with the Google user credential
+       
+      // // Sign in to Firebase with the Google user credential
       final userCredential = await _auth.signInWithCredential(credential);
       return AuthResult(data: userCredential.user);
+      }
+     
+      return AuthResult(message: "Does Not support GoogleAuth");
     } on FirebaseAuthException catch (e) {
+      debugPrint("FirebaseAuthException: ${e.code} - ${e.message}");
       return AuthResult(error: e, message: _firebaseErrorMessage(e));
+      
     } catch (e) {
+      debugPrint("Unexpected error: $e");
       return AuthResult(error: Exception(e.toString()));
     }
   }

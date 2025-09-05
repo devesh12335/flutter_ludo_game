@@ -49,7 +49,7 @@ class _MyAppState extends State<MyApp> {
         return MultiBlocProvider(
           providers: [BlocProvider(create: (_) => LoginBloc())],
           child: MaterialApp(
-            navigatorKey: AppGlobal.navigatorKey,
+            navigatorKey: GlobalState.instance.navigatorKey,
             debugShowCheckedModeBanner: false,
 
             // initialRoute: Routes.splashPage,

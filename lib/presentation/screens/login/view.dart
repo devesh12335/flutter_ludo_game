@@ -7,8 +7,7 @@ import 'event.dart';
 import 'state.dart';
 
 class LoginPage extends StatelessWidget {
- 
-  LoginPage({super.key, });
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,45 +24,30 @@ class LoginPage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return _buildPage(context, state,);
+          return _buildPage(context, state);
         },
       ),
     );
   }
 
-  Widget _buildPage(BuildContext context, LoginState state, ) {
+  Widget _buildPage(BuildContext context, LoginState state) {
     //print("${state.status}");
     switch (state.status) {
       case LoginStatus.initial:
-        return const Scaffold(
-          body: Center(child: Text("Initial__")),
-        );
+        return const Scaffold(body: Center(child: Text("Initial__")));
       case LoginStatus.loading:
-        return Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
+        return Scaffold(body: Center(child: CircularProgressIndicator()));
 
       case LoginStatus.loaded:
         //print(":call loaded");
-        return Page(
-          state: state,
-         
-        );
+        return Page(state: state);
 
       case LoginStatus.error:
         //print(":call loaded");
-        return Scaffold(
-          body: Center(
-            child: Text("${state.error}"),
-          ),
-        );
+        return Scaffold(body: Center(child: Text("${state.error}")));
 
       default:
-        return const Scaffold(
-          body: Center(child: Text("Login default")),
-        );
+        return const Scaffold(body: Center(child: Text("Login default")));
     }
   }
 }
@@ -76,9 +60,23 @@ class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double scWidth = MediaQuery.of(context).size.width;
-     double scHeight = MediaQuery.of(context).size.height;
-    return Scaffold();
+    double scHeight = MediaQuery.of(context).size.height;
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () => context.read<LoginBloc>().add(
+                  GoogleSignInEvent(context: context),
+                ),
+                child: Text("Google SignIn"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
-
- 
 }

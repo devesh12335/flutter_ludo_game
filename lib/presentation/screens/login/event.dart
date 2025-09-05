@@ -8,10 +8,10 @@ abstract class LoginEvent {}
 
 class InitEvent extends LoginEvent {}
 
-class ViewNewsEvent extends LoginEvent {
+class GoogleSignInEvent extends LoginEvent {
   BuildContext context;
-  String newsUrl;
-  ViewNewsEvent({required this.context,required this.newsUrl});
+  
+  GoogleSignInEvent({required this.context});
 }
 
 class SearchNewsEvent extends LoginEvent {
