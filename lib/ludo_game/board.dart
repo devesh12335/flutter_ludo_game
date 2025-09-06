@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ludo_game/gen/assets.gen.dart';
 import 'package:ludo_game/models/cell.dart';
 
 /// Simple Ludo board that paints the board and places tappable token widgets
@@ -102,9 +103,10 @@ class _LudoBoardState extends State<LudoBoard> {
   Widget _buildToken(LudoColor color) {
     return Container(
       decoration: BoxDecoration(
+        image: DecorationImage(image: AssetImage(Assets.playerToken.path),scale: 0.2),
         color: _colorOf(color),
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.teal, width: 2),
+        border: Border.all(color: Colors.white, width: 2),
         boxShadow: const [
           BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(1, 1)),
         ],

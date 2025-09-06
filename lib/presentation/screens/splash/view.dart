@@ -25,6 +25,8 @@ class SplashPage extends StatelessWidget {
             case SplashStatus.loaded:
             if(FirebaseAuthService.instance.currentUser != null){
               Navigator.pushNamedAndRemoveUntil(context, Routes.ludoPage, (_)=>false);
+            }else{
+               Navigator.pushNamedAndRemoveUntil(context, Routes.loginPage, (_)=>false);
             }
             case SplashStatus.error:
             case null:
